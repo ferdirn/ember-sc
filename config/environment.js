@@ -20,7 +20,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
@@ -43,6 +43,38 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authenticationRoute: 'auth.login',
+    authorizer: 'simple-auth-authorizer:token',
+    routeAfterAuthentication: 'dashboard',
+    crossOriginWhitelist: ['*']
+  };
+
+  ENV['simple-auth-token'] = {
+    serverTokenEndpoint: 'http://localhost:8000/api/auth/',
+    identificationField: 'username',
+    passwordField: 'password',
+    tokenPropertyName: 'token',
+    authorizationPrefix: 'MOXY ',
+    authorizationHeaderName: 'Authorization',
+    refreshAccessTokens: false,
+    serverTokenRefreshEndpoint: 'http://localhost:8000/api/auth-refresh/',
+    refreshLeeway: 300, // refresh token for 5 minutes. need to develop expiry
+    timeFactor: 1000,
+    headers: {}
+  };
+
+  ENV['contentSecurityPolicy'] = {
+    'default-src': "'none'",
+    'script-src': "'self'",
+    'font-src': "'self'",
+    'connect-src': "http://localhost:8000",
+    'img-src': "'self'",
+    'style-src': "'self'",
+    'media-src': "'self'"
+  };
 
   return ENV;
 };
