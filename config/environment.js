@@ -72,7 +72,7 @@ module.exports = function(environment) {
     'font-src': "'self'",
     'connect-src': "http://localhost:8000",
     'img-src': "'self'",
-    'style-src': "'self'",
+    'style-src': "'self' 'unsafe-inline'",
     'media-src': "'self'"
   };
 

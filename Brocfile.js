@@ -11,7 +11,12 @@ var app = new EmberApp({
 
 });
 
+// import js from vendors
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+app.import('bower_components/nprogress/nprogress.js');
+
+// import css from vendors
+app.import('bower_components/nprogress/nprogress.css');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
