@@ -18,6 +18,9 @@ app.import('bower_components/nprogress/nprogress.js');
 // import css from vendors
 app.import('bower_components/nprogress/nprogress.css');
 
+//app.import('bower_components/ember-validations/index.js');
+//app.import('bower_components/ember-easy-form-extensions/index.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
