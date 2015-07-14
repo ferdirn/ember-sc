@@ -1,3 +1,335 @@
-<div class="row">
-  <h2>Main dashboard page</h2>
-</div>
+{{ partial navigation }}	
+
+	<div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">
+
+	</div>
+
+	<div class="container-fluid content-page">
+		<div class="row margin-top-20 bottom-spacer hidden-xs hidden-sm hidden-md">
+			<a href="uploads-item.html">
+				<div class="col-lg-2 col-lg-offset-2 text-center add-products">
+					<i class="fa fa-plus"></i> Add products
+				</div>
+			</a>
+			<a href="manager-order.html">
+				<div class="col-lg-2 add-products text-center hidden-xs">
+					New Order
+				</div>
+			</a>
+			<a href="list-sales.html">
+				<div class="col-lg-2 add-products text-center hidden-xs">
+					Overal Sales
+				</div>
+			</a>
+			<a href="manager-order.html">
+				<div class="col-lg-2 add-products text-center hidden-xs">
+					Generate Report
+				</div>
+			</a>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container">
+					<label for="exampleInputEmail1" class="in-block full-width">My Profile</label>
+					<div class="col-lg-2 col-xs-4 col-sm-3 nopadding propic in-block">
+						<img src="assets/img/thumb.png" width="100%">
+					</div>
+					<div class="col-lg-9 nopadding in-block">
+						<h6 id="profil-data">Name : Seller 1</h6>
+						<h6 id="profil-data">Member since : 12/5/2015</h6>
+						<h6 id="profil-data">Total sales : 200</h6>
+					</div>
+					<div class="col-lg-6 col-xs-2 col-md-6 col-sm-4 nopadding pull-right">
+						<a href="profilpage.html">
+							<div class="btn btn-primary btn-size-small pull-right">Edit</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Overall Sales</label>
+					<div class="col-lg-5 col-xs-4 col-sm-3 nopadding">
+					</div>
+					<div class="col-lg-6 col-xs-2 col-md-6 col-sm-4 nopadding pull-right">
+						<a href="list-sales.html">
+							<div class="btn btn-primary btn-size-small pull-right">Details</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block col-sm-6 pull-left nopadding">New Order</label>
+
+					<div class="col-lg-6 col-xs-6 col-sm-6 nopadding in-block pull-right text-right bottom-spacer">
+						<i class="fa fa-certificate"></i> &nbsp 1 new order
+					</div>
+					<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width">
+						<div class="table-responsive table-scroll bottom-spacer">
+							<table class="table table-striped table-responsive">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Product Name</th>
+										<th>Buyer</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Ray ban erika</td>
+										<td>User 1</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+						<a href="manager-order.html">
+							<div class="btn btn-primary btn-size-small pull-right">Details</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Tracking ID</label>
+					<form class="form-inline bottom-spacer">
+						<div class="form-group">
+							<label for="inputCode" class="sr-only">Track ID</label>
+							<input type="text" class="form-control" id="InputCode" placeholder="Track ID">
+						</div>
+						<button type="submit" class="btn btn-primary btn-size-small pull-right">Track</button>
+					</form>
+					<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width ">
+						<div class="table-responsive table-scroll-tracking bottom-spacer">
+							<table class="table table-striped table-responsive">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Tracking ID</th>
+										<th>Buyer</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>KMZWA88S</td>
+										<td>Smokesound</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>982774943XSK</td>
+										<td>Satanclaus</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- second-row -->
+		<div class="row">
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container">
+					<a href="manager-order.html">
+						<div class="row spacer40">
+							<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width text-center main-number nopadding">
+								13
+							</div>
+							<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width text-center nopadding">
+								inactive products
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Cancel Order Request</label>
+					<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width ">
+						<div class="table-responsive table-scroll bottom-spacer">
+							<table class="table table-striped table-responsive">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Product Name</th>
+										<th>Buyer</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Ray ban erika</td>
+										<td>User 1</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+						<a href="manager-order.html">
+							<div class="btn btn-primary btn-size-small pull-right">View All</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container">
+					<a href="list-product.html">
+						<div class="row spacer40">
+							<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width text-center main-number nopadding">
+								28
+							</div>
+							<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width text-center nopadding">
+								active products
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Cancel Order Request</label>
+					<div class="col-lg-12 col-xs-12 col-sm-12 nopadding in-block full-width ">
+						<div class="table-responsive table-scroll bottom-spacer">
+							<table class="table table-striped table-responsive">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Product Name</th>
+										<th>Buyer</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Ray ban erika</td>
+										<td>User 1</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+									<tr>
+										<th scope="row">4</th>
+										<td>Column lorem ipsum bla bla blas</td>
+										<td>Column</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+						<a href="manager-order.html">
+							<div class="btn btn-primary btn-size-small pull-right">View all</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-4 col-md-4 side-padder">
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Messages</label>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-spacer nopadding divider-bottom">
+						<div class="in-block bottom-spacer">
+							<label class="checkbox-inline checkbox-top-spacer">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> Seller 1
+							</label>
+						</div>
+						<a href="reply-message.html">
+							<div class="btn btn-hollow btn-size-small pull-right">Reply</div>
+						</a>
+						<div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+							<p class="elipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-spacer nopadding">
+						<div class="in-block bottom-spacer">
+							<label class="checkbox-inline checkbox-top-spacer">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> Seller 1
+							</label>
+						</div>
+						<a href="reply-message.html">
+							<div class="btn btn-hollow btn-size-small pull-right">Reply</div>
+						</a>
+						<div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+							<p class="elipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-size-small pull-right">Mark as read</button>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container in-block full-width">
+					<label for="exampleInputEmail1" class="in-block full-width">Notice</label>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-spacer nopadding divider-bottom">
+
+						<a href="news.html">
+							<div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+								<p class="elipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-spacer nopadding divider-bottom">
+
+						<div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+							<p class="elipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-spacer nopadding">
+
+						<div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+							<p class="elipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div
+		
+

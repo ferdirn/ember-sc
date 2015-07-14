@@ -8,9 +8,10 @@ export default DS.Model.extend(Attachable, {
   owner_address: DS.attr(),
   seller_type: DS.attr(),
   payment_method: DS.attr(),
+
   photo: DS.attr(),
   attachmentAs: 'photo',
-  return_address: DS.attr(),
+  return_address: DS.attr('string'),
   identity_number: DS.attr(),
   bank_name: DS.attr(),
   bank_account_number: DS.attr(),
@@ -20,6 +21,9 @@ export default DS.Model.extend(Attachable, {
   shop_name: DS.attr(),
   npwp: DS.attr(),
   email: DS.attr(),
-  seller_name: DS.attr()
+  seller_name: DS.attr(),
+  seller_type_choices: DS.attr(),
+  payment_choices: DS.attr(),
+  shop_link: DS.attr()
 
 });

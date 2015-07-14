@@ -58,18 +58,14 @@
             <div class="form-group in-block full-width">
               <label for="inputtype" class="col-sm-3 control-label texting-mid-form">Type</label>
               <div class="col-sm-9">
-                <select class="form-control">
-				{{#ifCond seller_type '==' "1"}}
-				<option selected="true">Individual</option>
-				{{else}}
-                  <option >Individual</option>
-				  {{/ifCond}}
-                  {{#ifCond seller_type '==' "2"}}
-				<option selected="true">Company</option>
-				{{else}}
-                  <option >Company</option>
-				  {{/ifCond}}
-                </select>
+				{{view "select" class="form-control" 
+				       content=model.seller_type_choices
+							  optionValuePath="content.id"
+							  optionLabelPath="content.seller_type"
+							         prompt="Please select your seller type"
+									 selection=model.seller_type
+									 }}
+
               </div>
             </div>
         </div>
@@ -90,38 +86,42 @@
               {{input type="text" class="form-control" id="inputshopname" placeholder="put your shop name " value=model.shop_name}}
             </div>
           </div>
+
+		  <div class="form-group in-block full-width">
+            <label for="inputreturnaddress" class="col-sm-3 control-label texting-mid-form">Return Address</label>
+            <div class="col-sm-9">
+              {{textarea class="form-control maximum-width" rows="3" value=model.return_address}}
+            </div>
+          </div>
+
           <div class="form-group in-block full-width">
             <label for="inputowneradress" class="col-sm-3 control-label texting-mid-form">Owner Address</label>
             <div class="col-sm-9">
-              <textarea class="form-control maximum-width" rows="3">{{model.owner_address}}</textarea>
+              {{textarea class="form-control maximum-width" rows="3" value=model.owner_address}}
             </div>
           </div>
-          <div class="form-group in-block full-width">
-            <label for="inputbirthdate" class="col-sm-3 control-label texting-mid-form">Shop Address</label>
+
+		  <div class="form-group in-block full-width">
+            <label for="inputowneradress" class="col-sm-3 control-label texting-mid-form">Shop Address</label>
             <div class="col-sm-9">
-              <textarea class="form-control maximum-width" rows="3">{{model.shop_address}}</textarea>
+              {{textarea class="form-control maximum-width" rows="3" value=model.shop_address}}
             </div>
           </div>
-          <div class="form-group in-block full-width">
-            <label for="phone" class="col-sm-3 control-label texting-mid-form">Return Address</label>
-            <div class="col-sm-9">
-              <textarea class="form-control maximum-width" rows="3">{{model.return_address}}</textarea>
-            </div>
-          </div>
+
           <div class="form-group in-block full-width">
             <label for="shop-name" class="col-sm-3 control-label texting-mid-form">Bank Name</label>
             <div class="col-sm-9">
-              {{input type="text" class="form-control" id="inputshopname" placeholder="put bank name" value=model.bank_name}}
+              {{input type="text" class="form-control" id="inputbankname" placeholder="put bank name" value=model.bank_name}}
             </div>
           </div>
           <div class="form-group in-block full-width">
-            <label for="inputNPWP" class="col-sm-3 control-label texting-mid-form">Account Number</label>
+            <label for="inputaccountnumber" class="col-sm-3 control-label texting-mid-form">Account Number</label>
             <div class="col-sm-9">
               {{input type="text" class="form-control" id="inputbankaccountnumber" placeholder="put your account number" value=model.bank_account_number}}
             </div>
           </div>
 		  <div class="form-group in-block full-width">
-            <label for="inputNPWP" class="col-sm-3 control-label texting-mid-form">Account Holder</label>
+            <label for="inputaccountholder" class="col-sm-3 control-label texting-mid-form">Account Holder</label>
             <div class="col-sm-9">
               {{input type="text" class="form-control" id="inputaccountholder" placeholder="put account holder name" value=model.account_holder}}
             </div>
@@ -129,25 +129,20 @@
           <div class="form-group in-block full-width">
             <label for="inputtype" class="col-sm-3 control-label texting-mid-form">Payment Method</label>
             <div class="col-sm-9">
-              <select class="form-control">
-			    {{#ifCond model.payment_method "==" "1"}}
-				<option selected="true">Transfer</option>
-				{{else}}
-                <option>Transfer</option>
-				{{/ifCond}}
-                {{#ifCond model.payment_method "==" "2"}}
-				<option selected="true">Points</option>
-				{{else}}
-                <option>Points</option>
-				{{/ifCond}}
-
-              </select>
+				{{view "select" class="form-control" 
+				       content=model.payment_choices
+							  optionValuePath="content.id"
+							  optionLabelPath="content.payment_choice"
+							         prompt="Please select your payment method"
+									 selection=model.payment_method
+									 }}
+              
             </div>
           </div>
           <div class="form-group in-block full-width">
-            <label for="inputNPWP" class="col-sm-3 control-label texting-mid-form">Shop Link</label>
+            <label for="inputshoplink" class="col-sm-3 control-label texting-mid-form">Shop Link</label>
             <div class="col-sm-9">
-              {{input type="text" class="form-control" id="inputNPWP" placeholder="http://moxy.co.id/supershop1"}}
+              {{input type="text" class="form-control" id="inputshoplink" value=model.shop_link}}
             </div>
           </div>
         </div>
