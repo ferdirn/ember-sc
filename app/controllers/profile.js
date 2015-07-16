@@ -3,9 +3,10 @@ import EmberValidations from 'ember-validations';
 import App from '../app';
 
 export default Ember.ObjectController.extend(EmberValidations.Mixin, {
+  /*
   model: function() {
     this.store.createModel('profile');
-  },
+  },*/
   actions: {
     save: function() {
       var data = this.get('content')._data;
@@ -27,15 +28,14 @@ export default Ember.ObjectController.extend(EmberValidations.Mixin, {
 
       if (noFile) {
         profileModel.save().then(function() {
-          this.transitionTo('profile');
         });
 
       } else {
         profileModel.saveWithAttachment().then(function() {
-          this.transitionTo('profile');
         });
       }
-      
+       
+      this.get('target').transitionTo('profile');
       //console.log('asdasdxcvxcvxcv');
     }
   },  

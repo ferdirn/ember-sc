@@ -29,6 +29,11 @@ Router.map(function() {
     this.route('register');
   });
   this.route('profile');
+
+  this.route('product', function() {
+    this.route('add');
+  });
+  this.route('category');
 });
 
 export default Router;
