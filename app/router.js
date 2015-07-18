@@ -7,9 +7,6 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('dashboard', { path: '/' });
-  this.route('product_add', { path: '/product/add'});
-  this.route('manage_order', { path: '/order/manage'});
-  this.route('list_sale', { path: '/sales'});
 
   this.route('products', function() {
     this.route('list', {path: '/products'}); // /products/ ?

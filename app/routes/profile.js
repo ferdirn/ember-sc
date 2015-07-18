@@ -5,11 +5,11 @@ import PageLoaderMixin from 'sellercenter/mixins/page-loader';
 
 export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
   
-  model: function() {
-    return this.store.find('profile').then(function(result) {
-		  return result.get('firstObject');
-	  });
-  },
+  
+  model : function(params){
+                   return Ember.$.getJSON(window.apiHost+'/communities/'+params.group_id+'/follow-ups');
+                      },
+
   setupController: function(controller, model) {
       controller.set('model', model);
   }

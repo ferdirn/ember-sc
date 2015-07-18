@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
       console.log(this.store.find('category'));
       console.log('>>>>>>>>>>>>>>>>>>');
       var data = this.store.get('product');
-      var productModel = this.store.createModel('product', data);
+      var productModel = this.store.createRecord('product', data);
       productModel.save();
     }
   }

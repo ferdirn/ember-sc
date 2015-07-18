@@ -2,11 +2,8 @@ import Ember from 'ember';
 import EmberValidations from 'ember-validations';
 import App from '../app';
 
-export default Ember.ObjectController.extend(EmberValidations.Mixin, {
-  /*
-  model: function() {
-    this.store.createModel('profile');
-  },*/
+export default Ember.ObjectController.extend(/*EmberValidations.Mixin,*/ {
+  
   actions: {
     save: function() {
       var data = this.get('content')._data;
@@ -36,7 +33,6 @@ export default Ember.ObjectController.extend(EmberValidations.Mixin, {
       }
        
       this.get('target').transitionTo('profile');
-      //console.log('asdasdxcvxcvxcv');
     }
   },  
   validations: {
