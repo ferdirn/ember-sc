@@ -7,8 +7,8 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
   
   model: function() {
     return this.store.find('profile').then(function(result) {
-		  return result.get('firstObject');
-	  });
+      return result.get('firstObject');
+    });
   },
   setupController: function(controller, model) {
       controller.set('model', model);

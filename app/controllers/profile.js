@@ -1,42 +1,34 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
-import App from '../app';
 
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   model: function() {
     this.store.createModel('profile');
   },
   actions: {
+    chooseSellerType: function(value, component) {
+      this.set('model.seller_type', value);
+    },
+    choosePaymentType: function(value, component) {
+      this.set('model.payment_method', value);
+    },
     save: function() {
-      var data = this.get('content')._data;
-      //var data = this.store.find('profile');
-      try {
-        data['seller_type'] = data['seller_type'].id;
-      } catch (TypeError) {
-      }
-      try {
-        data['payment_method'] = data['payment_method'].id;
-      } catch (TypeError) {
-      }
-      var noFile = true;
-      var profileModel = this.store.push('profile', data);
-      $.each($(':file')[0].files, function(i, file) {
-          profileModel.set('photo', file);
-          noFile = false;
-      });
+      var m = this.get('model');
+      var file = document.getElementById('photo-file').files[0];
 
-      if (noFile) {
-        profileModel.save().then(function() {
+      if (file) {
+        m.set('photo', file);
+
+        m.saveWithAttachment().then(function() {
           this.transitionTo('profile');
         });
 
       } else {
-        profileModel.saveWithAttachment().then(function() {
+        m.save().then(function() {
           this.transitionTo('profile');
         });
       }
-      
-      //console.log('asdasdxcvxcvxcv');
+
     }
   },  
   validations: {

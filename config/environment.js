@@ -70,8 +70,8 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self'",
     'font-src': "'self'",
-    'connect-src': "http://localhost:8000",
-    'img-src': "'self'",
+    'connect-src': "'self' http://localhost:8000",
+    'img-src': "http://localhost:8000",
     'style-src': "'self' 'unsafe-inline'",
     'media-src': "'self'"
   };
