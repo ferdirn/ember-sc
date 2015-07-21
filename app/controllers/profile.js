@@ -6,6 +6,17 @@ export default Ember.Controller.extend({
     this.store.createModel('profile');
   },
   actions: {
+    setProfilePicture: function() {
+      var file = document.getElementById('photo-file').files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#profile-picture').attr('src', e.target.result)
+        .width(60)
+        .height(60);
+      };
+      reader.readAsDataURL(file);
+    },
     chooseSellerType: function(value, component) {
       this.set('model.seller_type', value);
     },
