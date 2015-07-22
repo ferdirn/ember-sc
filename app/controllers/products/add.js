@@ -1,15 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  categories: ['asdasdasdasd'] /*function() {
-    console.log('asda');
-    return this.get('controller.category.content');
-  }._data*/
-  ,actions: {
+  actions: {
     save: function() {
-      console.log(this.store.find('category'));
-      console.log('>>>>>>>>>>>>>>>>>>');
-      var data = this.store.get('product');
+      var data = this.get('content');
+      //console.log(this.store.find('product'));
+      
+      console.log(data);
       var productModel = this.store.createRecord('product', data);
       productModel.save();
     }

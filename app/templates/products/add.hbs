@@ -15,7 +15,7 @@
 
 					<label for="form-title" class="">Category</label>
 					<div class="clearfix"></div>
-					{{categories}}
+					{{log categories}}
 					{{ view "select" content=categories class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom"  optionValuePath="content.id" optionLabelPath="content.name"}}
 					<select name="ageGroup" onchange="fillSelect(this.value,this.form['subcat1'],0)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
 						<option value="">Main Category</option>
@@ -37,8 +37,8 @@
 				<!-- end of mobile display -->
 				<div class="col-lg-12 nopadding">
 					<div class="form-group">
-						<label for="productname">Name</label>
-						<input type="email" class="form-control" id="productname" placeholder="Enter name of the product">
+						<label for="productname">Name {{log '>>>>>>>>>>>>>>>>' }}{{log model}}</label>
+						{{ input type="text" class="form-control" id="productname" placeholder="Enter name of the product" value=model.name}}
 					</div>
 					<div class="form-group">
 
@@ -144,7 +144,7 @@
 					</div>
 					<div class="form-group">
 						<label for="productname">Description</label>
-						<textarea class="form-control" rows="3"></textarea>
+						{{ textarea class="form-control" rows="3" value=model.description}}
 					</div>
 					<div class="form-group">
 						<label for="productname">Tags</label>
@@ -155,7 +155,7 @@
 						<input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
 						<div class="clearfix"></div>
 						<div class="col-lg-5 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
+							{{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.price}}
 						</div>
 						<div class="col-lg-5 col-sm-10 col-xs-6 col-md-10 nopadding right-spacer bottom-spacer">
 							<input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
