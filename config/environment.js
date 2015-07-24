@@ -28,6 +28,14 @@ module.exports = function(environment) {
     ENV.APP.API_HOST = 'http://localhost:8000';
   }
 
+  if (environment === 'local') {
+    var HOST = 'http://192.168.0.119:8000';
+    ENV.APP.API_HOST = HOST;
+    ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
+    ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
+    ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
