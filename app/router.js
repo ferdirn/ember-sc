@@ -15,7 +15,7 @@ Router.map(function() {
   });
 
   this.route('sales', function() {
-    this.route('list', {path: '/sales'}); // /sales for listing all sales
+    this.route('list', {path: '/'}); // /sales for listing all sales
     this.route('pending'); // /sales/pending/ for orders which haven't been processed
     this.route('cancelled'); // /sales/cancelled/ for cancelled orders
     this.route('success'); // /sales/success/ for successful orders

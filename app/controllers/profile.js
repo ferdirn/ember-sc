@@ -1,28 +1,38 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
-import App from '../app';
 
+<<<<<<< HEAD
 export default Ember.ObjectController.extend(/*EmberValidations.Mixin,*/ {
   
+=======
+export default Ember.Controller.extend({
+  model: function() {
+    this.store.createModel('profile');
+  },
+>>>>>>> de00d39d46f3b30389eece0932add7e8eb034fc8
   actions: {
-    save: function() {
-      var data = this.get('content')._data;
-      //var data = this.store.find('profile');
-      try {
-        data['seller_type'] = data['seller_type'].id;
-      } catch (TypeError) {
-      }
-      try {
-        data['payment_method'] = data['payment_method'].id;
-      } catch (TypeError) {
-      }
-      var noFile = true;
-      var profileModel = this.store.push('profile', data);
-      $.each($(':file')[0].files, function(i, file) {
-          profileModel.set('photo', file);
-          noFile = false;
-      });
+    setProfilePicture: function() {
+      var file = document.getElementById('photo-file').files[0];
+      var reader = new FileReader();
 
+      reader.onload = function (e) {
+        $('#profile-picture').attr('src', e.target.result)
+        .width(60)
+        .height(60);
+      };
+      reader.readAsDataURL(file);
+    },
+    chooseSellerType: function(value, component) {
+      this.set('model.seller_type', value);
+    },
+    choosePaymentType: function(value, component) {
+      this.set('model.payment_method', value);
+    },
+    save: function() {
+      var m = this.get('model');
+      var file = document.getElementById('photo-file').files[0];
+
+<<<<<<< HEAD
       if (noFile) {
         profileModel.save().then(function() {
         });
@@ -33,6 +43,21 @@ export default Ember.ObjectController.extend(/*EmberValidations.Mixin,*/ {
       }
        
       this.get('target').transitionTo('profile');
+=======
+      if (file) {
+        m.set('photo', file);
+
+        m.saveWithAttachment().then(function() {
+          this.transitionTo('profile');
+        });
+
+      } else {
+        m.save().then(function() {
+          this.transitionTo('profile');
+        });
+      }
+
+>>>>>>> de00d39d46f3b30389eece0932add7e8eb034fc8
     }
   },  
   validations: {

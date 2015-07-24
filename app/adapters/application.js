@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DRFAdapter from './drf';
 
 export default DRFAdapter.extend({
-  addTrailingSlashes: false
+  addTrailingSlashes: true
 });
 
 var inflector = Ember.Inflector.inflector;

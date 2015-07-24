@@ -14,6 +14,9 @@ var app = new EmberApp({
 // import js from vendors
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/nprogress/nprogress.js');
+app.import('vendor/dist/js/Chart.js');
+app.import('vendor/dist/js/bootstrap-filestyle.min.js');
+app.import('vendor/dist/js/uploads-item.js');
 
 // import css from vendors
 app.import('bower_components/nprogress/nprogress.css');

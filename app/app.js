@@ -14,6 +14,18 @@ App = Ember.Application.extend({
 });
 
 
+/* TODO: This can be removed in favor of ember-truth-helpers.
+ * One can use the following options with ember-truth-helpers:
+ * {{#if (eq val1 val2)}} {{/if}}
+ * {{#if (not-eq val1 val2)}} {{/if}}
+ * {{#if (not val1)}} {{/if}}
+ * {{#if (and val1 val2)}} {{/if}}
+ * {{#if (or val1 val2)}} {{/if}}
+ * {{#if (gte val1 val2)}} {{/if}}
+ * {{#if (lte val1 val2)}} {{/if}}
+ * {{#if (is-array val1)}} {{/if}}
+ */
+
 Ember.Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
     switch (operator) {
         case '==':
