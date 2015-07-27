@@ -5,18 +5,19 @@
         <img src="/img/logo.png" class="spacer text-center col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
         <div class="clearfix"></div>
         <div class="form-group">
-          {{#each errors.username as |err|}}
-          <p>{{err}}</p>
-          {{/each}}
           <label for="username">Email address</label>
-          {{input id='identification' class="form-control" placeholder='Enter username/email address' value=identification}}
+          {{input id='identification' class="form-control" placeholder='Enter username/email address' value=identification required=true}}
+          {{#each errors.username as |err|}}
+          <label class="input-error" role="alert" for="password">{{err}}</label>
+          {{/each}}
         </div>
         <div class="form-group">
-          {{#each errors.password as |err|}}
-          <p>{{err}}</p>
-          {{/each}}
           <label for="password">Password</label>
-          {{input id='password' class="form-control" placeholder='Enter Password' type='password' value=password}}
+          {{input id='password' class="form-control" placeholder='Enter Password' type='password' value=password required=true}}
+          {{#each errors.password as |err|}}
+          <label class="input-error" role="alert" for="password">{{err}}</label>
+          {{/each}}
+
         </div>
         <!-- <div class="checkbox"> -->
         <!--   <label> -->
