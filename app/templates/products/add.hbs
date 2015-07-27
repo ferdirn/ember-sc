@@ -58,7 +58,7 @@
               </select>
             </div>
             <div class="col-lg-9 nopadding">
-              <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
+              <input type="button" class="btn btn-sell btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -147,14 +147,16 @@
           </div>
           <div class="form-group framebox bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
             <label for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 text-title">Wholesale Price</label>
-            <input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
+
             <div class="clearfix"></div>
-            <div class="col-lg-5 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
+            <div class="col-xs-10 col-sm-10 col-md-4 nopadding right-spacer bottom-spacer">
               <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
             </div>
-            <div class="col-lg-5 col-sm-10 col-xs-6 col-md-10 nopadding right-spacer bottom-spacer">
-              <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
+            <div class="col-xs-5 col-sm-5 col-md-4 nopadding right-spacer bottom-spacer">
+              <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />    
+              <input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
             </div>
+
 
             <div class="clearfix"></div>
           </div>
