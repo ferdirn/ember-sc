@@ -145,18 +145,26 @@
             <label for="productname" class="text-title">Tags</label>
             <input type="email" class="form-control" id="productname" placeholder="Tags separated by comma">
           </div>
+          
           <div class="form-group framebox bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
             <label for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 text-title">Wholesale Price</label>
 
             <div class="clearfix"></div>
-            <div class="col-xs-10 col-sm-10 col-md-4 nopadding right-spacer bottom-spacer">
+<div class="frame-box">
+              <div class="col-xs-10 col-sm-10 col-md-4 nopadding right-spacer bottom-spacer">
               <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
             </div>
             <div class="col-xs-5 col-sm-5 col-md-4 nopadding right-spacer bottom-spacer">
-              <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />    
-              <input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
+              <div class="form-group">
+               <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
+              </div>
             </div>
 
+            <div class="col-xs-1 col-sm-1 col-md-1 nopadding right-spacer bottom-spacer">
+            <input class="btn btn-sell btn-size-regular nomargin addmore pull-left" type="button" value="+" onclick="addRowWholeSale()">
+            </div>   
+</div>                     
+            
 
             <div class="clearfix"></div>
           </div>
