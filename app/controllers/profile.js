@@ -1,15 +1,11 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
 
-<<<<<<< HEAD
-export default Ember.ObjectController.extend(/*EmberValidations.Mixin,*/ {
-  
-=======
+
 export default Ember.Controller.extend({
   model: function() {
     this.store.createModel('profile');
   },
->>>>>>> de00d39d46f3b30389eece0932add7e8eb034fc8
   actions: {
     setProfilePicture: function() {
       var file = document.getElementById('photo-file').files[0];
@@ -32,18 +28,7 @@ export default Ember.Controller.extend({
       var m = this.get('model');
       var file = document.getElementById('photo-file').files[0];
 
-<<<<<<< HEAD
-      if (noFile) {
-        profileModel.save().then(function() {
-        });
 
-      } else {
-        profileModel.saveWithAttachment().then(function() {
-        });
-      }
-       
-      this.get('target').transitionTo('profile');
-=======
       if (file) {
         m.set('photo', file);
 
@@ -57,7 +42,6 @@ export default Ember.Controller.extend({
         });
       }
 
->>>>>>> de00d39d46f3b30389eece0932add7e8eb034fc8
     }
   },  
   validations: {
