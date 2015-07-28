@@ -78,7 +78,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'local') {
-    var HOST = 'http://192.168.0.119:8000';
+    var HOST = 'http://192.168.0.131:8000';
     ENV.APP.API_HOST = HOST;
     ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
     ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
