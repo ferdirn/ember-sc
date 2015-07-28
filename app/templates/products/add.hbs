@@ -1,203 +1,209 @@
-<div class="hidden-md col-xs-12" id="hidden-spacer">
+<div class="container-fluid">
+  <!-- <div class="row">
+    <div class="col-lg-12 text-left">
+    <h5>Product ID 12345XXXX </h5>
+    </div>
+    </div> -->
+    <div class="row">
 
-	</div>
+      <div class="col-lg-6">
+        <form method="post" action="">
 
-	<div class="container-fluid">
-		<!-- <div class="row">
-				<div class="col-lg-12 text-left">
-					<h5>Product ID 12345XXXX </h5>
-				</div>
-			</div> -->
-		<div class="row">
+          <label for="form-title" class="text-title">Category</label>
+          <div class="clearfix"></div>
+          <select name="ageGroup" onchange="fillSelect(this.value,this.form['subcat1'],0)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
+            <option value="">Main Category</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Fashion">Fashion Accessories</option>
+            <option value="MomBaby">Mom & Baby</option>
+            <option value="Living">Living</option>
+            <option value="Gadgets">Gadgets</option>
+            <option value="Muslim">Muslim Style</option>
+          </select>
 
-			<div class="col-lg-6">
-				<form method="post" action="">
+          <select name="subcat1" onchange="fillSelect(this.value,this.form['subcat2'],1)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
+            <option value="">Sub Category 1</option>
+          </select>
 
-					<label for="form-title" class="">Category</label>
-					<div class="clearfix"></div>
-					<select name="ageGroup" onchange="fillSelect(this.value,this.form['subcat1'],0)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
-						<option value="">Main Category</option>
-						<option value="Beauty">Beauty</option>
-						<option value="Fashion">Fashion Accessories</option>
-						<option value="MomBaby">Mom & Baby</option>
-						<option value="Living">Living</option>
-						<option value="Gadgets">Gadgets</option>
-						<option value="Muslim">Muslim Style</option>
-					</select>
+          <select name="subcat2" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
+            <option value="">Sub Category 2</option>
+          </select>
+        </form>
+        <!-- end of mobile display -->
+        <div class="col-lg-12 nopadding">
+          <div class="form-group framebox">
+            <label for="productname" class="text-title">Name</label>
+            <input type="email" class="form-control" id="productname" placeholder="Enter name of the product">
+          </div>
+          <div class="form-group framebox">
 
-					<select name="subcat1" onchange="fillSelect(this.value,this.form['subcat2'],1)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
-						<option value="">Sub Category 1</option>
-					</select>
+            <label for="exampleInputFile" class="text-title">Image Upload</label>
+            <div class="clearfix"></div>
+            <img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
+            <div class="fileUpload btn btn-hollow btn-size-small">
+              <span>Upload</span>
+              <input type="file" class="upload" onchange="readURL(this);" />
+            </div>
 
-					<select name="subcat2" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom">
-						<option value="">Sub Category 2</option>
-					</select>
-				</form>
-				<!-- end of mobile display -->
-				<div class="col-lg-12 nopadding">
-					<div class="form-group">
-						<label for="productname">Name</label>
-						<input type="email" class="form-control" id="productname" placeholder="Enter name of the product">
-					</div>
-					<div class="form-group">
+          </div>
+          <div class="form-group framebox bottom-spacer in-block full-width">
+            <label for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
+            <div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="col-lg-9 nopadding">
+              <input type="button" class="btn btn-sell btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
-						<label for="exampleInputFile">Image Upload</label>
-						<div class="clearfix"></div>
-						<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
-						<div class="fileUpload btn btn-hollow btn-size-small">
-							<span>Upload</span>
-							<input type="file" class="upload" onchange="readURL(this);" />
-						</div>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">Add more option</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group framebox" id="form-transparent">
+                        <label for="productname">Define option name</label>
+                        <input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
+                        <table class="table table-bordered table-condensed transparent-input">
+                          <tbody>
+                            <tr>
+                              <th class="text-center">Check</th>
+                              <th class="text-center">Tipe</th>
+                              <th class="text-center">Quantity</th>
+                              <th class="text-center">Weight</th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <input type="checkbox" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" placeholder="fill type" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" placeholder="fill quantity" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" placeholder="fill weight" />
+                              </td>
 
-					</div>
-					<div class="form-group bottom-spacer in-block full-width">
-						<label for="exampleInputFile" class="col-lg-12 nopadding">Total Stock</label>
-						<div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="col-lg-9 nopadding">
-							<input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
+                            </tr>
+                            <tr>
+                              <td>
+                                <input type="text" class=" transparent-input form-control " />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
 
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-											</button>
-											<h4 class="modal-title" id="myModalLabel">Add more option</h4>
-										</div>
-										<div class="modal-body">
-											<div class="form-group" id="form-transparent">
-												<label for="productname">Define option name</label>
-												<input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
-												<table class="table table-bordered table-condensed transparent-input">
-													<tbody>
-														<tr>
-															<th class="text-center">Check</th>
-															<th class="text-center">Tipe</th>
-															<th class="text-center">Quantity</th>
-															<th class="text-center">Weight</th>
-														</tr>
-														<tr>
-															<td>
-																<input type="checkbox" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" placeholder="fill type" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" placeholder="fill quantity" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" placeholder="fill weight" />
-															</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-														</tr>
-														<tr>
-															<td>
-																<input type="text" class=" transparent-input form-control " />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-														</tr>
-													</tbody>
-												</table>
-											</div>
+            </div>
+          </div>
+          <div class="form-group framebox bottom-spacer in-block full-width">
+            <label for="exampleInputFile" class="col-lg-12 text-title">Selling Price</label>
+            <div class="col-lg-3 nopadding">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group framebox">
+            <label for="productname" class="text-title">Description</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+          <div class="form-group framebox">
+            <label for="productname" class="text-title">Tags</label>
+            <input type="email" class="form-control" id="productname" placeholder="Tags separated by comma">
+          </div>
+          
+          <div class="form-group framebox bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
+            <label for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 text-title">Wholesale Price</label>
 
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
+            <div class="clearfix"></div>
+<div class="frame-box">
+              <div class="col-xs-10 col-sm-10 col-md-4 nopadding right-spacer bottom-spacer">
+              <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-4 nopadding right-spacer bottom-spacer">
+              <div class="form-group">
+               <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
+              </div>
+            </div>
 
-						</div>
-					</div>
-					<div class="form-group bottom-spacer in-block full-width">
-						<label for="exampleInputFile" class="col-lg-12 nopadding">Selling Price</label>
-						<div class="col-lg-3 nopadding">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="productname">Description</label>
-						<textarea class="form-control" rows="3"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="productname">Tags</label>
-						<input type="email" class="form-control" id="productname" placeholder="Tags separated by comma">
-					</div>
-					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
-						<label for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 nopadding ">Wholesale Price</label>
-						<input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
-						<div class="clearfix"></div>
-						<div class="col-lg-5 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
-						</div>
-						<div class="col-lg-5 col-sm-10 col-xs-6 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
-						</div>
+            <div class="col-xs-1 col-sm-1 col-md-1 nopadding right-spacer bottom-spacer">
+            <input class="btn btn-sell btn-size-regular nomargin addmore pull-left" type="button" value="+" onclick="addRowWholeSale()">
+            </div>   
+</div>                     
+            
 
-						<div class="clearfix"></div>
-					</div>
-					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
-						<label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 nopadding ">Timed Price</label>
-						<input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowTimedSale()">
-						<div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
-						</div>
-						<div class="clearfix"></div>
-						<div class="col-sm-12 nopadding bottom-spacer">
-							<input type="date" class="text-center"> to
-							<input type="date" class="text-center">
-						</div>
-					</div>
-					<div class="col-lg-6 nopadding">
-						<label for="form-title" class="">Post as</label>
-						<div class="col-lg-12 hidden-sm hidden-xs hidden-md nopadding dropdown-part bottom-spacer">
-							<div class="in-block">
-								<div class="dropdown">
-									<button class="btn btn-hollow btn-size-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-										Draft
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Publish</a>
-										</li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Draft</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
-						<button type="button" class="btn btn-hollow btn-size-small">Reset</button>
-						<button type="button" class="btn btn-primary btn-size-small">Request approval</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group framebox bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
+            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title">Timed Price</label>
+            <input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowTimedSale()">
+            <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
+              <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 nopadding bottom-spacer">
+              <input type="date" class="text-center"> to
+              <input type="date" class="text-center">
+            </div>
+          </div>
+          <div class="col-lg-6 nopadding">
+            <label for="form-title" class="text-title">Post as</label>
+            <div class="col-lg-12 hidden-sm hidden-xs hidden-md nopadding dropdown-part bottom-spacer">
+              <div class="in-block">
+                <div class="dropdown">
+                  <button class="btn btn-hollow btn-size-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Draft
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Publish</a>
+                    </li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Draft</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+            <button type="button" class="btn btn-hollow btn-size-small">Reset</button>
+            <button type="button" class="btn btn-primary btn-size-small">Request approval</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

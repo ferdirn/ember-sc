@@ -1,7 +1,6 @@
 import DS from 'ember-data';
-import Attachable from '../mixins/attachable';
 
-export default DS.Model.extend(Attachable, {
+export default DS.Model.extend({
 
   shop_address: DS.attr(),
   vendor_id: DS.attr(),
@@ -9,8 +8,7 @@ export default DS.Model.extend(Attachable, {
   seller_type: DS.attr(),
   payment_method: DS.attr(),
 
-  photo: DS.attr(),
-  attachmentAs: 'photo',
+  photo: DS.attr('file'),
   return_address: DS.attr('string'),
   identity_number: DS.attr(),
   bank_name: DS.attr(),
