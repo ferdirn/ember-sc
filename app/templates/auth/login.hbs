@@ -8,14 +8,14 @@
           <label for="username">Email address</label>
           {{input id='identification' class="form-control" placeholder='Enter username/email address' value=identification required=true}}
           {{#each errors.username as |err|}}
-          <label class="input-error" role="alert" for="password">{{err}}</label>
+          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{err}}</label>
           {{/each}}
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           {{input id='password' class="form-control" placeholder='Enter Password' type='password' value=password required=true}}
           {{#each errors.password as |err|}}
-          <label class="input-error" role="alert" for="password">{{err}}</label>
+          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{err}}</label>
           {{/each}}
 
         </div>
