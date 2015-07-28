@@ -48,33 +48,84 @@
   margin-left: 45px;
 }
 .fileUpload {
-  position: relative;
-  overflow: hidden;
-  margin: 10px;
+cursor: pointer;	
+padding-top: 30px;	
+vertical-align: top;	
+display: inline-block;	
+overflow: hidden;
+width: 120px;
+height: 120px;
+border:#cdcdcd solid 1px;
+position: relative;
+text-align: center;
+	input.upload{
+	outline: none;	
+	text-indent: -9999px;
+	width: 100%;
+	color: #fff;
+	cursor: pointer;
+	position: absolute;
+	height: 120px;
+	left: 0;
+	top: 0;
+	}
+	.fa{
+		color: @color-cyan;
+		font-size: 32px;
+	}	
 }
-.fileUpload input.upload {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
+
 .drop-custom
 {
   height: 35px;
   margin-right: 10px;
 }
 
-.text-title{
+label.text-title{
 border-left: @color-primary solid 5px;
 padding: 7px 5px;	 
+margin-bottom: 10px;
+width: 100%;
 }
 .form-group.framebox{
   padding-bottom: 20px;
   margin-bottom: 30px;
   border-bottom: solid 1px #cccccc;
+	@media(max-width:800px){
+		.form-control{
+  	margin-bottom: 10px;
+  	}
+		.frame-row{
+		margin-bottom: 30px;	
+		}
+		.frame-group{
+			label{
+		font-weight: normal;		
+		text-align: center;	
+		width: 100%;
+			}
+		}
+	}
+	.form-inline{
+		display: inline-block;
+		width: 100%;
+	}
+
+	select.form-control{
+		min-width: 100px;
+	}
+}
+.modal-dialog{
+	.form-group.framebox{
+		  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: solid 1px #cccccc;
+	}
+	.modal-header{
+		background: #e7e7e7;
+	}
+	.form-control{
+		width:100%;
+		max-width: 130px;
+	}
 }
