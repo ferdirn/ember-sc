@@ -1,0 +1,5 @@
+{{#if isPending}}
+  <p>Loading...</p>
+{{else}}
+  {{ triple-chart type="Line" id="canvas" height="450" new_order_data=data.ordered_revenue paid_order_data=data.invoiced_revenue total_order_data=data.newpaid_revenue labels=data.labels update=true options=chartOptions }}
+{{/if}}

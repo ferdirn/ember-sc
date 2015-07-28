@@ -5,11 +5,11 @@ import config from '../../config/environment';
 
 export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
 
-    model: function() {
-        return Ember.$.getJSON(config.APP.API_HOST + '/api/salesreport');
-    },
-    setupController: function(controller, model) {
-        controller.set('model', model);
-    }
+  model: function() {
+    return Ember.$.getJSON(config.APP.API_HOST + '/api/salesreport/');
+  },
+  setupController: function(controller, model) {
+    controller.set('model', model);
+  }
 
 });
