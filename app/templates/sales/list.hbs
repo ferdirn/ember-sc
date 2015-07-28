@@ -3,19 +3,19 @@
   <div class="row info-result">
     <div class="col-xs-12 col-md-6 col-lg-6 info-chart">
       <div style="width: 100%">
-        {{ sales-chart type="Bar" id="canvas" height="450" width="600" data=model.chart.value labels=model.chart.labels update=true }}
+        {{ single-chart type="Line" id="canvas" height="450" data=model.chart.value labels=model.chart.labels update=true options=chartOptions }}
       </div>
     </div>
 
     <div class="col-xs-12 col-md-6 col-lg-5 info-stats">
       <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
         <h4 class="number">{{ format-number model.statistic.total_ordered }}</h4>
-        <p class="text">Total Ordered Qty</p>
+        <p class="text">Total Order Qty</p>
       </div></div>
 
       <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
         <h4 class="number">{{ format-number model.statistic.total_invoiced }}</h4>
-        <p class="text">Total Invoiced Qty</p>
+        <p class="text">Total Paid Qty</p>
       </div></div>
 
       <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
@@ -86,8 +86,8 @@
                 <td>{{ sales.name }}</td>
                 <td>{{ sales.sku }}</td>
                 <td>{{ format-number sales.qty_ordered }}</td>
-                <td>Rp. {{ format-money sales.price }}</td>
-                <td>Rp. {{ format-money sales.revenue }}</td>
+                <td>Rp.{{ format-money sales.price }}</td>
+                <td>Rp.{{ format-money sales.revenue }}</td>
                 <td>{{ sales.status }}</td>
               </tr>
               {{/each}}
