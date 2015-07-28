@@ -4,7 +4,7 @@
 
 .grey-backer
 {
-	background: @color-grey-4;
+  background: @color-grey-4;
 }
 
 .navbar {
@@ -12,9 +12,13 @@
   text-align: center;
 }
 
-.navbar ul li a.active {
+.navbar ul li a.active,
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus{
   background: #e7e7e7;
+  color: @color-primary;
 }
+
 
 .navbar-brand {
   display: inline-block;
@@ -48,6 +52,7 @@
     display: block !important; /* IE8 fix */
   }
 }
+/*
 @media (min-width: 768px){
   .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
     margin-right: 0;
@@ -55,6 +60,7 @@
     display: none !important;
   }
 }
+*/
 .navbar-form-add
 {
   margin: 7px 0 !important;

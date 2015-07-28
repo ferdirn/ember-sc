@@ -3,6 +3,7 @@ import EmberValidations from 'ember-validations';
 
 
 export default Ember.Controller.extend({
+  isSaved: false,
   model: function() {
     this.store.createModel('profile');
   },
@@ -12,7 +13,7 @@ export default Ember.Controller.extend({
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('#profile-picture').attr('src', e.target.result)
+        Ember.$('#profile-picture').attr('src', e.target.result)
         .width(60)
         .height(60);
       };
@@ -26,21 +27,20 @@ export default Ember.Controller.extend({
     },
     save: function() {
       var m = this.get('model');
+      var controller = this;
       var file = document.getElementById('photo-file').files[0];
 
 
       if (file) {
         m.set('photo', file);
-
-        m.saveWithAttachment().then(function() {
-          this.transitionTo('profile');
-        });
-
-      } else {
-        m.save().then(function() {
-          this.transitionTo('profile');
-        });
       }
+
+      m.save().then(function() {
+        controller.set('isSaved', true);
+        // this.transitionTo('profile');
+      }, function(response) {
+        console.log(response);
+      });
 
     }
   },  
