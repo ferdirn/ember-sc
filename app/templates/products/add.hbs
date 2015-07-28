@@ -43,13 +43,16 @@
 					<div class="form-inline">
 
 						<div class="form-group">
-							<div class="fileUpload btn-upload">
+							<output id="result" />
+							<div class="fileUploadImg btn-upload">
 							<span><i class="fa fa-photo"></i></span>
 							<br>
 							<span>ADD IMAGE</span>
-							<input type="file" class="upload" onchange="readURL(this);" />
+							<input id="files" class="upload" type="file" multiple/>
 							</div>		
-						<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />							
+						<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
+
+
 						</div>
 						
 

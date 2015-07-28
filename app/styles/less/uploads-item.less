@@ -47,33 +47,6 @@
   margin-top: 26px;
   margin-left: 45px;
 }
-.fileUpload {
-cursor: pointer;	
-padding-top: 30px;	
-vertical-align: top;	
-display: inline-block;	
-overflow: hidden;
-width: 120px;
-height: 120px;
-border:#cdcdcd solid 1px;
-position: relative;
-text-align: center;
-	input.upload{
-	outline: none;	
-	text-indent: -9999px;
-	width: 100%;
-	color: #fff;
-	cursor: pointer;
-	position: absolute;
-	height: 120px;
-	left: 0;
-	top: 0;
-	}
-	.fa{
-		color: @color-cyan;
-		font-size: 32px;
-	}	
-}
 
 .drop-custom
 {
@@ -127,5 +100,25 @@ width: 100%;
 	.form-control{
 		width:100%;
 		max-width: 130px;
+	}
+}
+output#result{
+display: inline-block;
+padding-top: 0px;
+	.frame-thumbnail{
+		max-width: 120px;
+		max-height: 120px;
+		overflow: hidden;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 5px;
+    border: #cccccc solid 1px;
+		&:last-child{
+		margin-right: 0;
+		}
+		.thumbnail-upload{
+		width: 108px;
+    height: 108px;
+		}	
 	}
 }
