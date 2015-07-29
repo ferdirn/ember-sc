@@ -10,6 +10,7 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
   },
   setupController: function(controller, model) {
     controller.set('model', model);
+    controller.set('pageContent', model.allsales);
   }
 
 });
