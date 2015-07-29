@@ -25,7 +25,7 @@
               <label for="input-name" class="col-sm-3 control-label texting-mid-form">Name </label>
               <div class="col-sm-9">
                 {{input type="text" class="form-control" id="input-name" value=model.seller_name placeholder="fill your name"}}
-                <span class="error-msg show"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your name</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your name</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
@@ -33,7 +33,7 @@
               <div class="col-sm-9">
                 {{errors.email}}
                 {{input errors=errors.email type="email" class="form-control" id="input-email" value=model.email placeholder="fil your email address"}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; Your email is invalid</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; Your email is invalid</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
@@ -46,21 +46,21 @@
               <label for="phone" class="col-sm-3 control-label texting-mid-form">Phone</label>
               <div class="col-sm-9">
                 {{input type="text" class="form-control" id="phone" placeholder="fill  your phone" value=model.phone}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; Please use area code ex. 021</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; Please use area code ex. 021</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
               <label for="inputidentitynumber" class="col-sm-3 control-label texting-mid-form">ID Numbers</label>
               <div class="col-sm-9">
                 {{input type="text" class="form-control" id="inputidentitynumber" placeholder="fill  your ID Number " value=model.identity_number}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your ID numbers</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your ID numbers</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
               <label for="inputNPWP" class="col-sm-3 control-label texting-mid-form">NPWP</label>
               <div class="col-sm-9">
                 {{input type="text" class="form-control" id="inputNPWP" placeholder="fill  your NPWP " value=model.npwp}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your NPWP numbers</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your NPWP numbers</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
@@ -96,7 +96,7 @@
               <label for="inputreturnaddress" class="col-sm-3 control-label texting-mid-form">Return Address</label>
               <div class="col-sm-9">
                 {{textarea class="form-control maximum-width" rows="3" value=model.return_address}}
-                 <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your return address</span>
+                 <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your return address</label>
               </div>
             </div>
 
@@ -104,7 +104,7 @@
               <label for="inputowneradress" class="col-sm-3 control-label texting-mid-form">Owner Address</label>
               <div class="col-sm-9">
                 {{textarea class="form-control maximum-width" rows="3" value=model.owner_address}}
-                 <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill the owner address</span>
+                 <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill the owner address</label>
               </div>
             </div>
 
@@ -112,7 +112,7 @@
               <label for="inputowneradress" class="col-sm-3 control-label texting-mid-form">Shop Address</label>
               <div class="col-sm-9">
                 {{textarea class="form-control maximum-width" rows="3" value=model.shop_address}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your shop address</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your shop address</label>
               </div>
             </div>
 
@@ -120,7 +120,7 @@
               <label for="shop-name" class="col-sm-3 control-label texting-mid-form">Bank Name</label>
               <div class="col-sm-9">
                 {{input type="text" class="form-control" id="inputbankname" placeholder="fill bank name" value=model.bank_name}}
-                <span class="error-msg"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your shop address</span>
+                <label class="input-error"> <i class="fa fa-exclamation-triangle"></i> &nbsp; You need to fill your shop address</label>
               </div>
             </div>
             <div class="form-group in-block full-width">
