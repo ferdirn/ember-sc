@@ -57,3 +57,53 @@
     text-transform: uppercase;
 	}
 }
+.btn-photo-upload
+{
+  margin-top: 27px !important;
+  background: @color-fa;
+  color: @color-white;
+}
+
+.fileUploadImg {
+cursor: pointer;  
+padding-top: 30px;  
+vertical-align: top;  
+display: inline-block;  
+overflow: hidden;
+width: 120px;
+height: 120px;
+border:#cdcdcd solid 1px;
+position: relative;
+text-align: center;
+  input.upload{
+  outline: none;  
+  text-indent: -9999px;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  height: 120px;
+  left: 0;
+  top: 0;
+  }
+  .fa{
+    color: @color-cyan;
+    font-size: 32px;
+  } 
+}
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
