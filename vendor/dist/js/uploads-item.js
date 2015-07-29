@@ -93,43 +93,97 @@ function fillSelect(currCat, currList, step) {
 function addRowWholeSale() {
 	var div = document.createElement('div');
 
-	div.className = 'col-lg-12 col-sm-1 col-xs-12 nopadding texting-mid-form bottom-spacer';
+	div.className = 'form-inline mtop10 mbtm5';
 
-	div.innerHTML = '<div class="col-lg-5 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">\
-	<input type="number" min="1" name="name" placeholder="price in rupiah" value="" class="form-control"/>\
-	</div>\
-	<div class="col-lg-5 col-sm-10 col-xs-6 col-md-10 nopadding right-spacer bottom-spacer">\
-	<input type="number" min="1" name="name" value="" placeholder="minimum buying items" class="form-control"/>\
-	</div>\
-	<input class="texting-mid-form" type="button" value="-" onclick="removeRowWhole(this)">';
+	div.innerHTML = '<div class="form-group nopadding right-spacer bottom-spacer">\
+  <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />\
+  </div>\
+  <div class="form-group nopadding right-spacer bottom-spacer">\
+  <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />\
+  </div>\
+  <div class="form-group nopadding right-spacer bottom-spacer">\
+  <input class="form-control btn btn-sell btn-size-regular nomargin pull-left" type="button" value="-" type="button" value="-" onclick="removeRowWhole(this)">\
+  </div>\
+  ';
 
 	document.getElementById('contentwhole').appendChild(div);
 }
 
 function removeRowWhole(input) {
-	document.getElementById('contentwhole').removeChild(input.parentNode);
+  var parent = input.parentNode.parentNode;
+	document.getElementById('contentwhole').removeChild(parent);
 }
 
 function addRowTimedSale() {
 	var div = document.createElement('div');
 
-	div.className = 'col-lg-12 col-sm-1 col-xs-12 nopadding texting-mid-form bottom-spacer';
+	div.className = 'form-inline mtop10 mbtm5';
 
-	div.innerHTML = '<div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">\
-	<input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control"/>\
-	</div>\
-	<div class="clearfix">\
-	</div>\
-	<div class="col-sm-12 nopadding bottom-spacer">\
-	<input type="date" class="text-center">\
-	to\
-	<input type="date" class="text-center">\
-	<input class="texting-mid-form" type="button" value="-" onclick="removeRowTimed(this)">\
-	</div>';
+	div.innerHTML = '<div class="form-group">\
+  <input type="date" class="text-center form-control">\
+  <label >to</label>\
+  <input type="date" class="text-center form-control">\
+  <input class="btn btn-sell btn-size-regular nomargin form-control" type="button" value="-" onclick="removeRowTimed(this)">\
+  </div>';
 
 	document.getElementById('contenttimed').appendChild(div);
 }
 
 function removeRowTimed(input) {
-	document.getElementById('contenttimed').removeChild(input.parentNode);
+    var parent = input.parentNode.parentNode;
+  document.getElementById('contenttimed').removeChild(parent);
 }
+
+window.onload = function(){
+        
+    //Check File API support
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("files");
+        
+        filesInput.addEventListener("change", function(event){
+            
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            
+            for(var i = 0; i< files.length; i++)
+            {
+                var file = files[i];
+                
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                
+                var picReader = new FileReader();
+                
+                picReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                    
+                    var div = document.createElement("span");
+                      div.className = 'frame-thumbnail';
+                    div.innerHTML = "<img class='thumbnail-upload' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+                    
+                    output.insertBefore(div,null);  
+                    document.getElementById('product-image').remove(this);          
+                
+                });
+                
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }                               
+           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+    
+
+
+
+
+
