@@ -15,7 +15,7 @@ export default DS.Model.extend({
   url_key: DS.attr(),
   url_path: DS.attr(),
   magento_product_id: DS.attr(),
-  price: DS.attr,
+  price: DS.attr(),
   special_price: DS.attr(),
   special_from_date: DS.attr(),
   special_to_date: DS.attr()
