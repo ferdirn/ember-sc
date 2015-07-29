@@ -47,34 +47,79 @@
   margin-top: 26px;
   margin-left: 45px;
 }
-.fileUpload {
-  position: relative;
-  overflow: hidden;
-  margin: 10px;
-}
-.fileUpload input.upload {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
+
 .drop-custom
 {
   height: 35px;
   margin-right: 10px;
 }
 
-.text-title{
+label.text-title{
 border-left: @color-primary solid 5px;
 padding: 7px 5px;	 
+margin-bottom: 10px;
+width: 100%;
 }
 .form-group.framebox{
   padding-bottom: 20px;
   margin-bottom: 30px;
   border-bottom: solid 1px #cccccc;
+	@media(max-width:800px){
+		.form-control{
+  	margin-bottom: 10px;
+  	}
+		.frame-row{
+		margin-bottom: 30px;	
+		}
+		.frame-group{
+			label{
+		font-weight: normal;		
+		text-align: center;	
+		width: 100%;
+			}
+		}
+	}
+	.form-inline{
+		display: inline-block;
+		width: 100%;
+	}
+
+	select.form-control{
+		min-width: 100px;
+	}
+}
+.modal-dialog{
+	.form-group.framebox{
+		  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: solid 1px #cccccc;
+	}
+	.modal-header{
+		background: #e7e7e7;
+	}
+	.form-control{
+		width:100%;
+		max-width: 130px;
+	}
+}
+output#result{
+display: inline-block;
+padding-top: 0px;
+	.frame-thumbnail{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    display: inline-block;
+    padding: 5px;
+    line-height: 120px;
+    margin-right: 5px;
+    border: #cccccc solid 1px;
+		&:last-child{
+		margin-right: 0;
+		}
+		.thumbnail-upload{
+		width: 100%;
+    vertical-align: middle;
+		}	
+	}
 }
