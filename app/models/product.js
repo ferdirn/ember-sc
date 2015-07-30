@@ -18,5 +18,6 @@ export default DS.Model.extend({
   price: DS.attr(),
   special_price: DS.attr(),
   special_from_date: DS.attr(),
-  special_to_date: DS.attr()
+  special_to_date: DS.attr(),
+  image: DS.attr('file')
 });

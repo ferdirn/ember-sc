@@ -70,12 +70,22 @@
 					</div>
 					<div class="form-group">
 
-						<label for="exampleInputFile" class="text-title">Image Upload</label>
-						<div class="clearfix"></div>
+							<label for="exampleInputFile" class="text-title">Image Upload</label>          	
+					<div class="form-inline">
+
+						<div class="form-group">
+							<div class="fileUploadImg btn-upload">
+							<span><i class="fa fa-photo"></i></span>
+							<br>
+							<span>ADD IMAGE</span>
+							{{input id="files" class="upload" type="file" value=model.image }}
+							</div>		
 						<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
-						<div class="fileUpload btn btn-hollow btn-size-small">
-							<span>Upload</span>
-							<input type="file" class="upload" onchange="readURL(this);" />
+						<output id="result" />
+
+						</div>
+						
+
 						</div>
 
 					</div>
@@ -158,38 +168,9 @@
 
 						</div>
 					</div>
-					<div class="form-group bottom-spacer in-block full-width">
-						<label class="text-title" for="exampleInputFile" class="col-lg-12 nopadding">Selling Price</label>
-						<div class="col-lg-3 nopadding">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="text-title" for="productname">Description</label>
-						{{ textarea class="form-control" rows="3" value=model.description}}
-					</div>
-					<div class="form-group">
-						<label class="text-title" for="productname">Tags</label>
-						<input type="email" class="form-control" id="productname" placeholder="Tags separated by comma">
-					</div>
+					
 					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
-						<label class="text-title" for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 nopadding ">Wholesale Price</label>
-						<input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowWholeSale()">
-						<div class="clearfix"></div>
-						<div class="col-lg-5 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							{{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.price}}
-						</div>
-						<div class="col-lg-5 col-sm-10 col-xs-6 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
-						</div>
-
-
+						
 						<div class="clearfix"></div>
 					</div>
 					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
@@ -204,25 +185,7 @@
 							<input type="date" class="text-center">
 						</div>
 					</div>
-					<div class="col-lg-6 nopadding">
-						<label for="form-title" class="title-text">Post as</label>
-						<div class="col-lg-12 hidden-sm hidden-xs hidden-md nopadding dropdown-part bottom-spacer">
-							<div class="in-block">
-								<div class="dropdown">
-									<button class="btn btn-hollow btn-size-small dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-										Draft
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Publish</a>
-										</li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Draft</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
 						<button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
 						<button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
@@ -233,239 +196,4 @@
 	</div>
 
 </form>
-
-
-<div class="container-fluid">
-  <!-- <div class="row">
-    <div class="col-lg-12 text-left">
-    <h5>Product ID 12345XXXX </h5>
-    </div>
-    </div> -->
-    <div class="row">
-      <div class="col-lg-6">
-      	<div class="form-group framebox">
-        <form method="post" action="">
-
-          <label for="form-title" class="text-title">Category</label>
-          <div class="clearfix"></div>
-          <select name="ageGroup" onchange="fillSelect(this.value,this.form['subcat1'],0)" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomargin">
-            <option value="">Main Category</option>
-            <option value="Beauty">Beauty</option>
-            <option value="Fashion">Fashion Accessories</option>
-            <option value="MomBaby">Mom & Baby</option>
-            <option value="Living">Living</option>
-            <option value="Gadgets">Gadgets</option>
-            <option value="Muslim">Muslim Style</option>
-          </select>
-
-          <select name="subcat1" onchange="fillSelect(this.value,this.form['subcat2'],1)" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom nomargin">
-            <option value="">Sub Category 1</option>
-          </select>
-
-          <select name="subcat2" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom nomargin">
-            <option value="">Sub Category 2</option>
-          </select>
-        </form>      		
-      	</div>
-
-        <!-- end of mobile display -->
-        <div class="col-lg-12 nopadding">
-          <div class="form-group framebox">
-            <label for="productname" class="text-title">Name</label>
-            <input type="email" class="form-control" id="productname" placeholder="Enter name of the product">
-          </div>
-
-          <div class="form-group framebox">
-						<label for="exampleInputFile" class="text-title">Image Upload</label>          	
-					<div class="form-inline">
-
-						<div class="form-group">
-							<div class="fileUploadImg btn-upload">
-							<span><i class="fa fa-photo"></i></span>
-							<br>
-							<span>ADD IMAGE</span>
-							<input id="files" class="upload" type="file" multiple/>
-							</div>		
-						<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
-						<output id="result" />
-
-						</div>
-						
-
-						</div>
-          </div>
-
-          <div class="form-group framebox bottom-spacer in-block full-width">
-            <label for="exampleInputFile" class="col-xs-12 text-title">Total Stock</label>
-
-						<div class="form-inline">
-            <div class="form-group nopadding right-spacer">
-              <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-
-            <div class="form-group nopadding">
-              <input type="button" class="btn btn-sell btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
-
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                      </button>
-                      <h4 class="modal-title" id="myModalLabel">Add more option</h4>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group" id="form-transparent">
-                        <label for="productname">Define option name</label>
-                        <input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
-                        <table class="table table-bordered table-condensed transparent-input">
-                          <tbody>
-                            <tr>
-                              <th class="text-center">Check</th>
-                              <th class="text-center">Tipe</th>
-                              <th class="text-center">Quantity</th>
-                              <th class="text-center">Weight</th>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" class="form-control transparent-input" />
-                              </td>
-                              <td>
-                                <input type="text" placeholder="fill type" class="form-control transparent-input" />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control transparent-input" placeholder="fill quantity" />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control transparent-input" placeholder="fill weight" />
-                              </td>
-
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="text" class=" transparent-input form-control " />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control transparent-input" />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control transparent-input" />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control transparent-input" />
-                              </td>
-
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>							
-						</div>
-
-          </div>
-
-          <div class="form-group framebox">
-            <label for="exampleInputFile" class="text-title">Selling Price</label>
-            <div class="form-inline">
-              <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group framebox">
-            <label for="productname" class="text-title">Description</label>
-            <textarea class="form-control" rows="3"></textarea>
-          </div>
-          <div class="form-group framebox">
-            <label for="productname" class="text-title">Tags</label>
-            <input type="email" class="form-control" id="productname" placeholder="Tags separated by comma">
-          </div>
-          
-          <div class="form-group framebox" id="contentwhole">
-            <label for="exampleInputFile" class="col-lg-9 col-xs-9 col-sm-9 col-md-9 text-title">Wholesale Price</label>
-
-            <div class="clearfix"></div>
-						<div class="form-inline ">
-	              <div class="form-group nopadding right-spacer bottom-spacer">
-	              <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
-	            </div>
-	            <div class="form-group nopadding right-spacer bottom-spacer">
-	               <input type="number" placeholder="minimum buying items" min="1" name="name" value="" class="form-control" />
-	            </div>
-
-	            <div class="form-group nopadding right-spacer bottom-spacer">
-	            <input class="form-control btn btn-sell btn-size-regular nomargin  pull-left" type="button" value="+" onclick="addRowWholeSale()">
-	            </div>   	
-						</div>                     
-
-          </div>
-          <div class="form-group framebox" id="contenttimed">
-            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title">Timed Price</label>
-            
-					<div class="form-group">
-          <input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />						
-					</div>
-
-					<div class="form-inline">
-            <div class="form-group">
-              <input type="date" class="text-center form-control">
-            </div>	       
-            <div class="form-group">       
-              <label >to</label>
-            </div>  
-            <div class="form-group">
-            	 <input type="date" class="text-center form-control">
-            </div> 
-              <div class="form-group">
-              	<input class="btn btn-sell btn-size-regular nomargin form-control " type="button" value="+" onclick="addRowTimedSale()">
-              </div>
-					
-					</div>
-
-          </div>
-          <div class="col-lg-6 nopadding">
-            <label for="form-title" class="text-title">Post as</label>
-            <div class="col-lg-12 nopadding dropdown-part bottom-spacer">
-              <div class="in-block">
-                <div class="dropdown">
-                  <button class="btn btn-sell btn-size-small dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                    Draft
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Publish</a>
-                    </li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Draft</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 nopadding in-block full-width">
-            <button type="button" class="btn btn-hollow btn-size-small">Reset</button>
-            <button type="button" class="btn btn-primary btn-size-small">Request approval</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 
