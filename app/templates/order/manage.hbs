@@ -1,0 +1,226 @@
+<div class="row">
+					<div class="result-table">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="col-md-3 select-order text-left">
+
+									<ul id="myTabs" class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="dropdown">
+											<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">Select<span class="caret"></span></a>
+											<ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+												<li class=""><a href="#dropdown1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Cancel Request</a></li>
+												<li class=""><a href="#dropdown2" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Payment-pending</a></li>
+												<li class=""><a href="#dropdown3" role="tab" id="dropdown3-tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">New Order</a></li>
+												<li class=""><a href="#dropdown4" role="tab" id="dropdown4-tab" data-toggle="tab" aria-controls="dropdown4" aria-expanded="false">Delivered Order</a></li>
+												<li class=""><a href="#dropdown5" role="tab" id="dropdown5-tab" data-toggle="tab" aria-controls="dropdown5" aria-expanded="false">Confirmed Payment</a></li>
+												<li class=""><a href="#dropdown6" role="tab" id="dropdown6-tab" data-toggle="tab" aria-controls="dropdown6" aria-expanded="false">Pending Delivery</a></li>
+											</ul>
+										</li>
+									</ul>
+
+								</div>
+
+								<div class="col-md-9 date-picker ">
+									<span class="small">Search by Date from:</span>	
+									<div class="clearfix"></div>	
+									<input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy">
+									<label >To</label>
+									<input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy">
+									<input type="text" class="form-control" placeholder="Search for...">
+								</div>
+							</div>
+							
+
+							<div class="panel-body" data-role="page" id="page1">
+
+
+								<div id="myTabContent" class="tab-content">
+									<div role="tabpanel" class="tab-pane fade active in" id="dropdown1" aria-labelledby="dropdown1-tab">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Check</th>
+													<th>Name</th>
+													<th>Order</th>
+													<th>Buyer</th>
+													<th>Date</th>
+													<th>Price</th>
+													<th>Revenue</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td>new</td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td>new</td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td>new</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="form-group bottom-left pull-left">
+											<button class="btn btn-hollow btn-size-small">Cancel Item</button>
+										</div>
+										<div class="form-group bottom-right pull-right">
+											<button class="btn btn-hollow btn-size-small">Print</button>
+											<button class="btn btn-hollow btn-size-small">Export Data</button>
+											<a href="invoice.html"><div class="btn btn-hollow btn-size-small" oncl="invoice.html">Generate Invoice</div>
+											</a>
+										</div>															
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Check</th>
+													<th>Name</th>
+													<th>Order</th>
+													<th>Buyer</th>
+													<th>Date</th>
+													<th>Price</th>
+													<th>Revenue</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn btn-primary btn-size-small">Cancel</button></td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn btn-primary btn-size-small">Cancel</button></td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn btn-primary btn-size-small">Cancel</button></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown3" aria-labelledby="dropdown3-tab">
+										<p>No Data</p>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown4" aria-labelledby="dropdown4-tab">
+										<p>No Data</p>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="dropdown5" aria-labelledby="dropdown5-tab">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Check</th>
+													<th>Name</th>
+													<th>Order</th>
+													<th>Buyer</th>
+													<th>Date</th>
+													<th>Price</th>
+													<th>Revenue</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn disabled btn-primary btn-size-small">On Delivery</button></td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn btn-primary btn-size-small">On Delivery</button></td>
+												</tr>
+												<tr>
+													<th>
+														<input type="checkbox" name="set-name" value="point">
+													</th>
+													<td>Name of product</td>
+													<td>1</td>
+													<td>okta</td>
+													<td>dd/mm/yyyy</td>
+													<td class="type-price">79.000</td>
+													<td class="type-price">1.000.000</td>
+													<td><button class="btn btn-primary btn-size-small">On Delivery</button></td>
+												</tr>
+											</tbody>
+										</table>
+									</div> 
+									<div role="tabpanel" class="tab-pane fade" id="dropdown6" aria-labelledby="dropdown6-tab">
+										<p>No Data</p>
+									</div>           
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>	
