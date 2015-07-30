@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
 
+
 export default Ember.Controller.extend({
   isSaved: false,
   model: function() {
@@ -28,6 +29,7 @@ export default Ember.Controller.extend({
       var m = this.get('model');
       var controller = this;
       var file = document.getElementById('photo-file').files[0];
+
 
       if (file) {
         m.set('photo', file);
