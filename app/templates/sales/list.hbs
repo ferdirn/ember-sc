@@ -49,36 +49,42 @@
           <div class="col-md-8 date-picker text-left">
             <label class="small" >Filter by date</label>
             <div class="clearfix"></div>
-            {{input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy" value=start_date}}
+              {{input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy" value=startDate}}
             <label >To</label>
-            {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=end_date}}
+              {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=endDate}}
             <button {{ action 'filter' }} class="form-control btn btn-primary btn-size-regular">Filter</button>
           </div>
-          <div class="col-md-4 search">
-            <input type="text" class="form-control" placeholder="Search for...">
+          <div class="col-md-4 search text-right">
+            <label class="small">Status filter</label>
+            <div class="clearfix"></div>
+            {{ view "select" class="form-control" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }}
           </div>
         </div>
         <div class="panel-body ">
 
-          <nav align="right">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
-                </a>
-              </li>
-              <li><a {{ action 'paginate' 1 }}>1</a></li>
-              <li><a>2</a></li>
-              <li><a>3</a></li>
-              <li><a>4</a></li>
-              <li><a>5</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {{#if hasPagination}}
+            <nav align="right">
+              <ul class="pagination">
+                {{#if hasPrevious}}
+                  <li>
+                    <a {{ action 'paginate' previousPage }} aria-label="Previous">
+                      <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                    </a>
+                  </li>
+                {{/if}}
+                {{#each pageArray as |page|}}
+                  <li class="{{ page.active }}"><a {{ action 'paginate' page.number }}>{{ page.number }}</a></li>
+                {{/each}}
+                {{#if hasNext}}
+                  <li>
+                    <a {{ action 'paginate' nextPage }} aria-label="Next">
+                      <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                    </a>
+                  </li>
+                {{/if}}
+              </ul>
+            </nav>
+          {{/if}}
 
           <table class="table table-hover">
             <thead>
