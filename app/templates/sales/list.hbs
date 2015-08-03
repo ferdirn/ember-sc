@@ -108,7 +108,11 @@
                 </th>
                 --}}
                 <td>{{ sales.created_at }}</td>
-                <td>{{ sales.order_number }}</td>
+                <td>
+                  {{#link-to 'sales.detail' sales.order_number}}
+                    {{ sales.order_number }}
+                  {{/link-to}}
+                </td>
                 <td>{{ sales.name }}</td>
                 <td>{{ sales.sku }}</td>
                 <td>{{ format-number sales.qty_ordered }}</td>
