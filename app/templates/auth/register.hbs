@@ -1,50 +1,40 @@
 <div class="row login">
   <div class="col-lg-8 col-lg-offset-2 nopadding" style="background:#fff;">
     <div class="col-lg-12 col-md-12 col-sm-12 spacer20 dash-bar">
-      <label for="" class="in-block nomargin">Register</label>
+      <label for="" class="in-block nomargin">Vendor Registration</label>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20">
-      <form>
-       <div class="col-lg-12 bottom-spacer">
-             <div class="col-lg-6 col-lg-offset-3 text-center">
-              <div class="col-lg-2 col-xs-4 col-sm-3 nopadding propic" style="float: none; margin: 0 auto;">
-                <img id="profile-picture" src="{{model.photo}}" width="100%">
-              </div>
-              <div class="btn-photo-upload fileUpload btn btn-size-small">
-                <span>upload picture</span>
-                <input type="file" id="photo-file" class="upload" {{action "setProfilePicture" on="change"}}>
-              </div>
-</div>
-              
-
-            </div>
+      <form {{ action 'submit' on="submit" }}>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <label for="InputEmail">Email address</label>
+          {{input type="email" class="form-control" id="InputEmail" placeholder="Email" value=email required="required"}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="InputPassword">Password (pattern: minimum 6 chars)</label>
+          {{input type="password" pattern=".{6,}" class="form-control" id="InputPassword" placeholder="Password" value=password required="required"}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Re-type Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type Password">
+          <label for="InputRePassword">Re-type Password (pattern: minimum 6 chars)</label>
+          {{input type="password" pattern=".{6,}" class="form-control" id="InputRePassword" placeholder="Re-type Password" value=repassword focus-out="matchPassword" required="required"}}
+          {{#if isPasswordNotMatch}}
+            <p class="error" style="color: red;">Password did not match</p>
+          {{/if}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Username</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username">
+          <label for="InputUsername">Username</label>
+          {{input type="text" class="form-control" id="InputUsername" placeholder="Username" value=username required="required"}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Phone</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Phone">
+          <label for="InputPhone">Phone</label>
+          {{input type="text" class="form-control" id="InputPhone" placeholder="Phone" value=phone_number required="required"}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">First Name</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name">
+          <label for="InputFirstName">First Name</label>
+          {{input type="text" class="form-control" id="InputFirstName" placeholder="First Name" value=first_name required="required"}}
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Last Name</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
+          <label for="InputLastName">Last Name</label>
+          {{input type="text" class="form-control" id="InputLastName" placeholder="Last Name" value=last_name required="required"}}
         </div>
         <button type="submit" class="btn btn-primary btn-size-small">Submit</button>
       </form>
