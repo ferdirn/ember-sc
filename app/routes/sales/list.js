@@ -4,12 +4,18 @@ import PageLoaderMixin from 'sellercenter/mixins/page-loader';
 import config from '../../config/environment';
 
 export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
-  page: 1,
-  pageSize: 20,
-  pageCount: 1,
 
   chartOptions: {
     bezierCurve: false
+  },
+
+  page: 1,
+  pageSize: 20,
+  pageCount: 1,
+  pageContent: null,
+
+  selectedStatus: {
+    statusValue: "all"
   },
 
   model: function() {
@@ -17,10 +23,13 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
   },
 
   setupController: function(controller, model) {
-    var pageContent = model.allsales;
-    var pageContentLength = pageContent.length;
+    Ember.Logger.log('Entering list route.setupController');
+
+    var allsales = model.allsales;
+    this.pageContent = allsales;
+    var pageContentLength = this.pageContent.length;
     if (pageContentLength > this.pageSize) {
-      pageContent = pageContent.slice(0, this.pageSize);
+      this.pageContent = this.pageContent.slice(0, this.pageSize);
     }
     if (pageContentLength > 0) {
       this.pageCount = Math.ceil(pageContentLength / this.pageSize);
@@ -44,12 +53,13 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
     var nextPage = 2;
 
     controller.set('model', model);
-    controller.set('filteredData', model.allsales);
-    controller.set('pageContent', pageContent);
+    controller.set('filteredData', allsales);
+    controller.set('pageContent', this.pageContent);
     controller.set('page', this.page);
     controller.set('pageSize', this.pageSize);
     controller.set('pageCount', this.pageCount);
     controller.set('pageArray', pageArray);
+    controller.set('selectedStatus', this.selectedStatus);
     controller.set('hasPagination', hasPagination);
     controller.set('hasPrevious', hasPrevious);
     controller.set('hasNext', hasNext);
@@ -57,6 +67,7 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
     controller.set('nextPage', nextPage);
 
     controller.set('chartOptions', this.chartOptions);
+
   }
 
 });

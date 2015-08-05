@@ -9,50 +9,45 @@ export default Ember.Controller.extend({
     {statusLabel: "canceled", statusValue: "canceled"}
   ],
 
-  selectedStatus: {
-    statusValue: "all"
-  },
-
   addDays: function(theDate, days) {
     return new Date(theDate.getTime() + days*24*60*60*1000);
   },
 
   onStatusFilterChange: function() {
-    Ember.Logger.log('Entering onStatusFilterChange');
+    Ember.Logger.log('Entering list onStatusFilterChange');
 
     this.page = 1;
     var value = this.selectedStatus.statusValue;
-    var model = this.model;
+    var allsales = this.model.allsales;
     var filteredData = [];
 
     if (value === 'all') {
-      filteredData = model.allsales;
+      filteredData = allsales;
     } else if (value === 'invoiced') {
-      _.each(model.allsales, function(value) {
+      _.each(allsales, function(value) {
         if (value.status === 'invoiced') {
           filteredData.pushObject(value);
         }
       });
     } else if (value === 'pending') {
-      _.each(model.allsales, function(value) {
+      _.each(allsales, function(value) {
         if (value.status === 'pending') {
           filteredData.pushObject(value);
         }
       });
     } else if (value === 'canceled') {
-      _.each(model.allsales, function(value) {
+      _.each(allsales, function(value) {
         if (value.status === 'canceled') {
           filteredData.pushObject(value);
         }
       });
     }
 
-    var pageContent = [];
     var filteredDataLength = filteredData.length;
     if (filteredDataLength > this.pageSize) {
-      pageContent = filteredData.slice(0, this.pageSize);
+      this.set('pageContent', filteredData.slice(0, this.pageSize));
     } else {
-      pageContent = filteredData;
+      this.set('pageContent', filteredData);
     }
     if (filteredDataLength > 0) {
       this.pageCount = Math.ceil(filteredDataLength / this.pageSize);
@@ -77,9 +72,9 @@ export default Ember.Controller.extend({
     var nextPage = 2;
 
     this.set('filteredData', filteredData);
-    this.set('pageContent', pageContent);
     this.set('pageCount', this.pageCount);
     this.set('pageArray', pageArray);
+    this.set('selectedStatus.statusValue', value);
     this.set('hasPagination', hasPagination);
     this.set('hasPrevious', hasPrevious);
     this.set('hasNext', hasNext);
@@ -90,7 +85,7 @@ export default Ember.Controller.extend({
 
   actions: {
     filter: function() {
-      Ember.Logger.log('Entering filter');
+      Ember.Logger.log('Entering list filter');
 
       var self = this;
       var startDate = this.get('startDate'), endDate = this.get('endDate');
@@ -133,13 +128,13 @@ export default Ember.Controller.extend({
         start_date: startDate,
         end_date: endDate
       }).then(function(data) {
-        Ember.Logger.log('Filter promise done');
+        Ember.Logger.log('List filter promise done');
 
-        this.page = 1;
-        var pageContent = data.allsales;
-        var pageContentLength = pageContent.length;
+        self.page = 1;
+        self.set('pageContent', data.allsales);
+        var pageContentLength = self.pageContent.length;
         if (pageContentLength > self.pageSize) {
-          pageContent = pageContent.slice(0, self.pageSize);
+          self.set('pageContent', self.pageContent.slice(0, self.pageSize));
         }
         if (pageContentLength > 0) {
           self.pageCount = Math.ceil(pageContentLength / self.pageSize);
@@ -165,7 +160,6 @@ export default Ember.Controller.extend({
 
         self.set('model', data);
         self.set('filteredData', data.allsales);
-        self.set('pageContent', pageContent);
         self.set('pageCount', self.pageCount);
         self.set('pageArray', pageArray);
         self.set('hasPagination', hasPagination);
@@ -178,13 +172,12 @@ export default Ember.Controller.extend({
     },
 
     paginate: function(page) {
-      Ember.Logger.log('Entering paginate');
+      Ember.Logger.log('Entering list paginate');
 
       this.page = page;
       var filteredData = this.filteredData;
       var startContent = (page - 1) * this.pageSize;
       var endContent = page * this.pageSize;
-      var pageContent = filteredData.slice(startContent, endContent);
       var pageCount = this.get('pageCount');
       var hasPrevious = (page > 1);
       var hasNext = (page < pageCount);
@@ -201,7 +194,7 @@ export default Ember.Controller.extend({
         pageArray.pushObject(pageObj);
       }
 
-      this.set('pageContent', pageContent);
+      this.set('pageContent', filteredData.slice(startContent, endContent));
       this.set('hasPrevious', hasPrevious);
       this.set('hasNext', hasNext);
       this.set('previousPage', previousPage);

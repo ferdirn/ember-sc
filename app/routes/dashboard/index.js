@@ -11,6 +11,8 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
     });
   },
   setupController: function(controller, model) {
+    Ember.Logger.log('Entering dashboard route.setupController');
+
     Ember.$.getJSON(config.APP.API_HOST + '/api/product/active/').then( function(data) {
         controller.set('activeProduct', data.total);
     });

@@ -69,7 +69,7 @@ module.exports = function(environment) {
 
   ENV['contentSecurityPolicy'] = {
     'default-src': "'none'",
-    'script-src': "'self' 'unsafe-eval'",
+    'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",
     'font-src': "'self' http://fonts.gstatic.com",
     'connect-src': "'self' http://localhost:8000",
     'img-src': "'self' http://localhost:8000",
@@ -78,12 +78,12 @@ module.exports = function(environment) {
   };
 
   if (environment === 'local') {
-    var HOST = 'http://api.demo.moxy.co.id';
+    var HOST = 'http://192.168.2.78:8000';
     ENV.APP.API_HOST = HOST;
     ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
     ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
     ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
   }
-  
+
   return ENV;
 };

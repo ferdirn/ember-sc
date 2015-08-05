@@ -46,7 +46,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="col-md-8 date-picker text-left">
+          <div class="col-md-8 col-sm-9 col-lg-8 date-picker text-left">
             <label class="small" >Filter by date</label>
             <div class="clearfix"></div>
               {{input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy" value=startDate}}
@@ -54,16 +54,16 @@
               {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=endDate}}
             <button {{ action 'filter' }} class="form-control btn btn-primary btn-size-regular">Filter</button>
           </div>
-          <div class="col-md-4 search text-right">
+          <div class="col-md-3 col-lg-4 col-sm-12 col-xs-12 text-right pull-right date-picker">
             <label class="small">Status filter</label>
             <div class="clearfix"></div>
-            {{ view "select" class="form-control" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }}
+            {{ view "select" class="form-control form-filter" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }}
           </div>
         </div>
         <div class="panel-body ">
 
           {{#if hasPagination}}
-            <nav align="right">
+            <nav align="center" class="pull-right col-lg-3 col-md-12 col-sm-12 col-xs-11 nopadding">
               <ul class="pagination">
                 {{#if hasPrevious}}
                   <li>
@@ -108,7 +108,11 @@
                 </th>
                 --}}
                 <td>{{ sales.created_at }}</td>
-                <td>{{ sales.order_number }}</td>
+                <td>
+                  {{#link-to 'sales.detail' sales.order_number}}
+                    {{ sales.order_number }}
+                  {{/link-to}}
+                </td>
                 <td>{{ sales.name }}</td>
                 <td>{{ sales.sku }}</td>
                 <td>{{ format-number sales.qty_ordered }}</td>
