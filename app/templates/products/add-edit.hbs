@@ -106,10 +106,12 @@
 							</div>		
 							{{# if model.images }}
 							{{# each model.images as |img| }}
+							{{# if edit }}
 						<img id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+						{{/if}}
 							{{/each}}
 							{{ else }}
-							<img id="product-image" src="assets/img/default_product.png" alt="your image" width="120" height="120" />
+							<img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" />
 							{{/if }}
 
 						<output id="result" />
@@ -205,18 +207,14 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
-						<label for="exampleInputFile" class="text-title ">Timed Price</label>
-						<input class="btn btn-hollow btn-size-small addmore pull-right" type="button" value="+" onclick="addRowTimedSale()">
+						<label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 nopadding text-title ">Timed Price</label>
 						<div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							<input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" />
+							{{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
 						</div>
 						<div class="clearfix"></div>
-						<div class="form-inline mtop10 mbtm5">
-						<div class="form-group">  
-						<input type="date" class="text-center form-control">  
-						<label>to</label>  
-						<input type="date" class="text-center form-control">
-						</div>
+						<div class="col-sm-12 nopadding bottom-spacer">
+							{{input type="date" class="text-center" value=model.special_from_date}} to
+							{{input type="date" class="text-center" value=model.special_to_date}}
 						</div>
 					</div>
 					

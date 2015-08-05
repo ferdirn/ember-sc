@@ -34,7 +34,6 @@ export default Ember.Controller.extend({
       //if (file.type.search('image')) {
         picReader.readAsDataURL(file);
         picReader.onload = function() {
-          console.log(picReader.result); 
           var div = document.createElement("span");
           div.className = 'frame-thumbnail';
           div.innerHTML = "<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>";
@@ -46,19 +45,21 @@ export default Ember.Controller.extend({
             if (images != null) {
               images.push({
                 'name': file.name,
+                'type': file.type,
                 'file': picReader.result
               });
             } else {
               images = [{
                 'name': file.name,
+                'type': file.type,
                 'file': picReader.result
               }];
             }
             model.set('images', images);
+            
+            console.log(model.get('images'));
         };
       //}
-      console.log(file.type);
-      console.log(component);
     }
 
   },
