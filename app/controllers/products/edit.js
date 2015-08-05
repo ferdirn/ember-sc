@@ -1,22 +1,27 @@
 import Ember from 'ember';
+import config from '../../config/environment';
 
 export default Ember.Controller.extend({
   actions: {
     save: function() {
       var data = this.get('model');
+      delete data.d_categories;
+      delete data.subcategory;
+      console.log(data);
       data.save();
     },
   chooseCategory: function(value, component) {
-      this.set('parent_category', value);
+      this.set('sub_category', value);
       var self = this;
-      Ember.$.getJSON('http://localhost:8000/api/categories/' + value+'/').then(function(data) {
+      this.set('model.d_categories.3', null);
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
           self.set('model.d_categories.2', data);
         });
     },
   chooseSubCategory: function(value, component) {
       this.set('sub_category', value);
       var self = this;
-      Ember.$.getJSON('http://localhost:8000/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
           self.set('model.d_categories.3', data);
         });
     },

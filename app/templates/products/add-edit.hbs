@@ -102,7 +102,7 @@
 							<span><i class="fa fa-photo"></i></span>
 							<br>
 							<span>ADD IMAGE</span>
-							{{input id="files" class="upload" type="file"  }}
+							<input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
 							</div>		
 							{{# if model.images }}
 							{{# each model.images as |img| }}
