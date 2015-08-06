@@ -129,9 +129,9 @@
           <div class="form-group bottom-spacer in-block full-width">
             <label class="text-title" for="exampleInputFile" class="col-lg-12 nopadding">Total Stock</label>
             <div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
-              {{ input type="text" value=model.qty }}
+              {{ input type="number" class="form-control" min="0" value=model.qty }}
             </div>
-            <div class="col-lg-9 nopadding">
+            <div class="col-lg-9 nopadding" style="display: none;">
               <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
