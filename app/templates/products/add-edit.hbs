@@ -17,56 +17,57 @@
           <div class="clearfix"></div>
           {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.parentcategory}}
           <option disabled="disabled">Select category</option>
-          {{# if model.d_categories.[1] }}
-          {{#each cat in model.d_categories.[1] }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{ else }}
-          {{#each cat in categories }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{/if}}
+            {{# if model.d_categories.[1] }}
+              {{#each cat in model.d_categories.[1] }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{ else }}
+              {{#each cat in categories }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/if}}
           {{/x-select}}
 
 
           {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory}}
           <option disabled="disabled">Select category</option>
-          {{# if model.d_categories.[2] }}
-          {{#each cat in model.d_categories.[2] }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{else}}
-          {{#each cat in subcategories }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{/if}}
+            {{# if model.d_categories.[2] }}
+              {{#each cat in model.d_categories.[2] }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{else}}
+              {{#each cat in subcategories }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/if}}
           {{/x-select}}
 
           {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
           <option disabled="disabled">Select category</option>
-          {{# if model.d_categories.[3] }}
-          {{#each cat in model.d_categories.[3] }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{else}}
-          {{#each cat in subsubcategories }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{/if}}
+            {{# if model.d_categories.[3] }}
+              {{#each cat in model.d_categories.[3] }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{else}}
+              {{#each cat in subsubcategories }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/if}}
           {{/x-select}}
           <!-- end of mobile display -->
+
           <div class="col-lg-12 nopadding">
             <div class="form-group">
               <label for="name" class="text-title">Name </label>
