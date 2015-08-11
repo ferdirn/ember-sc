@@ -6,6 +6,7 @@
 body
 {
   background: @color-white;
+  overflow-x: hidden;
 }
 .nopadding
 {
@@ -19,7 +20,10 @@ body
 .spacer40
 {
   padding-top: 20px;
-  padding-bottom: 20px;
+}
+.allspacer25
+{
+  padding: 25px;
 }
 .spacer60
 {
@@ -289,11 +293,17 @@ label.input-error
 
 .register-legend
 {
-    width: auto;
+    width: 100%;
     padding: 0 10px;
-    font-size: 17px;
+    font-size: 14px;
     margin: 0;
-    color: #EE5191;
+    text-align: left;
+    margin: 30px 0 15px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-left: 4px solid @color-dashboard-bar;
+    color: @color-dashboard-bar;
 }
 .register-field
 {
@@ -302,6 +312,14 @@ label.input-error
 .noverflow
 {
   overflow: hidden;
+}
+.card-shadow
+{
+  box-shadow: 0px 3px 3px #3C3C3C;
+}
+a.terms
+{
+  color: @color-dashboard-bar;
 }
 // .footer {
   //   position: absolute;
