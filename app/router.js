@@ -35,6 +35,7 @@ Router.map(function() {
 
   this.route('category');
 
+  this.route('not-found', {path: '/*path'});
 });
 
 export default Router;

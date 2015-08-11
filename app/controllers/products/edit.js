@@ -7,9 +7,13 @@ export default Ember.Controller.extend({
       var data = this.get('model');
       delete data.d_categories;
       delete data.subcategory;
-      data.save();
+
+      var self = this;
+      data.save().then(function() {
+        self.transitionToRoute('products.detail', data.id);
+      });
     },
-  chooseCategory: function(value, component) {
+    chooseCategory: function(value, component) {
       this.set('sub_category', value);
       var self = this;
       this.set('model.d_categories.3', null);
@@ -17,7 +21,7 @@ export default Ember.Controller.extend({
           self.set('model.d_categories.2', data);
         });
     },
-  chooseSubCategory: function(value, component) {
+    chooseSubCategory: function(value, component) {
       this.set('sub_category', value);
       var self = this;
       Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
@@ -26,7 +30,7 @@ export default Ember.Controller.extend({
     },
     chooseSubSubCategory: function(value, component) {
       this.set('model.categories', value);
-      
+
     },
     selectPicture: function(value, component) {
       var self = this;
@@ -47,6 +51,7 @@ export default Ember.Controller.extend({
           }
           
             var images = model.get('images')
+
             if (images != null) {
               images.push({
                 'name': file.name,
@@ -62,6 +67,7 @@ export default Ember.Controller.extend({
             }
             model.set('images', images);
             //self.set('edit', false); 
+
         };
       //}
     }

@@ -1,10 +1,18 @@
-<div class="row login">
-  <div class="col-lg-8 col-lg-offset-2 nopadding" style="background:#fff;">
+<div class="row login side-padder">
+  <div class="col-lg-6 col-lg-offset-3 col-md-lg-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
     <div class="col-lg-12 col-md-12 col-sm-12 spacer20 dash-bar">
       <label for="" class="in-block nomargin">Vendor Registration</label>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20">
+    <div class="col-lg-12 col-md-12 col-sm-12 bordering allspacer25 card-shadow" style="background:#fff;">
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 text-center bottom-space-container">
+        <img src="/img/logo.png" width="180px" class="spacer text-center">
+      </div>
       <form {{ action 'submit' on="submit" }}>
+        <legend class="register-legend">Credential Information</legend>
+        <div class="form-group">
+          <label for="InputUsername">Username</label>
+          {{input type="text" class="form-control" id="InputUsername" placeholder="Username" value=username required="required"}}
+        </div>
         <div class="form-group">
           <label for="InputEmail">Email address</label>
           {{input type="email" class="form-control" id="InputEmail" placeholder="Email" value=email required="required"}}
@@ -17,29 +25,40 @@
           <label for="InputRePassword">Re-type Password</label>
           {{input type="password" class="form-control" id="InputRePassword" placeholder="Re-type Password" value=repassword focus-out="matchPassword"}}
           {{#if isPasswordNotMatch}}
-            <p class="error" style="color: red;">Password did not match</p>
+          <p class="error" style="color: red;">Password did not match</p>
           {{/if}}
         </div>
-        <div class="form-group">
-          <label for="InputUsername">Username</label>
-          {{input type="text" class="form-control" id="InputUsername" placeholder="Username" value=username required="required"}}
+        <legend class="register-legend">Personal Information</legend>
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label for="InputFirstName">First Name</label>
+            {{input type="text" class="form-control firstname" id="InputFirstName" placeholder="First Name" value=first_name required="required"}}
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="InputLastName">Last Name</label>
+            {{input type="text" class="form-control" id="InputLastName" placeholder="Last Name" value=last_name required="required"}}
+          </div>
         </div>
-        <div class="form-group">
-          <label for="InputPhone">Phone</label>
-          {{input type="text" class="form-control" id="InputPhone" placeholder="Phone" value=phone_number required="required"}}
+        <div class="form-inline">
+          <div class="form-group col-lg-6 nopadding">
+            <label for="InputPhone" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">Phone</label>
+            <div class="input-group firstname" style="max-height:34px;">
+              <div class="input-group-addon" style="max-height:34px;">+62</div>
+              {{input type="text" class="form-control" id="InputPhone" placeholder="Phone" value=phone_number required="required"}}
+            </div>
+          </div>
+          <div class="checkbox col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+            <label class="terms-register">
+              <input type="checkbox" styler="position: relative;display: inline-block;margin-left: 0;"> I agreed with the <a class="terms" href="#"> terms & conditions</a>
+            </label>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="InputFirstName">First Name</label>
-          {{input type="text" class="form-control" id="InputFirstName" placeholder="First Name" value=first_name required="required"}}
+        <div class="col-lg-12 nopadding">
+          <button type="submit" class="btn btn-primary btn-size-small">Register</button>
+          {{#link-to 'auth.login'}}
+          <div class="btn btn-link btn-size-small">cancel</div>
+          {{/link-to}}
         </div>
-        <div class="form-group">
-          <label for="InputLastName">Last Name</label>
-          {{input type="text" class="form-control" id="InputLastName" placeholder="Last Name" value=last_name required="required"}}
-        </div>
-        <button type="submit" class="btn btn-primary btn-size-small">Register</button>
-        {{#link-to 'auth.login'}}
-          <p>cancel</p>
-        {{/link-to}}
       </form>
     </div>
   </div>

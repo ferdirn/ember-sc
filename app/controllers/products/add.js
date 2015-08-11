@@ -5,12 +5,15 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       var data = this.get('model');
-      data.save();
+      var self = this;
+      data.save().then(function() {
+        self.transitionToRoute('products.detail', data.id);
+      });
     },
   chooseCategory: function(value, component) {
       this.set('parent_category', value);
       var self = this;
-      this.set('subsubcategories', null); 
+      this.set('subsubcategories', null);
       Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
           self.set('subcategories', data);
         });
@@ -24,7 +27,7 @@ export default Ember.Controller.extend({
     },
     chooseSubSubCategory: function(value, component) {
       this.set('model.categories', value);
-      
+
     },
     selectPicture: function(value, component) {
       var model = this.get('model');
@@ -36,7 +39,7 @@ export default Ember.Controller.extend({
         picReader.onload = function() {
           var div = document.createElement("span");
           div.className = 'frame-thumbnail';
-          div.innerHTML = "<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>";
+          div.innerHTML = "<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>"+"<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>"+"<span class='fa fa-close bt-delete'></span>";
           output.insertBefore(div,null);
           if (document.getElementById('product-image')) {
             document.getElementById('product-image').remove(this);
@@ -56,14 +59,14 @@ export default Ember.Controller.extend({
               }];
             }
             model.set('images', images);
-            
+
             console.log(model.get('images'));
         };
       //}
     }
 
   },
-    
+
   init: function() {
       var self = this;
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {

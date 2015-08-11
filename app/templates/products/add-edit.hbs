@@ -37,38 +37,39 @@
 
           {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory}}
           <option disabled="disabled">Select category</option>
-          {{# if model.d_categories.[2] }}
-          {{#each cat in model.d_categories.[2] }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{else}}
-          {{#each cat in subcategories }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{/if}}
+            {{# if model.d_categories.[2] }}
+              {{#each cat in model.d_categories.[2] }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{else}}
+              {{#each cat in subcategories }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/if}}
           {{/x-select}}
 
           {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
           <option disabled="disabled">Select category</option>
-          {{# if model.d_categories.[3] }}
-          {{#each cat in model.d_categories.[3] }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{else}}
-          {{#each cat in subsubcategories }}
-          {{#x-option value=cat.id}}
-          {{cat.name}}
-          {{/x-option}}
-          {{/each}}
-          {{/if}}
+            {{# if model.d_categories.[3] }}
+              {{#each cat in model.d_categories.[3] }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{else}}
+              {{#each cat in subsubcategories }}
+                {{#x-option value=cat.id}}
+                  {{cat.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/if}}
           {{/x-select}}
           <!-- end of mobile display -->
+
           <div class="col-lg-12 nopadding">
             <div class="form-group">
               <label for="name" class="text-title">Name </label>
@@ -95,14 +96,14 @@
             {{ input type="number" class="form-control" id="weight" placeholder="Enter product weight" value=model.weight}}
           </div>
           <div class="form-group">
-            <label for="price" class="text_title">Product Price </label>
+            <label for="price" class="text-title">Product Price </label>
             {{ input type="number" class="form-control" id="price" placeholder="Enter product price" value=model.price}}
           </div>
           <div class="form-group">
 
             <label for="exampleInputFile" class="text-title">Image Upload</label>
-            <div class="form-inline">
 
+            <div class="form-inline">
               <div class="form-group">
                 <div class="fileUploadImg btn-upload">
                   <span><i class="fa fa-photo"></i></span>
@@ -121,19 +122,15 @@
                 {{/if }}
 
                 <output id="result" />
-
               </div>
-
-
-            </div>
-
+            </div>      
           </div>
           <div class="form-group bottom-spacer in-block full-width">
-            <label class="text-title" for="exampleInputFile" class="col-lg-12 nopadding">Total Stock</label>
+            <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
             <div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
-              {{ input type="text" value=model.qty }}
+              {{ input type="number" class="form-control" min="0" value=model.qty }}
             </div>
-            <div class="col-lg-9 nopadding">
+            <div class="col-lg-9 nopadding" style="display: none;">
               <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -207,7 +204,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
-            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 nopadding text-title ">Timed Price</label>
+            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title ">Timed Price</label>
             <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
               {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
             </div>
