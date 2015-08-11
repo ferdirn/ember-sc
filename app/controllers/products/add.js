@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
         picReader.onload = function() {
           var div = document.createElement("span");
           div.className = 'frame-thumbnail';
-          div.innerHTML = "<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>";
+          div.innerHTML = "<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>"+"<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>"+"<span class='fa fa-close bt-delete'></span>";
           output.insertBefore(div,null);
           if (document.getElementById('product-image')) {
             document.getElementById('product-image').remove(this);
