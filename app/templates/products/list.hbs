@@ -1,4 +1,4 @@
-			<div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">    
+			<div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">
 			</div>
 
 			<div class="container-fluid content-page">
@@ -12,7 +12,7 @@
 							<div class="panel-heading">
 								<div class="col-md-8 date-picker text-left">
 									<label class="small">Search by date</label>
-									<div class="clearfix"></div>	
+									<div class="clearfix"></div>
 									<input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy">
 									<label>To</label>
 									<input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy">
@@ -23,23 +23,23 @@
 							</div>
 							-->
 							<div class="panel-body list-products">
-								{{#each products as |product|}}
+								{{#each model as |product|}}
 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 box">
-									{{# link-to "products.detail" product.id }}
-										<img src="{{product.image}}" alt="">	
+									{{#link-to "products.detail" product.id }}
+										<img src="{{product.image}}" alt="">
 									{{/link-to}}
-									<div class="item-code ">{{product.product_sky}}</div>
+									<div class="item-code ">SKU: {{product.product_sku}}</div>
 									<h4 class="title-page">
 										{{product.name}}
 									</h4>
-									<div class="stock">Stock : 19</div>
+									<div class="stock">Stock : {{ format-number product.qty }}</div>
 									<div class="price">
-										RP {{format-number product.price}}
+										RP {{format-money product.price}}
 									</div>
 								</div>
 								{{/each}}
 
-								
+
 						<!--
 								<nav class="text-center center-block">
 									<ul class="pagination">

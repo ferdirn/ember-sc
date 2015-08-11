@@ -7,6 +7,7 @@ export default DS.Model.extend({
   name: DS.attr(),
   description: DS.attr(),
   short_description: DS.attr(),
+  qty: DS.attr(),
   weight: DS.attr(),
   status: DS.attr(),
   categories: DS.attr(),

@@ -1,237 +1,231 @@
 <form {{action "save" on="submit"}} enctype="multipart/form-data">
-<div class="hidden-md col-xs-12" id="hidden-spacer">
 
-	</div>
+  <div class="hidden-md col-xs-12" id="hidden-spacer">
 
-	<div class="container-fluid">
-		<!-- <div class="row">
-				<div class="col-lg-12 text-left">
-					<h5>Product ID 12345XXXX </h5>
-				</div>
-			</div> -->
-		<div class="row">
+  </div>
 
-			<div class="col-lg-6">
+  <div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-lg-12 text-left">
+          <h5>Product ID 12345XXXX </h5>
+        </div>
+      </div> -->
+      <div class="row">
 
-					<label for="form-title" class="text-title">Category</label>
-					<div class="clearfix"></div>
+        <div class="col-lg-6">
 
-					
-					{{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.parentcategory }}
-					<option disabled="disabled">Select category {{model.parentcategory}}</option>
-					{{#if model.d_categories.[1] }}
-					{{#each cat in model.d_categories.[1] }}
-						{{#if (eq cat.id  model.parentcategory) }}
-						<option value="{{cat.id}}">{{cat.name}}<<<<<<</option>
-						{{else}}
-						{{#x-option value=cat.id}}
-						{{cat.name}} >>>>>>>
-						{{/x-option}}
-						{{/if}}
-					{{/each}}
-					{{ else }}
-					{{#each cat in categories }}
-						{{#x-option value=cat.id}}
-						{{cat.name}}
-						{{/x-option}}
-					{{/each}}
-					{{/if}}
-					{{/x-select}}
-					
+          <label for="form-title" class="text-title">Category</label>
+          <div class="clearfix"></div>
 
-					{{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory }}
-					<option disabled="disabled">Select category {{model.subcategory}}</option>
-					{{# if model.d_categories.[2] }}
-					{{#each cat in model.d_categories.[2] }}
-						{{#x-option value=cat.id}}
-						{{cat.name}}
-						{{/x-option}}
-					{{/each}}
-					{{else}}
-					{{#each cat in subcategories }}
-						{{#x-option value=cat.id}}
-						{{cat.name}}
-						{{/x-option}}
-					{{/each}}
-					{{/if}}
-					{{/x-select}}
+          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.parentcategory}}
+          <option disabled="disabled">Select category</option>
+          {{# if model.d_categories.[1] }}
+          {{#each cat in model.d_categories.[1] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}} 
+          {{/x-option}}
+          {{/each}}
+          {{ else }}
+          {{#each cat in categories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
+          {{/x-select}}
 
-					{{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
-					<option disabled="disabled">Select category</option>
-					{{# if model.d_categories.[3] }}
-					{{#each cat in model.d_categories.[3] }}
-						{{#x-option value=cat.id}}
-						{{cat.name}}
-						{{/x-option}}
-					{{/each}}
-					{{else}}
-					{{#each cat in subsubcategories }}
-						{{#x-option value=cat.id}}
-						{{cat.name}}
-						{{/x-option}}
-					{{/each}}
-					{{/if}}
-					{{/x-select}}
-				<!-- end of mobile display -->
-				<div class="col-lg-12 nopadding">
-					<div class="form-group">
-						<label for="name" class="text-title">Name </label>
-						{{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" value=model.name}}
-					</div>
-					<div class="form-group">
-						<label for="sku" class="text-title">Product SKU </label>
-						{{ input type="text" class="form-control" id="sku" placeholder="Enter product SKU" value=model.product_sku}}
-					</div>
-					<div class="form-group">
-						<label for="description" class="text-title">Description </label>
-						{{textarea class="form-control maximum-width" rows="3" value=model.description}}
-					</div>
-					<div class="form-group">
-						<label for="shortdescription" class="text-title">Short Description </label>
-						{{textarea class="form-control maximum-width" rows="3" value=model.short_description}}
-					</div>
-					<div class="form-group">
-						<label for="weight" class="text-title">Weight </label>
-						{{ input type="number" class="form-control" id="weight" placeholder="Enter product weight" value=model.weight}}
-					</div>
-					<div class="form-group">
-						<label for="price" class="text_title">Product Price </label>
-						{{ input type="number" class="form-control" id="price" placeholder="Enter product price" value=model.price}}
-					</div>
-					<div class="form-group">
 
-							<label for="exampleInputFile" class="text-title">Image Upload</label>          	
-					<div class="form-inline">
+          {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory}}
+          <option disabled="disabled">Select category</option>
+          {{# if model.d_categories.[2] }}
+          {{#each cat in model.d_categories.[2] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{else}}
+          {{#each cat in subcategories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
+          {{/x-select}}
 
-						<div class="form-group">
-							<div class="fileUploadImg btn-upload">
-							<span><i class="fa fa-photo"></i></span>
-							<br>
-							<span>ADD IMAGE</span>
-							<input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
-							</div>		
-							{{# if model.images }}
-							{{# each model.images as |img| }}
-							{{# if edit }}
-						<img id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
-						{{/if}}
-							{{/each}}
-							{{ else }}
-							<img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" />
-							{{/if }}
+          {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
+          <option disabled="disabled">Select category</option>
+          {{# if model.d_categories.[3] }}
+          {{#each cat in model.d_categories.[3] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{else}}
+          {{#each cat in subsubcategories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
+          {{/x-select}}
+          <!-- end of mobile display -->
+          <div class="col-lg-12 nopadding">
+            <div class="form-group">
+              <label for="name" class="text-title">Name </label>
+              {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" value=model.name}}
+            </div>
+          {{!-- <div class="form-group">
+            <label for="sku" class="text-title">Product SKU </label>
+            {{ input type="text" class="form-control" id="sku" placeholder="Enter product SKU" value=model.product_sku}}
+          </div> --}}
+          <div class="form-group">
+            <label for="description" class="text-title">Attribute Set </label>
+            {{view "select" class="form-control" content=productAttributes optionLabelPath="content.name" optionValuePath="content.set_id" value=model.product_attribute_set}}
+          </div>
+          <div class="form-group">
+            <label for="description" class="text-title">Description </label>
+            {{textarea class="form-control maximum-width" rows="3" value=model.description}}
+          </div>
+          <div class="form-group">
+            <label for="shortdescription" class="text-title">Short Description </label>
+            {{textarea class="form-control maximum-width" rows="3" value=model.short_description}}
+          </div>
+          <div class="form-group">
+            <label for="weight" class="text-title">Weight </label>
+            {{ input type="number" class="form-control" id="weight" placeholder="Enter product weight" value=model.weight}}
+          </div>
+          <div class="form-group">
+            <label for="price" class="text_title">Product Price </label>
+            {{ input type="number" class="form-control" id="price" placeholder="Enter product price" value=model.price}}
+          </div>
+          <div class="form-group">
 
-						<output id="result" />
+            <label for="exampleInputFile" class="text-title">Image Upload</label>
+            <div class="form-inline">
 
-						</div>
-						
+              <div class="form-group">
+                <div class="fileUploadImg btn-upload">
+                  <span><i class="fa fa-photo"></i></span>
+                  <br>
+                  <span>ADD IMAGE</span>
+                  <input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
+                </div>
+                {{# if model.images }}
+                {{# each model.images as |img| }}
+                {{# if edit }}
+                <img id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+                {{/if}}
+                {{/each}}
+                {{ else }}
+                <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" />
+                {{/if }}
 
-						</div>
+                <output id="result" />
 
-					</div>
-					<div class="form-group bottom-spacer in-block full-width">
-						<label class="text-title" for="exampleInputFile" class="col-lg-12 nopadding">Total Stock</label>
-						<div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-						<div class="col-lg-9 nopadding">
-							<input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
+              </div>
 
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-											</button>
-											<h4 class="modal-title" id="myModalLabel">Add more option</h4>
-										</div>
-										<div class="modal-body">
-											<div class="form-group" id="form-transparent">
-												<label class="text-title" for="productname">Define option name</label>
-												<input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
-												<table class="table table-bordered table-condensed transparent-input">
-													<tbody>
-														<tr>
-															<th class="text-center">Check</th>
-															<th class="text-center">Tipe</th>
-															<th class="text-center">Quantity</th>
-															<th class="text-center">Weight</th>
-														</tr>
-														<tr>
-															<td>
-																<input type="checkbox" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" placeholder="fill type" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" placeholder="fill quantity" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" placeholder="fill weight" />
-															</td>
 
-														</tr>
-														<tr>
-															<td>
-																<input type="text" class=" transparent-input form-control " />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
-															<td>
-																<input type="text" class="form-control transparent-input" />
-															</td>
+            </div>
 
-														</tr>
-													</tbody>
-												</table>
-											</div>
+          </div>
+          <div class="form-group bottom-spacer in-block full-width">
+            <label class="text-title" for="exampleInputFile" class="col-lg-12 nopadding">Total Stock</label>
+            <div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
+              {{ input type="text" value=model.qty }}
+            </div>
+            <div class="col-lg-9 nopadding">
+              <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel">Add more option</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group" id="form-transparent">
+                        <label class="text-title" for="productname">Define option name</label>
+                        <input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
+                        <table class="table table-bordered table-condensed transparent-input">
+                          <tbody>
+                            <tr>
+                              <th class="text-center">Check</th>
+                              <th class="text-center">Tipe</th>
+                              <th class="text-center">Quantity</th>
+                              <th class="text-center">Weight</th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <input type="checkbox" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" placeholder="fill type" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" placeholder="fill quantity" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" placeholder="fill weight" />
+                              </td>
 
-						</div>
-					</div>
-					
-					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
-						
-						<div class="clearfix"></div>
-					</div>
-					<div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
-						<label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 nopadding text-title ">Timed Price</label>
-						<div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-							{{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
-						</div>
-						<div class="clearfix"></div>
-						<div class="col-sm-12 nopadding bottom-spacer">
-							{{input type="date" class="text-center" value=model.special_from_date}} to
-							{{input type="date" class="text-center" value=model.special_to_date}}
-						</div>
-					</div>
-					
-					<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
-						<button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
-						<button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            </tr>
+                            <tr>
+                              <td>
+                                <input type="text" class=" transparent-input form-control " />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control transparent-input" />
+                              </td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
+            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 nopadding text-title ">Timed Price</label>
+            <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
+              {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 nopadding bottom-spacer">
+              {{input type="date" class="text-center" value=model.special_from_date}} to
+              {{input type="date" class="text-center" value=model.special_to_date}}
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+            <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
+            <button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </form>
 

@@ -19,32 +19,6 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.API_HOST = 'http://localhost:8000';
-  }
-
-
-  if (environment === 'test') {
-    // Testem prefers this...
-    ENV.baseURL = '/';
-    ENV.locationType = 'none';
-
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
-
-    ENV.APP.rootElement = '#ember-testing';
-  }
-
-  if (environment === 'production') {
-
-  }
-
   ENV['simple-auth'] = {
     store: 'simple-auth-session-store:local-storage',
     authenticationRoute: 'auth.login',
@@ -77,12 +51,43 @@ module.exports = function(environment) {
     'media-src': "'self'"
   };
 
+  if (environment === 'development') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_HOST = 'http://localhost:8000';
+  }
+
+
+  if (environment === 'test') {
+    // Testem prefers this...
+    ENV.baseURL = '/';
+    ENV.locationType = 'none';
+
+    // keep test console output quieter
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+
+    ENV.APP.rootElement = '#ember-testing';
+  }
+
   if (environment === 'local') {
     var HOST = 'http://192.168.2.78:8000';
     ENV.APP.API_HOST = HOST;
     ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
     ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
     ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
+  }
+
+  if (environment === 'production') {
+    var HOST = 'http://api.moxy.co.id';
+    ENV.APP.API_HOST = HOST;
+    ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
+    ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
+    ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
+
   }
 
   return ENV;

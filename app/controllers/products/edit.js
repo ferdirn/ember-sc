@@ -7,7 +7,6 @@ export default Ember.Controller.extend({
       var data = this.get('model');
       delete data.d_categories;
       delete data.subcategory;
-      console.log(data);
       data.save();
     },
   chooseCategory: function(value, component) {
@@ -63,7 +62,6 @@ export default Ember.Controller.extend({
             }
             model.set('images', images);
             //self.set('edit', false); 
-            console.log(model.get('images'));
         };
       //}
     }
