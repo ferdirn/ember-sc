@@ -41,14 +41,7 @@ export default Ember.Controller.extend({
       //if (file.type.search('image')) {
         picReader.readAsDataURL(file);
         picReader.onload = function() {
-          
-          var div = document.createElement("span");
-          div.className = 'frame-thumbnail';
-          div.innerHTML = "<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>";
-          output.insertBefore(div,null);
-          if (document.getElementById('product-image')) {
-            document.getElementById('product-image').remove(this);
-          }
+          $("#result").before("<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/>");
           
             var images = model.get('images')
 
