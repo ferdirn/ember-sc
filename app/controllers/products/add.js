@@ -33,11 +33,12 @@ export default Ember.Controller.extend({
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
       var picReader = new FileReader();
-      var output = document.getElementById("result");
       //if (file.type.search('image')) {
         picReader.readAsDataURL(file);
         picReader.onload = function() {
-        $("#result").before("<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/>");
+        var content = "<span class='frame-thumbnail'><input class='btn btn-primary set-primary' type='button' value='Set as Primary'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/><span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span></span>";
+          //console.log(Ember.Handlebars.compile(content));
+          $("#result").append(content);
           
             var images = model.get('images')
             if (images != null) {
