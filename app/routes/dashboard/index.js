@@ -19,6 +19,9 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
     Ember.$.getJSON(config.APP.API_HOST + '/api/product/inactive/').then( function(data) {
         controller.set('inactiveProduct', data.total);
     });
+    Ember.$.getJSON(config.APP.API_HOST + '/api/dashboardstatistic/').then( function(data) {
+        controller.set('dashboardStatistic', data);
+    });
     controller.set('model', model);
   }
 
