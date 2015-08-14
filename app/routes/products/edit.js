@@ -11,7 +11,6 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('model', model);
     controller.set('edit', true);
-    console.log(model.categories[0]);
     Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
       controller.set('productAttributes', data);
     });

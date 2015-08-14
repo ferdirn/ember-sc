@@ -111,17 +111,22 @@
                   <span>ADD IMAGE</span>
                   <input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
                 </div>
+				<output id="result" >
                 {{# if model.images }}
                 {{# each model.images as |img| }}
                 {{# if edit }}
-                <img id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+				<span class="frame-thumbnail">
+					<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>
+					<img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+					<span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span>
+				</span>
                 {{/if}}
                 {{/each}}
                 {{ else }}
-                <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" />
+                <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
                 {{/if }}
-
-                <output id="result" />
+				</output>
+                
               </div>
             </div>      
           </div>
