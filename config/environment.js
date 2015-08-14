@@ -35,7 +35,7 @@ module.exports = function(environment) {
     authorizationPrefix: 'MOXY ',
     authorizationHeaderName: 'Authorization',
     refreshAccessTokens: false,
-    serverTokenRefreshEndpoint: 'http://localhost:8000/api/auth-refresh/',
+    serverTokenRefreshEndpoint: 'http://localhost:8000/api/token-refresh/',
     refreshLeeway: 300, // refresh token for 5 minutes. need to develop expiry
     timeFactor: 1000,
     headers: {}

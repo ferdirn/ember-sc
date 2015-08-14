@@ -5,19 +5,19 @@
         <img src="/assets/img/logo.png" class="spacer text-center col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
         <div class="clearfix"></div>
         <div class="text-center"><strong>{{{ message }}}</strong></div>
-        <div class="form-group">
+        <div {{ bind-attr class=":form-group isUsernameError:has-error" }}>
           <label for="username">Email address</label>
           {{input id='identification' class="form-control" placeholder='Enter username/email address' value=identification required=true}}
-          {{#each errors.username as |err|}}
-          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{err}}</label>
-          {{/each}}
+          {{#if isUsernameError}}
+          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{usernameErrorMessage}}</label>
+          {{/if}}
         </div>
-        <div class="form-group">
+        <div {{ bind-attr class=":form-group isPasswordError:has-error" }}>
           <label for="password">Password</label>
           {{input id='password' class="form-control" placeholder='Enter Password' type='password' value=password required=true}}
-          {{#each errors.password as |err|}}
-          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{err}}</label>
-          {{/each}}
+          {{#if isPasswordError}}
+          <label class="input-error" role="alert" for="password"><i class="fa fa-exclamation-triangle"></i>{{passwordErrorMessage}}</label>
+          {{/if}}
 
         </div>
         <!-- <div class="checkbox"> -->
