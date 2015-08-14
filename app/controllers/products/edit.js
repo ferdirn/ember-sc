@@ -33,8 +33,8 @@ export default Ember.Controller.extend({
 
     },
     priceCommission: function(value, component) {
-      alert('asdasdasd');
-    }.observes('model.price'),
+      console.log('asdasdasd');
+    },
     deleteImage: function(value, component) {
     },
     selectPicture: function(value, component) {

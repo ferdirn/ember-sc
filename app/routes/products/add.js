@@ -13,9 +13,9 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
   setupController: function(controller, model) {
     controller.set('model', model);
 
-    Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
-      controller.set('productAttributes', data);
-    });
+    // Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
+    //   controller.set('productAttributes', data);
+    // });
   }
 
 });
