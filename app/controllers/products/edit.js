@@ -32,9 +32,10 @@ export default Ember.Controller.extend({
       this.set('model.categories', value);
 
     },
-
+    priceCommission: function(value, component) {
+      alert('asdasdasd');
+    }.observes('model.price'),
     deleteImage: function(value, component) {
-      alert('asdasdasdasd');
     },
     selectPicture: function(value, component) {
       var self = this;
