@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       var data = this.get('model');
+      data.product_attribute_set = '4';
       var self = this;
       data.save().then(function() {
         self.transitionToRoute('products.detail', data.id);
@@ -36,11 +37,10 @@ export default Ember.Controller.extend({
       //if (file.type.search('image')) {
         picReader.readAsDataURL(file);
         picReader.onload = function() {
-        //var content = "<span class='frame-thumbnail'><input class='btn btn-primary set-primary' type='button' value='Set as Primary'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/><span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span></span>";
-var content = "<span class='frame-thumbnail'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/></span>";
-          //console.log(Ember.Handlebars.compile(content));
-          $("#result").append(content);
-          
+        var content = "<span class='frame-thumbnail'><input class='btn btn-primary set-primary' type='button' value='Set as Primary'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/><span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span></span>";
+            //console.log(Ember.Handlebars.compile(content));
+            $("#result").append(content);
+
             var images = model.get('images')
             if (images != null) {
               images.push({
