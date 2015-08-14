@@ -53,7 +53,7 @@ var content = "<span class='frame-thumbnail'><img class='thumbnail-upload' src='
           //console.log(self.get('model'));
           //self.$('#result').append(content);
           
-            var images = model.get('images')
+            var images = model.get('images');
 
             if (images != null) {
               images.push({

@@ -4,7 +4,8 @@
     "window",
     "-Promise",
     "NProgress",
-    "_"
+    "_",
+    "Chart"
   ],
   "browser": true,
   "boss": true,
