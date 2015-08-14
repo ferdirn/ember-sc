@@ -60,5 +60,10 @@ function removeRowTimed(input) {
     var parent = input.parentNode.parentNode;
   document.getElementById('contenttimed').removeChild(parent);
 }
+function showDiv(idOfDiv) {
 
-
+   document.getElementById(idOfDiv).style.display = 'block';
+}
+function hideDiv(idOfDiv) {
+   document.getElementById(idOfDiv).style.display = 'none';
+}
