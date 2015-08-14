@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
     },
     save: function() {
       var data = this.get('model');
+      data.product_attribute_set = '4';
       var self = this;
       data.save().then(function() {
         self.transitionToRoute('products.detail', data.id);
@@ -43,19 +44,15 @@ export default Ember.Controller.extend({
       //if (file.type.search('image')) {
         picReader.readAsDataURL(file);
         picReader.onload = function() {
-          var div = document.createElement("span");
-          div.className = 'frame-thumbnail';
-          div.innerHTML = "<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>"+"<img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>"+"<span class='fa fa-close bt-delete'></span>";
+        var content = "<span class='frame-thumbnail'><input class='btn btn-primary set-primary' type='button' value='Set as Primary'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/><span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span></span>";
+            //console.log(Ember.Handlebars.compile(content));
           var div2 = document.createElement("span");
           div2.className = 'col-lg-3 col-md-3 allspacer4 text-center';
           div2.innerHTML = "<img class='live-thumb' width='28' height='28' src='" + picReader.result + "'" + "title='" + file.name + "'/><input type='hidden' name='images' value='" + picReader.result +"'/>";
           product_images.insertBefore(div2,null);
-          output.insertBefore(div,null);
-          if (document.getElementById('product-image')) {
-            document.getElementById('product-image').remove(this);
-          }
-            var images = model.get('images');
-            console.log(images);
+          $("#result").append(content);
+
+            var images = model.get('images')
             if (images != null) {
               images.push({
                 'name': file.name,

@@ -98,43 +98,43 @@
        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
           <span>&nbsp;</span><br>
-          <span class="number-text">300</span>
+          <span class="number-text">{{ format-money dashboardStatistic.average_sales }}</span>
           <br>Average Sales
         </div>
        </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft righter">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
           <span>&nbsp;</span><br>
-          <span class="number-text">4.000.000</span>
-          <br>Total Revenue
+          <span class="number-text">{{ format-money dashboardStatistic.total_sales }}</span>
+          <br>Total Sales
         </div>
        </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
           <span>&nbsp;</span><br>
-          <span class="number-text">2.000.000</span>
-          <br>This Week
+          <span class="number-text">{{ format-money dashboardStatistic.this_week_sales }}</span>
+          <br>This Week Sales
         </div>
        </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft righter">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
           <span>&nbsp;</span><br>
-          <span class="number-text">100.000</span>
-          <br>Today
+          <span class="number-text">{{ format-money dashboardStatistic.yesterday_sales }}</span>
+          <br>Yesterday Sales
         </div>
        </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
-          <span>11/07/2015</span><br>
-          <span class="number-text">25.000</span>
-          <br>Lowest performing
+          <span>&nbsp;</span><br>
+          <span class="number-text">{{ format-money dashboardStatistic.today_sales }}</span>
+          <br>Today Sales
         </div>
        </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 box-extra nopaddingleft righter">
          <div class="wrapper-box additional-index-tab  bottom-spacer-container text-center">
-          <span>11/07/2015</span> <br>
-          <span class="number-text">2.000.000</span>
-          <br>Highest performing
+          <span>{{ dashboardStatistic.best_date }}</span> <br>
+          <span class="number-text">{{ format-money dashboardStatistic.best_date_sales }}</span>
+          <br>Highest Daily Sales
         </div>
        </div>
       </div>
