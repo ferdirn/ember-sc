@@ -56,12 +56,11 @@ export default Ember.Controller.extend({
 
       picReader.readAsDataURL(file);
       picReader.onload = function() {
-
-          images.addObject({
-            'name': file.name,
-            'type': file.type,
-            'file': picReader.result
-          });
+        images.addObject({
+          'name': file.name,
+          'type': file.type,
+          'file': picReader.result
+        });
         self.set('model.images', images);
 
         if (images.length === 1) {
