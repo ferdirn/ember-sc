@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
     },
     save: function() {
       var data = this.get('model');
-      data.product_attribute_set = '4';
+      data.set('product_attribute_set', '4');
       var self = this;
       data.save().then(function() {
         self.transitionToRoute('products.detail', data.id);
@@ -33,6 +33,15 @@ export default Ember.Controller.extend({
     chooseSubSubCategory: function(value, component) {
       this.set('model.categories', value);
 
+    },
+    priceCommission: function(value, component) {
+        var self = this;
+        var model = this.get('model');
+        Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': model.get('categories'), 'price': $('#price').val()}).then(function(data) {
+          self.set('price_commission', data);  
+        });
+        this.set('model.price', $('#price').val());
+            
     },
     selectPicture: function(value, component) {
       var model = this.get('model');
