@@ -107,7 +107,9 @@
          <label for="price" class="text-title">Product Price </label>
          <div class="input-group">
           <div class="input-group-addon">Rp.</div>
-          {{ input type="number" class="form-control" id="price" placeholder="Enter product price" value=model.price min="0" action="priceCommission" on="keyPress"}}
+           <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
+		   <span>Moxy commission is {{format-number price_commission.moxy_commission}}</span> <br/>
+		   <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
 
         </div>
       </div>

@@ -2,6 +2,9 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  init: function() {
+    
+  },
   actions: {
     save: function() {
       var data = this.get('model');
@@ -33,7 +36,13 @@ export default Ember.Controller.extend({
 
     },
     priceCommission: function(value, component) {
-      console.log('asdasdasd');
+        var self = this;
+        var model = this.get('model');
+        Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': model.get('categories'), 'price': $('#price').val()}).then(function(data) {
+          self.set('price_commission', data);  
+        });
+        this.set('model.price', $('#price').val());
+            
     },
     deleteImage: function(value, component) {
     },
