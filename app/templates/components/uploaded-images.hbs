@@ -1,0 +1,5 @@
+<span class="frame-thumbnail">
+  <input class='btn btn-primary set-primary' type='button' value='Set as Primary' {{action 'setPrimaryImage' img}}>
+  <img class="thumbnail-upload" id="product-image" src="{{img.file}}" alt="your image" width="120" height="120" />
+  <span class='fa fa-close bt-delete' {{action 'deleteImage' img}}></span>
+</span>
