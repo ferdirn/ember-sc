@@ -250,14 +250,22 @@
     <div class="col-lg-4 col-md-4 nopadding">
      <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding">
        {{#if model.image}}
+		 {{# if model.image.file }}
          <img src="{{model.image.file}}" width="100%">
+		 {{else}}
+		  <img src="{{model.image}}" width="100%">
+		  {{/if}}
        {{else}}
          <img src="assets/img/default_product.png" width="100%">
        {{/if}}
     </div>
     <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding">
       {{#each model.images as |img|}}
+	    {{# if img.file }}
         <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" />
+		{{else}}
+		<img id="product-image" src="{{img}}" alt="your image" width="38" height="38" />
+		 {{/if}}
       {{ else }}
         <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
       {{/each}}
