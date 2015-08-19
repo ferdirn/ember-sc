@@ -12,8 +12,8 @@
 
           <label for="form-title" class="text-title">Category</label>
           <div class="clearfix"></div>
-          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.parentcategory}}
-          <option disabled="disabled" selected="selected">Select category</option>
+          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.parentcategory}}
+          <option value="" disabled="disabled" selected="selected">Select category</option>
             {{# if model.d_categories.[1] }}
               {{#each cat in model.d_categories.[1] }}
                 {{#x-option value=cat.id}}
@@ -29,47 +29,50 @@
             {{/if}}
           {{/x-select}}
 
+          {{#if hasLevel2Category}}
+            {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.subcategory}}
+            <option value= "" disabled="disabled" selected="selected">Select category</option>
+              {{# if model.d_categories.[2] }}
+                {{#each cat in model.d_categories.[2] }}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each cat in subcategories }}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
 
-          {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory}}
-          <option disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[2] }}
-              {{#each cat in model.d_categories.[2] }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{else}}
-              {{#each cat in subcategories }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{/if}}
-          {{/x-select}}
-
-          {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
-          <option disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[3] }}
-              {{#each cat in model.d_categories.[3] }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{else}}
-              {{#each cat in subsubcategories }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{/if}}
-          {{/x-select}}
+          {{#if hasLevel3Category}}
+            {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.categories}}
+            <option value="" disabled="disabled" selected="selected">Select category</option>
+              {{# if model.d_categories.[3] }}
+                {{#each cat in model.d_categories.[3] }}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each cat in subsubcategories }}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
           <!-- end of mobile display -->
 
           <div class="col-lg-12 nopadding">
             <div class="form-group">
               <label for="name" class="text-title">Name </label>
               <!-- <div id="div1" style="display:{{displayNameHelper}};">A reminder of how to use this field</div> -->
-              {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" value=model.name}}
+              {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" value=model.name required="required" }}
             </div>
             {{!-- <div class="form-group">
             <label for="sku" class="text-title">Product SKU </label>
@@ -85,11 +88,11 @@
         </div> --}}
         <div class="form-group">
           <label for="shortdescription" class="text-title">Specification </label>
-          {{textarea class="form-control maximum-width" rows="3" value=model.short_description}}
+          {{textarea class="form-control maximum-width" rows="3" value=model.short_description required="required" }}
         </div>
         <div class="form-group">
           <label for="weight" class="text-title">Weight </label>
-          {{ input type="number" class="form-control" id="weight" min="1" placeholder="Enter product weight" value=model.weight}}
+          {{ input type="number" class="form-control" id="weight" min="1" placeholder="Enter product weight" value=model.weight required="required" }}
         </div>
         <div class="form-group">
           <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
@@ -100,14 +103,14 @@
 
         <div class="form-group">
           <label for="description" class="text-title">Description </label>
-          {{textarea class="form-control maximum-width" rows="8" value=model.description}}
+          {{textarea class="form-control maximum-width" rows="8" value=model.description required="required" }}
         </div>
 
         <div class="form-group">
          <label for="price" class="text-title">Product Price </label>
          <div class="input-group">
           <div class="input-group-addon">Rp.</div>
-          {{ input type="number" class="form-control" id="price" placeholder="Enter product price" value=model.price min="0" action="priceCommission" on="keyPress"}}
+          {{ input type="number" required="required" class="form-control" id="price" placeholder="Enter product price" value=model.price min="0" action="priceCommission" on="keyPress"}}
 
         </div>
       </div>
@@ -124,18 +127,18 @@
             </div>
             <output id="result" >
               {{# if model.images }}
-              {{# each model.images as |img| }}
-              {{# if edit }}
-              <span class="frame-thumbnail">
-               <!--<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>-->
-               <img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
-               <!-- <span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span> -->
-             </span>
-             {{/if}}
-             {{/each}}
-             {{ else }}
-             <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
-             {{/if }}
+                {{# each model.images as |img| }}
+                  {{# if edit }}
+                    <span class="frame-thumbnail">
+                     <!--<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>-->
+                    <img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+                     <!-- <span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span> -->
+                    </span>
+                  {{/if}}
+                {{/each}}
+              {{ else }}
+                <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
+              {{/if }}
            </output>
 
          </div>
