@@ -110,8 +110,10 @@
          <label for="price" class="text-title">Product Price </label>
          <div class="input-group">
           <div class="input-group-addon">Rp.</div>
-          {{ input type="number" required="required" class="form-control" id="price" placeholder="Enter product price" value=model.price min="0" action="priceCommission" on="keyPress"}}
-
+            <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
+    		    <span>Moxy commission is {{format-number price_commission.moxy_commission}}</span> <br/>
+		        <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -119,27 +121,22 @@
         <label for="exampleInputFile" class="text-title">Image Upload</label>
         <div class="form-inline">
           <div class="form-group">
+            <output id="result">
+              {{#each model.images as |img|}}
+              {{uploaded-images img=img model=model}}
+              {{else}}
+              <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
+              {{/each}}
+            </output>
+
+            {{#if (or (not (is-array model.images)) (lt model.images.length 5))}}
             <div class="fileUploadImg btn-upload">
-              <span><i class="fa fa-photo"></i></span>
+              <span><i class="fa fa-plus"></i></span>
               <br>
               <span>ADD IMAGE</span>
               <input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
             </div>
-            <output id="result" >
-              {{# if model.images }}
-                {{# each model.images as |img| }}
-                  {{# if edit }}
-                    <span class="frame-thumbnail">
-                     <!--<input class='btn btn-primary set-primary' type='button' value='Set as Primary'>-->
-                    <img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
-                     <!-- <span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span> -->
-                    </span>
-                  {{/if}}
-                {{/each}}
-              {{ else }}
-                <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
-              {{/if }}
-           </output>
+            {{/if}}
 
          </div>
        </div>
@@ -248,18 +245,18 @@
   <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
     <div class="col-lg-4 col-md-4 nopadding">
      <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding">
-      <img src="assets/img/default_product.png" width="100%">
+       {{#if model.image}}
+         <img src="{{model.image.file}}" width="100%">
+       {{else}}
+         <img src="assets/img/default_product.png" width="100%">
+       {{/if}}
     </div>
     <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding">
-      {{# if model.images }}
-      {{# each model.images as |img| }}
-      {{# if edit }}
-      <img id="product-image" src="{{img}}" alt="your image" width="38" height="38" />
-      {{/if}}
-      {{/each}}
+      {{#each model.images as |img|}}
+        <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" />
       {{ else }}
-      <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
-      {{/if }}
+        <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
+      {{/each}}
       <output id="product_images" />
     </div>
   </div>
@@ -344,10 +341,8 @@
           </p>
         </div>
       </div>
-
     </div>
   </div>
-</div>
 </div>
 
 </form>
