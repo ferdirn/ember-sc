@@ -43,9 +43,7 @@
     "ember-export-application-global": "^1.0.2",
     "ember-truth-helpers": "1.0.0",
     "ember-validations": "~ 2.0.0-alpha.3",
-    "emberx-select": "1.1.4"
-  },
-  "dependencies": {
+    "emberx-select": "1.1.4",
     "moment": "^2.10.6"
   }
 }
