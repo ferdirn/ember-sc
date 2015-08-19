@@ -48,9 +48,11 @@ export default Ember.Controller.extend({
       Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel2Category', true);
+          self.set('hasLevel3Category', false);
           self.set('subcategories', data);
         } else {
           self.set('hasLevel2Category', false);
+          self.set('hasLevel3Category', false);
         }
       });
     },
