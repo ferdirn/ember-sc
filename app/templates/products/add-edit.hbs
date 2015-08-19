@@ -113,16 +113,18 @@
 
         <div class="form-group">
          <label for="price" class="text-title">Product Price </label>
-         <div class="input-group col-lg-5">
+         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 nopadding bottom-spacer">
+          <div class="col-lg-12 bottom-spacer-bigger"></div>
+         <div class="input-group" style="float:left;">
           <div class="input-group-addon">Rp.</div>
           <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
         </div>
-        <span style="
-        float: left;
-        " class="col-lg-7">
-        <h6>Moxy commission is 0</h6></span>
-        <br/>
-        <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
+</div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left commission-cont" style="">
+          <p>we take <span class="commission-percent" style="">5%</span></p>
+        <h4 class="commission-amount">Rp. 50.0007</h4>
+        <p class="commission-exp"style="">will be transferred to your account</p>
+      </div>
       </div>
     </div>
     <div class="form-group">
