@@ -3,7 +3,11 @@ import config from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.PromiseProxyMixin, {
   chartOptions: {
-      bezierCurve: false
+      bezierCurve: false,
+      animation: false,
+      scaleLabel: function(label){
+        return  'Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
   },
 
   init: function() {
@@ -13,9 +17,11 @@ export default Ember.Controller.extend(Ember.PromiseProxyMixin, {
     var promise = Ember.$.getJSON(config.APP.API_HOST + '/api/dashboardchart/');
     if (promise) {
       promise.done(function(data) {
+        console.log(data.labels);
         self.set('data', data);
       });
       return this.set('promise', promise);
     }
   }
 });
+ 

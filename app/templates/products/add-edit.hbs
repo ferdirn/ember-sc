@@ -7,6 +7,10 @@
         </div>
       </div> -->
       <div class="row">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Oh snap!</strong> This is an error message.
+        </div>
 
         <div class="col-lg-6 col-md-6">
 
@@ -14,54 +18,54 @@
           <div class="clearfix"></div>
           {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.parentcategory}}
           <option disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[1] }}
-              {{#each cat in model.d_categories.[1] }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{ else }}
-              {{#each cat in categories }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{/if}}
+          {{# if model.d_categories.[1] }}
+          {{#each cat in model.d_categories.[1] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{ else }}
+          {{#each cat in categories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
           {{/x-select}}
 
 
           {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.subcategory}}
           <option disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[2] }}
-              {{#each cat in model.d_categories.[2] }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{else}}
-              {{#each cat in subcategories }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{/if}}
+          {{# if model.d_categories.[2] }}
+          {{#each cat in model.d_categories.[2] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{else}}
+          {{#each cat in subcategories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
           {{/x-select}}
 
           {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle btn btn-hollow btn-size-small drop-custom" value=model.categories}}
           <option disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[3] }}
-              {{#each cat in model.d_categories.[3] }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{else}}
-              {{#each cat in subsubcategories }}
-                {{#x-option value=cat.id}}
-                  {{cat.name}}
-                {{/x-option}}
-              {{/each}}
-            {{/if}}
+          {{# if model.d_categories.[3] }}
+          {{#each cat in model.d_categories.[3] }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{else}}
+          {{#each cat in subsubcategories }}
+          {{#x-option value=cat.id}}
+          {{cat.name}}
+          {{/x-option}}
+          {{/each}}
+          {{/if}}
           {{/x-select}}
           <!-- end of mobile display -->
 
@@ -141,8 +145,8 @@
          </div>
        </div>
      </div>
-  </div>
-  <div class="form-group bottom-spacer in-block full-width" style="display: none;">
+   </div>
+   <div class="form-group bottom-spacer in-block full-width" style="display: none;">
     <div class="col-lg-9 nopadding">
       <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
 
