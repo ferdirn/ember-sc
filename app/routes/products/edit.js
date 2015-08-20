@@ -29,9 +29,12 @@ export default Ember.Route.extend({
     //   controller.set('productAttributes', data);
     // });
 
-    var self = this;
+    var self = controller;
     Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': model.get('categories'), 'price': model.get('price')}).then(function(data) {
-          controller.set('price_commission', data);
+          controller.set('discount_percentage', data.commission_percentage);
+          //seller_price = model.price - (model.price * (data.commission_percentage/100))
+          controller.set('seller_price', data.seller_price);
         });
+
   }
 });

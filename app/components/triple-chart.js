@@ -19,7 +19,8 @@ export default Ember.Component.extend({
         labels: labels,
         datasets: [
         {
-          fillColor : "rgba(255,251,5,0)",
+          label: "New order",
+          fillColor: "rgba(255,251,5,0)",
           strokeColor : "rgba(255,251,5,0.8)",
           highlightFill: "rgba(255,251,5,0)",
           highlightStroke: "rgba(255,251,5,1)",
@@ -27,6 +28,7 @@ export default Ember.Component.extend({
           data : new_order_data
         },
         {
+          label: "Paid order",
           fillColor : "rgba(2,192,204,0)",
           strokeColor : "rgba(2,192,204,0.8)",
           highlightFill : "rgba(2,192,204,0)",
@@ -35,6 +37,7 @@ export default Ember.Component.extend({
           data : paid_order_data
         },
         {
+          label: "Total order",
           fillColor : "rgba(236,60,122,0)",
           strokeColor : "rgba(236,60,122,0.8)",
           highlightFill: "rgba(236,60,122,0)",
@@ -44,7 +47,6 @@ export default Ember.Component.extend({
         }
         ]
       };
-
       return chartData;
     },
 
@@ -55,9 +57,13 @@ export default Ember.Component.extend({
     * when getting wrong and/or missing values.
     */
     didInsertElement: function() {
-      Chart.defaults.global.responsive = true;
-      Chart.defaults.global.tooltipTemplate = "<%= value %>";
-
+      Chart.defaults.global.responsive =  true;
+      Chart.defaults.global.tooltipYPadding = 10;
+      Chart.defaults.global.tooltipXPadding = 10;
+      Chart.defaults.global.tooltipTitleFontSize = 12;
+      // Chart.defaults.global.multiTooltipTemplate = "<%if (label){%><%=datasetLabel%>: <%}%><%= value.toString().replace(\/\B(?=(\d{3})+(?!\d))\/g, '.') %>";
+      // Chart.defaults.global.multiTooltipTemplate = "<%=fillColor%>";
+      
       var canvas  = this.get('element');
       var context = canvas.getContext('2d');
 

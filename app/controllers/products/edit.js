@@ -7,9 +7,7 @@ export default Ember.Controller.extend({
   isEmptyParentCategory: false,
   isEmptySubCategory: false,
   isEmptyCategory: false,
-  init: function() {
-
-  },
+  
   actions: {
     save: function() {
       var data = this.get('model');
@@ -72,16 +70,25 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubSubCategory: function(value, component) {
+      var self = this;
       this.set('model.categories', value);
-
+      var seller_price = this.get('seller_price');
+      Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': value}).then(function(data) {
+        self.set('discount_percentage', data.commission_percentage);
+        seller_price = $('#price').val() - ($('#price').val() * (data.commission_percentage/100))
+        self.set('seller_price', seller_price);
+      });
     },
     priceCommission: function(value, component) {
         var self = this;
         var model = this.get('model');
-        Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': model.get('categories'), 'price': $('#price').val()}).then(function(data) {
-          self.set('price_commission', data);
-        });
+
+        var discount_percentage = this.get('discount_percentage');
+        var seller_price = this.get('seller_price');
+
+        seller_price = $('#price').val() - ($('#price').val() * (discount_percentage/100))
         this.set('model.price', $('#price').val());
+        this.set('seller_price', seller_price);
 
     },
     deleteImage: function(value, component) {
@@ -123,5 +130,8 @@ var content = "<span class='frame-thumbnail'><img class='thumbnail-upload' src='
         };
       //}
     }
+  },
+  init: function() {
+      
   }
 });
