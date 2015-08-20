@@ -9,6 +9,7 @@ export default Ember.Route.extend({
     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
+    Ember.Logger.log('Entering products.edit route.setupController');
 
     controller.set('model', model);
     controller.set('edit', true);

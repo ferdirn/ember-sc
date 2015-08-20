@@ -41,11 +41,20 @@ export default Ember.Controller.extend({
       });
     },
     chooseCategory: function(value, component) {
+      if (typeof value === 'undefined') {
+        this.set('hasLevel2Category', false);
+        this.set('hasLevel3Category', false);
+        return false;
+      }
       this.set('parent_category', value);
       this.set('isEmptyParentCategory', false);
+
+      var model = this.get('model');
+      model.set('subcategory', undefined);
+      model.set('categories', undefined);
+
       var self = this;
-      this.set('subsubcategories', null);
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel2Category', true);
           self.set('hasLevel3Category', false);
@@ -57,10 +66,18 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubCategory: function(value, component) {
+      if (typeof value === 'undefined') {
+        this.set('hasLevel3Category', false);
+        return false;
+      }
       this.set('sub_category', value);
       this.set('isEmptySubCategory', false);
+
+      var model = this.get('model');
+      model.set('categories', undefined);
+
       var self = this;
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel3Category', true);
           self.set('subsubcategories', data);
@@ -104,8 +121,23 @@ export default Ember.Controller.extend({
 
         if (images.length === 1) {
           self.set('model.image', images.get('firstObject'));
+          self.set('model.primaryImage', images.get('firstObject'));
         }
       };
+
+    },
+    imagePreviewMouseEnter: function(value) {
+      Ember.Logger.log('imagePreviewMouseEnter');
+      Ember.Logger.log(value);
+
+      var model = this.get('model');
+      model.set('image', value);
+    },
+    imagePreviewMouseLeave: function() {
+      Ember.Logger.log('imagePreviewMouseLeave');
+
+      var model = this.get('model');
+      model.set('image', model.get('primaryImage'));
     }
   },
 
@@ -113,6 +145,28 @@ export default Ember.Controller.extend({
     var self = this;
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
       self.set('categories', data);
+    });
+    Ember.run.schedule("afterRender", this, function() {
+      var imageUploadResult = document.getElementById("result");
+      Sortable.create(imageUploadResult, {
+        onUpdate: function(evt) {
+          var oldIndex = evt.oldIndex;
+          var newIndex = evt.newIndex;
+          // Ember.Logger.log(oldIndex + '->' + newIndex);
+          var images = self.get('model.images');
+          var item = images.objectAt(oldIndex);
+
+          if (newIndex > oldIndex) {
+            images.insertAt(newIndex+1, item);
+            images.removeAt(oldIndex);
+          } else {
+            images.removeAt(oldIndex);
+            images.insertAt(newIndex, item);
+          }
+          evt.item.parentNode.removeChild(evt.item);
+          self.set('model.images', images);
+        }
+      });
     });
   }
 });

@@ -20,7 +20,7 @@
           <div class="clearfix"></div>
           {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.parentcategory}}
           <option value="" disabled="disabled" selected="selected">Select category</option>
-            {{# if model.d_categories.[1] }}
+            {{#if model.d_categories.[1] }}
               {{#each cat in model.d_categories.[1] }}
                 {{#x-option value=cat.id}}
                   {{cat.name}}
@@ -37,8 +37,8 @@
 
           {{#if hasLevel2Category}}
             {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.subcategory}}
-            <option value= "" disabled="disabled" selected="selected">Select category</option>
-              {{# if model.d_categories.[2] }}
+            <option value="" selected="selected">Select category</option>
+              {{#if model.d_categories.[2] }}
                 {{#each cat in model.d_categories.[2] }}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
@@ -53,10 +53,11 @@
               {{/if}}
             {{/x-select}}
           {{/if}}
+
           {{#if hasLevel3Category}}
             {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.categories}}
-            <option value="" disabled="disabled" selected="selected">Select category</option>
-              {{# if model.d_categories.[3] }}
+            <option value="" selected="selected">Select category</option>
+              {{#if model.d_categories.[3] }}
                 {{#each cat in model.d_categories.[3] }}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
@@ -116,8 +117,8 @@
          <div class="input-group">
           <div class="input-group-addon">Rp.</div>
             <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
-    		    <span>Moxy commission is {{format-number price_commission.moxy_commission}}</span> <br/>
-		        <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
+            <span>Moxy commission is {{format-number price_commission.moxy_commission}}</span> <br/>
+            <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
           </div>
         </div>
       </div>
@@ -126,7 +127,7 @@
         <label for="exampleInputFile" class="text-title">Image Upload</label>
         <div class="form-inline">
           <div class="form-group">
-            <output id="result">
+            <output id="result" class="image-upload-result">
               {{#each model.images as |img|}}
               {{uploaded-images img=img model=model}}
               {{else}}
@@ -248,16 +249,16 @@
   </div>
   <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
     <div class="col-lg-4 col-md-4 nopadding">
-     <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding">
+     <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding" style="height: 200px; max-height: 200px; overflow-y: hidden;">
        {{#if model.image}}
          <img src="{{model.image.file}}" width="100%">
        {{else}}
          <img src="assets/img/default_product.png" width="100%">
        {{/if}}
     </div>
-    <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding">
+    <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding" {{ action "imagePreviewMouseLeave" on="mouseLeave" }}>
       {{#each model.images as |img|}}
-        <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" />
+        <img id="product-image" src="{{img.file}}" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }} alt="your image" width="38" height="38" />
       {{ else }}
         <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
       {{/each}}
@@ -347,7 +348,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 </div>
 

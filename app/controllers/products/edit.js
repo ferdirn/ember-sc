@@ -47,24 +47,47 @@ export default Ember.Controller.extend({
       });
     },
     chooseCategory: function(value, component) {
-      this.set('sub_category', value);
+      if (typeof value === 'undefined') {
+        this.set('hasLevel2Category', false);
+        this.set('hasLevel3Category', false);
+        return false;
+      }
+      this.set('parent_category', value);
+      this.set('isEmptyParentCategory', false);
+
+      var model = this.get('model');
+      model.set('subcategory', undefined);
+      model.set('categories', undefined);
+
       var self = this;
-      this.set('model.d_categories.3', null);
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel2Category', true);
+          self.set('hasLevel3Category', false);
           self.set('model.d_categories.2', data);
+          self.set('subcategories', data);
         } else {
           self.set('hasLevel2Category', false);
+          self.set('hasLevel3Category', false);
         }
       });
     },
     chooseSubCategory: function(value, component) {
+      if (typeof value === 'undefined') {
+        this.set('hasLevel3Category', false);
+        return false;
+      }
       this.set('sub_category', value);
+      this.set('isEmptySubCategory', false);
+
+      var model = this.get('model');
+      model.set('categories', undefined);
+
       var self = this;
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel3Category', true);
+          self.set('subsubcategories', data);
           self.set('model.d_categories.3', data);
         } else {
           self.set('hasLevel3Category', false);
@@ -73,7 +96,7 @@ export default Ember.Controller.extend({
     },
     chooseSubSubCategory: function(value, component) {
       this.set('model.categories', value);
-
+      this.set('isEmptyCategory', false);
     },
     priceCommission: function(value, component) {
         var self = this;

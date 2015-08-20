@@ -21,6 +21,7 @@ export default DS.Model.extend({
   special_from_date: DS.attr(),
   special_to_date: DS.attr(),
   image: DS.attr('file'),
+  primaryImage: DS.attr('file'),
   images: DS.attr(),
   d_categories: DS.attr(),
   parentcategory: DS.attr(),
