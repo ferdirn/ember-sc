@@ -41,11 +41,20 @@ export default Ember.Controller.extend({
       });
     },
     chooseCategory: function(value, component) {
+      if (typeof value === 'undefined') {
+        this.set('hasLevel2Category', false);
+        this.set('hasLevel3Category', false);
+        return false;
+      }
       this.set('parent_category', value);
       this.set('isEmptyParentCategory', false);
+
+      var model = this.get('model');
+      model.set('subcategory', undefined);
+      model.set('categories', undefined);
+
       var self = this;
-      this.set('subsubcategories', null);
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel2Category', true);
           self.set('hasLevel3Category', false);
@@ -57,10 +66,18 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubCategory: function(value, component) {
+      if (typeof value === 'undefined') {
+        this.set('hasLevel3Category', false);
+        return false;
+      }
       this.set('sub_category', value);
       this.set('isEmptySubCategory', false);
+
+      var model = this.get('model');
+      model.set('categories', undefined);
+
       var self = this;
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value+'/').then(function(data) {
+      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel3Category', true);
           self.set('subsubcategories', data);
@@ -112,8 +129,23 @@ export default Ember.Controller.extend({
 
         if (images.length === 1) {
           self.set('model.image', images.get('firstObject'));
+          self.set('model.primaryImage', images.get('firstObject'));
         }
       };
+
+    },
+    imagePreviewMouseEnter: function(value) {
+      Ember.Logger.log('imagePreviewMouseEnter');
+      Ember.Logger.log(value);
+
+      var model = this.get('model');
+      model.set('image', value);
+    },
+    imagePreviewMouseLeave: function() {
+      Ember.Logger.log('imagePreviewMouseLeave');
+
+      var model = this.get('model');
+      model.set('image', model.get('primaryImage'));
     }
   },
 

@@ -7,6 +7,7 @@ export default Ember.Component.extend({
 
       model.set('image', image);
       
+      model.set('primaryImage', image);
     },
     deleteImage: function(image) {
       var model = this.get('model');
