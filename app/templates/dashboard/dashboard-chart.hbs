@@ -3,5 +3,17 @@
     <img src="assets/img/loading.gif" width="200px">
   </div>
 {{else}}
-  {{ triple-chart type="Line" id="canvas" height="450" new_order_data=data.ordered_revenue paid_order_data=data.invoiced_revenue total_order_data=data.newpaid_revenue labels=data.labels update=true options=chartOptions}}
+  {{#if data.labels}}
+    {{ triple-chart type="Line" id="canvas" height="450" new_order_data=data.ordered_revenue paid_order_data=data.invoiced_revenue total_order_data=data.newpaid_revenue labels=data.labels update=true options=chartOptions}}
+  {{else}}
+    <div class="fonter" style="">
+      <i class="fa fa-file fonter-file" style=""></i>
+      <span class="fonter-cross" style="">x</span>
+    </div>
+    <span class="fonter-bot" style="">
+      No data yet
+      <br>
+      Start selling on MOXY
+    </span>
+  {{/if}}
 {{/if}}
