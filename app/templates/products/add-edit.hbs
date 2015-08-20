@@ -247,6 +247,12 @@
       <button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
     </div>
   </div>
+  <div class="col-lg-4 col-md-4 hidden-sm hidden-xs live-container">
+      <div class="col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12 live-header">
+          Product Preview
+      </div>
+     </div>
   <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
     <div class="col-lg-4 col-md-4 nopadding">
      <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding">
@@ -264,9 +270,9 @@
     <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding">
       {{#each model.images as |img|}}
 	    {{# if img.file }}
-        <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" />
+        <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }}/>
 		{{else}}
-		<img id="product-image" src="{{img}}" alt="your image" width="38" height="38" />
+		<img id="product-image" src="{{img}}" alt="your image" width="38" height="38" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }}/>
 		 {{/if}}
       {{ else }}
 
@@ -361,6 +367,6 @@
   </div>
 
 </div>
-
+</div>
 </form>
 
