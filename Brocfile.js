@@ -16,6 +16,7 @@ app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/nprogress/nprogress.js');
 app.import('bower_components/lodash/lodash.min.js');
 app.import('bower_components/Sortable/Sortable.min.js');
+app.import('bower_components/moment/min/moment.min.js');
 //app.import('bower_components/ember/ember-template-compiler.js');
 app.import('vendor/dist/js/Chart.js');
 app.import('vendor/dist/js/bootstrap-filestyle.min.js');

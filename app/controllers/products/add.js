@@ -146,27 +146,5 @@ export default Ember.Controller.extend({
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
       self.set('categories', data);
     });
-    Ember.run.schedule("afterRender", this, function() {
-      var imageUploadResult = document.getElementById("result");
-      Sortable.create(imageUploadResult, {
-        onUpdate: function(evt) {
-          var oldIndex = evt.oldIndex;
-          var newIndex = evt.newIndex;
-          // Ember.Logger.log(oldIndex + '->' + newIndex);
-          var images = self.get('model.images');
-          var item = images.objectAt(oldIndex);
-
-          if (newIndex > oldIndex) {
-            images.insertAt(newIndex+1, item);
-            images.removeAt(oldIndex);
-          } else {
-            images.removeAt(oldIndex);
-            images.insertAt(newIndex, item);
-          }
-          evt.item.parentNode.removeChild(evt.item);
-          self.set('model.images', images);
-        }
-      });
-    });
   }
 });

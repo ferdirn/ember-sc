@@ -114,145 +114,151 @@
 
         <div class="form-group">
          <label for="price" class="text-title">Product Price </label>
-         <div class="input-group">
+         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 nopadding bottom-spacer">
+          <div class="col-lg-12 bottom-spacer-bigger"></div>
+         <div class="input-group" style="float:left;">
           <div class="input-group-addon">Rp.</div>
-            <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
-            <span>Moxy commission is {{format-number price_commission.moxy_commission}}</span> <br/>
-            <span>This category commission percentage is {{format-number price_commission.commission_percentage}} %</span>
-          </div>
+          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
         </div>
-      </div>
-      <div class="form-group">
-
-        <label for="exampleInputFile" class="text-title">Image Upload</label>
-        <div class="form-inline">
-          <div class="form-group">
-            <output id="result" class="image-upload-result">
-              {{#each model.images as |img|}}
-              {{uploaded-images img=img model=model}}
-              {{else}}
-              <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
-              {{/each}}
-            </output>
-
-            {{#if (or (not (is-array model.images)) (lt model.images.length 5))}}
-            <div class="fileUploadImg btn-upload">
-              <span><i class="fa fa-plus"></i></span>
-              <br>
-              <span>ADD IMAGE</span>
-              <input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
-            </div>
-            {{/if}}
-
-         </div>
-       </div>
-     </div>
-   <div class="form-group bottom-spacer in-block full-width" style="display: none;">
-    <div class="col-lg-9 nopadding">
-      <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
-
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">Add more option</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group" id="form-transparent">
-                <label class="text-title" for="productname">Define option name</label>
-                <input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
-                <table class="table table-bordered table-condensed transparent-input">
-                  <tbody>
-                    <tr>
-                      <th class="text-center">Check</th>
-                      <th class="text-center">Tipe</th>
-                      <th class="text-center">Quantity</th>
-                      <th class="text-center">Weight</th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="checkbox" class="form-control transparent-input" />
-                      </td>
-                      <td>
-                        <input type="text" placeholder="fill type" class="form-control transparent-input" />
-                      </td>
-                      <td>
-                        <input type="text" class="form-control transparent-input" placeholder="fill quantity" />
-                      </td>
-                      <td>
-                        <input type="text" class="form-control transparent-input" placeholder="fill weight" />
-                      </td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="text" class=" transparent-input form-control " />
-                      </td>
-                      <td>
-                        <input type="text" class="form-control transparent-input" />
-                      </td>
-                      <td>
-                        <input type="text" class="form-control transparent-input" />
-                      </td>
-                      <td>
-                        <input type="text" class="form-control transparent-input" />
-                      </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
-
-    <div class="clearfix"></div>
-  </div>
-  <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
-    <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title ">Special Price</label>
-    <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
-      {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
-    </div>
-    <div class="clearfix"></div>
-    <div class="col-sm-12 nopadding bottom-spacer">
-      {{input type="date" class="text-center date-picking" value=model.special_from_date}} to
-      {{input type="date" class="text-center date-picking" value=model.special_to_date}}
-    </div>
-    <blockquote class="exp">
-      <footer><cite title="Source Title">This part is to determine if you want to sale some products with special price in a range of date.</cite></footer>
-    </blockquote>
-  </div>
-
-  <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
-    <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
-    <button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
-  </div>
 </div>
-<div class="col-lg-4 col-md-4 hidden-sm hidden-xs live-container">
-  <div class="col-lg-12 col-md-12">
-    <div class="col-lg-12 col-md-12 live-header">
-      Product Preview
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left commission-cont" style="">
+          <p>we take <span class="commission-percent" style="">5%</span></p>
+        <h4 class="commission-amount">Rp. 50.0007</h4>
+        <p class="commission-exp"style="">will be transferred to your account</p>
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+
+      <label for="exampleInputFile" class="text-title">Image Upload</label>
+      <div class="form-inline">
+        <div class="form-group">
+          <output id="result">
+            {{#each model.images as |img|}}
+            {{uploaded-images img=img model=model}}
+            {{else}}
+            <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="120" height="120" >
+            {{/each}}
+          </output>
+
+          {{#if (or (not (is-array model.images)) (lt model.images.length 5))}}
+          <div class="fileUploadImg btn-upload">
+            <span><i class="fa fa-plus"></i></span>
+            <br>
+            <span>ADD IMAGE</span>
+            <input id="files" class="upload" type="file" {{action "selectPicture" on="change" }}>
+          </div>
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+    <div class="form-group bottom-spacer in-block full-width" style="display: none;">
+      <div class="col-lg-9 nopadding">
+        <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add more option</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group" id="form-transparent">
+                  <label class="text-title" for="productname">Define option name</label>
+                  <input type="email" class="form-control bottom-spacer" id="productname" placeholder="">
+                  <table class="table table-bordered table-condensed transparent-input">
+                    <tbody>
+                      <tr>
+                        <th class="text-center">Check</th>
+                        <th class="text-center">Tipe</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Weight</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" class="form-control transparent-input" />
+                        </td>
+                        <td>
+                          <input type="text" placeholder="fill type" class="form-control transparent-input" />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control transparent-input" placeholder="fill quantity" />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control transparent-input" placeholder="fill weight" />
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="text" class=" transparent-input form-control " />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control transparent-input" />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control transparent-input" />
+                        </td>
+                        <td>
+                          <input type="text" class="form-control transparent-input" />
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-size-small nomargin">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
+      <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title ">Special Price</label>
+      <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
+        {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-12 nopadding bottom-spacer">
+        {{input type="date" class="text-center date-picking" value=model.special_from_date}} to
+        {{input type="date" class="text-center date-picking" value=model.special_to_date}}
+      </div>
+      <blockquote class="exp">
+        <footer><cite title="Source Title">This part is to determine if you want to sale some products with special price in a range of date.</cite></footer>
+      </blockquote>
+    </div>
+
+    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
+      <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
+      <button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
     </div>
   </div>
-  <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
-    <div class="col-lg-4 col-md-4 nopadding">
-     <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding" style="height: 200px; max-height: 200px; overflow-y: hidden;">
-       {{#if model.image}}
+  <div class="col-lg-4 col-md-4 hidden-sm hidden-xs live-container">
+    <div class="col-lg-12 col-md-12">
+      <div class="col-lg-12 col-md-12 live-header">
+        Product Preview
+      </div>
+    </div>
+    <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
+      <div class="col-lg-4 col-md-4 nopadding">
+       <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding" style="height: 200px; max-height: 200px; overflow-y: hidden;">
+         {{#if model.image}}
          <img src="{{model.image.file}}" width="100%">
-       {{else}}
+         {{else}}
          <img src="assets/img/default_product.png" width="100%">
        {{/if}}
     </div>
@@ -261,27 +267,27 @@
         <img id="product-image" src="{{img.file}}" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }} alt="your image" width="38" height="38" />
       {{ else }}
         <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
-      {{/each}}
-      <output id="product_images" />
+        {{/each}}
+        <output id="product_images" />
+      </div>
     </div>
-  </div>
-  <div class="col-lg-8 col-md-8 nopadding">
-    <div class="col-lg-12 live-title">
-      <h1 class="nomargin">
-        {{#if model.name}}
-        {{ model.name }}
-        {{else}}
-        Get a good title
-        {{/if}}
-      </h1>
-    </div>
-    <div class="col-lg-12 live-shortdesc">
-     {{#if model.short_description}}
-     {{ model.short_description }}
-     {{else}}
-     Give short description for the products.
-     {{/if}}
-   </div>
+    <div class="col-lg-8 col-md-8 nopadding">
+      <div class="col-lg-12 live-title">
+        <h1 class="nomargin">
+          {{#if model.name}}
+          {{ model.name }}
+          {{else}}
+          Get a good title
+          {{/if}}
+        </h1>
+      </div>
+      <div class="col-lg-12 live-shortdesc">
+       {{#if model.short_description}}
+       {{ model.short_description }}
+       {{else}}
+       Give short description for the products.
+       {{/if}}
+     </div>
      <!--  <div class="col-lg-4 col-md-4 -weight bottom-spacer-container">
         <span class="word-weight">
           Weight :
