@@ -95,16 +95,13 @@ export default Ember.Controller.extend({
     chooseSubSubCategory: function(value, component) {
       var self = this;
       this.set('model.categories', value);
-<<<<<<< HEAD
       var seller_price = this.get('seller_price');
       Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': value}).then(function(data) {
         self.set('discount_percentage', data.commission_percentage);
         seller_price = $('#price').val() - ($('#price').val() * (data.commission_percentage/100))
         self.set('seller_price', seller_price);
       });
-=======
       this.set('isEmptyCategory', false);
->>>>>>> 290609a947a22c4f805ebbaf03b0cd777a02166e
     },
     priceCommission: function(value, component) {
         var self = this;
