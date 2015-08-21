@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   isEmptyParentCategory: false,
   isEmptySubCategory: false,
   isEmptyCategory: false,
-  
+
   actions: {
     save: function() {
       var data = this.get('model');
@@ -153,9 +153,22 @@ var content = "<span class='frame-thumbnail'><img class='thumbnail-upload' src='
 
         };
       //}
+    },
+    imagePreviewMouseEnter: function(value) {
+      Ember.Logger.log('imagePreviewMouseEnter');
+      Ember.Logger.log(value);
+
+      var model = this.get('model');
+      model.set('image', value);
+    },
+    imagePreviewMouseLeave: function() {
+      Ember.Logger.log('imagePreviewMouseLeave');
+
+      var model = this.get('model');
+      model.set('image', model.get('primaryImage'));
     }
   },
   init: function() {
-      
+
   }
 });
