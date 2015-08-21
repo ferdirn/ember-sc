@@ -8,3 +8,4 @@ export default DRFAdapter.extend({
 var inflector = Ember.Inflector.inflector;
 inflector.uncountable('profile');
 inflector.uncountable('registration');
+inflector.uncountable('bulk-upload');

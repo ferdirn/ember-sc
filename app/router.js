@@ -13,11 +13,15 @@ Router.map(function() {
   this.route('profile');
 
   this.route('products', function() {
-      this.route('list', {path: '/'}); // /products/ ?
-      this.route('add'); // /products/add/
-      this.route('delete'); // /products/delete/
-      this.route('detail', {path: '/:id'});
-      this.route('edit', {path: '/edit/:id'});
+    // /products/ ?
+    this.route('list', {path: '/'});
+    // /products/add/
+    this.route('add');
+    // /products/delete/
+    this.route('delete');
+    this.route('detail', {path: '/:id'});
+    this.route('edit', {path: '/edit/:id'});
+    this.route('bulk-upload');
   });
 
   this.route('sales', function() {
