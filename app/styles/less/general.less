@@ -506,6 +506,7 @@ input.nostyle:focus {
     position: fixed;
     width: 100%;
     bottom: 0;
+    z-index: 99;
 }
 .upload-title
 {
@@ -513,6 +514,16 @@ input.nostyle:focus {
   font-family: 'Montserrat',sans-serif;
   margin: 10px 0;
   display: inline-block;
+}
+select::-ms-expand {
+            width:12px;
+            border:none;
+            background:#fff;
+            -moz-appearance: none;
+        }
+.nomoz
+{
+   -moz-appearance: none;
 }
 // .container .text-muted {
   //   margin: 20px 0;
