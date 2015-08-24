@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
           file: fileToUpload
         });
         upload.save();
+        document.getElementById('uploadedFile').value = null;
       };
       reader.readAsDataURL(uploadedFile);
     }

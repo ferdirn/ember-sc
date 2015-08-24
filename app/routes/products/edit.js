@@ -9,6 +9,7 @@ export default Ember.Route.extend({
     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
+    model.set('primaryImage', model.get('image'));
     controller.set('model', model);
     controller.set('edit', true);
 
