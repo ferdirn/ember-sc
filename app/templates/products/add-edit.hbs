@@ -18,7 +18,7 @@
 
           <label for="form-title" class="text-title">Category</label>
           <div class="clearfix"></div>
-          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.parentcategory}}
+          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomoz" required="required" value=model.parentcategory}}
           <option value="" disabled="disabled" selected="selected">Select category</option>
             {{#if model.d_categories.[1] }}
               {{#each cat in model.d_categories.[1] }}
