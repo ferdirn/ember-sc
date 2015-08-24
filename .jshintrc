@@ -3,9 +3,9 @@
     "document",
     "window",
     "-Promise",
-    "NProgress",
     "_",
-    "Chart"
+    "Chart",
+    "moment"
   ],
   "browser": true,
   "boss": true,

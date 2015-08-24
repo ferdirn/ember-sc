@@ -13,7 +13,6 @@ var app = new EmberApp({
 
 // import js from vendors
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
-app.import('bower_components/nprogress/nprogress.js');
 app.import('bower_components/lodash/lodash.min.js');
 app.import('bower_components/Sortable/Sortable.min.js');
 app.import('bower_components/moment/min/moment.min.js');
@@ -23,7 +22,6 @@ app.import('vendor/dist/js/bootstrap-filestyle.min.js');
 app.import('vendor/dist/js/uploads-item.js');
 
 // import css from vendors
-app.import('bower_components/nprogress/nprogress.css');
 
 //app.import('bower_components/ember-validations/index.js');
 //app.import('bower_components/ember-easy-form-extensions/index.js');
