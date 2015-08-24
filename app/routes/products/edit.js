@@ -9,33 +9,26 @@ export default Ember.Route.extend({
     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
-    Ember.Logger.log('Entering products.edit route.setupController');
-
     controller.set('model', model);
     controller.set('edit', true);
 
     if (model.get('subcategory') !== 0) {
-        controller.set('hasLevel2Category', true);
+      controller.set('hasLevel2Category', true);
     } else {
-        controller.set('hasLevel2Category', false);
+      controller.set('hasLevel2Category', false);
     }
 
     if (model.get('categories') !== 0) {
-        controller.set('hasLevel3Category', true);
+      controller.set('hasLevel3Category', true);
     } else {
-        controller.set('hasLevel3Category', false);
+      controller.set('hasLevel3Category', false);
     }
 
-    // Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
-    //   controller.set('productAttributes', data);
-    // });
-
-    var self = controller;
     Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': model.get('categories'), 'price': model.get('price')}).then(function(data) {
-          controller.set('discount_percentage', data.commission_percentage);
-          //seller_price = model.price - (model.price * (data.commission_percentage/100))
-          controller.set('seller_price', data.seller_price);
-        });
+      controller.set('discount_percentage', data.commission_percentage);
+      //seller_price = model.price - (model.price * (data.commission_percentage/100))
+      controller.set('seller_price', data.seller_price);
+    });
 
   }
 });
