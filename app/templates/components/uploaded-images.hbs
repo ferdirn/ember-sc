@@ -1,9 +1,9 @@
 <span class="frame-thumbnail">
   <input class='btn btn-primary set-primary' type='button' value='Set as Primary' {{action 'setPrimaryImage' img}}>
-  {{#if img.file }}
+  {{#if img.file}}
   <img class="thumbnail-upload" id="product-image" src="{{img.file}}" alt="your image" width="120" height="120" />
-  {{else }}
-	<img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
-	{{/if}}
+  {{else}}
+  <img class="thumbnail-upload" id="product-image" src="{{img}}" alt="your image" width="120" height="120" />
+  {{/if}}
   <span class='fa fa-close bt-delete' {{action 'deleteImage' img}}></span>
 </span>
