@@ -64,7 +64,7 @@
               <div class="col-sm-9">
                 {{#x-select action="chooseSellerType" id="seller-type-select" class="form-control" value=model.seller_type}}
                   <option disabled="disabled">Select seller type</option>
-                  {{#each type in model.seller_type_choices}}
+                  {{#each model.seller_type_choices as |type|}}
                     {{#x-option value=type.id}}
                       {{type.seller_type}}
                     {{/x-option}}
