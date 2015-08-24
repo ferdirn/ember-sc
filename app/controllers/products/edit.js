@@ -118,25 +118,25 @@ export default Ember.Controller.extend({
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
       var picReader = new FileReader();
+      var self = this;
+      var images = model.get('images');
 
+      if (images == null) {
+        images = [];
+      }
       picReader.readAsDataURL(file);
       picReader.onload = function() {
-        var images = model.get('images');
+        images.addObject({
+          'name': file.name,
+          'type': file.type,
+          'file': picReader.result
+        });
+        self.set('model.images', images);
 
-        if (images != null) {
-          images.push({
-            'name': file.name,
-            'type': file.type,
-            'file': picReader.result
-          });
-        } else {
-          images = [{
-            'name': file.name,
-            'type': file.type,
-            'file': picReader.result
-          }];
+        if (images.length === 1) {
+          self.set('model.image', images.get('firstObject'));
+          self.set('model.primaryImage', images.get('firstObject'));
         }
-        model.set('images', images);
       };
     },
     imagePreviewMouseEnter: function(value) {
