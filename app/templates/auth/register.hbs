@@ -24,11 +24,11 @@
           <label for="InputEmail">Email address</label>
           {{input type="email" class="form-control" id="InputEmail" placeholder="Email" value=email required="required"}}
         </div>
-        <div {{ bind-attr class=":form-group isPasswordNotMatch:has-error" }}>
+        <div class="form-group {{if isPasswordNotMatch 'has-error'}}">
           <label for="InputPassword">Password (pattern: minimum 6 chars)</label>
           {{input type="password" pattern=".{6,}" class="form-control" id="InputPassword" placeholder="Password" value=password required="required"}}
         </div>
-        <div {{ bind-attr class=":form-group isPasswordNotMatch:has-error" }}>
+        <div class="form-group {{if isPasswordNotMatch 'has-error'}}">
           <label for="InputRePassword">Re-type Password</label>
           {{input type="password" class="form-control" id="InputRePassword" placeholder="Re-type Password" value=repassword focus-out="matchPassword"}}
           {{#if isPasswordNotMatch}}
