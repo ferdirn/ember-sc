@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   isEmptyParentCategory: false,
   isEmptySubCategory: false,
   isEmptyCategory: false,
-  
+
   actions: {
     save: function() {
       var data = this.get('model');
@@ -98,64 +98,55 @@ export default Ember.Controller.extend({
       var seller_price = this.get('seller_price');
       Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': value}).then(function(data) {
         self.set('discount_percentage', data.commission_percentage);
-        seller_price = $('#price').val() - ($('#price').val() * (data.commission_percentage/100))
+        seller_price = Ember.$('#price').val() - (Ember.$('#price').val() * (data.commission_percentage/100));
         self.set('seller_price', seller_price);
       });
       this.set('isEmptyCategory', false);
     },
     priceCommission: function(value, component) {
-        var self = this;
-        var model = this.get('model');
+      var discount_percentage = this.get('discount_percentage');
+      var seller_price = this.get('seller_price');
 
-        var discount_percentage = this.get('discount_percentage');
-        var seller_price = this.get('seller_price');
-
-        seller_price = $('#price').val() - ($('#price').val() * (discount_percentage/100))
-        this.set('model.price', $('#price').val());
-        this.set('seller_price', seller_price);
+      seller_price = Ember.$('#price').val() - (Ember.$('#price').val() * (discount_percentage/100));
+      this.set('model.price', Ember.$('#price').val());
+      this.set('seller_price', seller_price);
 
     },
     deleteImage: function(value, component) {
     },
     selectPicture: function(value, component) {
-      var self = this;
-
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
       var picReader = new FileReader();
-      //if (file.type.search('image')) {
-        picReader.readAsDataURL(file);
-        picReader.onload = function() {
-          //var content = "<span class='frame-thumbnail'><input class='btn btn-primary set-primary' type='button' value='Set as Primary'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/><span class='fa fa-close bt-delete' {{action 'deleteImage'}}></span></span>";
-var content = "<span class='frame-thumbnail'><img class='thumbnail-upload' src='" + picReader.result + "'" + "title='" + file.name + "' width='120' height='120'/></span>";
-          //console.log(Ember.Handlebars.compile(content));
-          $("#result").append(content);
-          //console.log(self.get('model'));
-          //self.$('#result').append(content);
+      var self = this;
+      var images = model.get('images');
 
-            var images = model.get('images');
+      if (images == null) {
+        images = [];
+      }
+      picReader.readAsDataURL(file);
+      picReader.onload = function() {
+        images.addObject({
+          'name': file.name,
+          'type': file.type,
+          'file': picReader.result
+        });
+        self.set('model.images', images);
 
-            if (images != null) {
-              images.push({
-                'name': file.name,
-                'type': file.type,
-                'file': picReader.result
-              });
-            } else {
-              images = [{
-                'name': file.name,
-                'type': file.type,
-                'file': picReader.result
-              }];
-            }
-            model.set('images', images);
-            //self.set('edit', false);
-
-        };
-      //}
+        if (images.length === 1) {
+          self.set('model.image', images.get('firstObject'));
+          self.set('model.primaryImage', images.get('firstObject'));
+        }
+      };
+    },
+    imagePreviewMouseEnter: function(value) {
+      this.set('model.image', value);
+    },
+    imagePreviewMouseLeave: function() {
+      this.set('model.image', this.get('model.primaryImage'));
     }
   },
   init: function() {
-      
+
   }
 });

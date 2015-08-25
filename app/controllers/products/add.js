@@ -13,7 +13,9 @@ export default Ember.Controller.extend({
       this.set('displayNameHelper', 'block');
     },
     save: function() {
+      var self = this;
       var data = this.get('model');
+
       data.set('product_attribute_set', '4');
 
       var parentCategory = data.get('parentcategory');
@@ -35,12 +37,13 @@ export default Ember.Controller.extend({
         return false;
       }
 
-      var self = this;
       data.save().then(function(data) {
         self.transitionToRoute('products.detail', data.id);
       });
     },
     chooseCategory: function(value, component) {
+      var self = this;
+
       if (typeof value === 'undefined') {
         this.set('hasLevel2Category', false);
         this.set('hasLevel3Category', false);
@@ -53,7 +56,6 @@ export default Ember.Controller.extend({
       model.set('subcategory', undefined);
       model.set('categories', undefined);
 
-      var self = this;
       Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
         if (data.length > 0) {
           self.set('hasLevel2Category', true);
@@ -93,19 +95,17 @@ export default Ember.Controller.extend({
       var seller_price = this.get('seller_price');
       Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': value}).then(function(data) {
         self.set('discount_percentage', data.commission_percentage);
-        seller_price = $('#price').val() - ($('#price').val() * (data.commission_percentage/100))
+        seller_price = Ember.$('#price').val() - (Ember.$('#price').val() * (data.commission_percentage/100));
         self.set('seller_price', seller_price);
       });
     },
     priceCommission: function(value, component) {
-        var self = this;
-        var model = this.get('model');
-        var discount_percentage = this.get('discount_percentage');
-        var seller_price = this.get('seller_price');
-        
-        seller_price = $('#price').val() - ($('#price').val() * (discount_percentage/100))
-        this.set('model.price', $('#price').val());
-        this.set('seller_price', seller_price);
+      var discount_percentage = this.get('discount_percentage');
+      var seller_price = this.get('seller_price');
+
+      seller_price = Ember.$('#price').val() - (Ember.$('#price').val() * (discount_percentage/100));
+      this.set('model.price', Ember.$('#price').val());
+      this.set('seller_price', seller_price);
     },
     selectPicture: function(value, component) {
       var model = this.get('model');
@@ -135,17 +135,10 @@ export default Ember.Controller.extend({
 
     },
     imagePreviewMouseEnter: function(value) {
-      Ember.Logger.log('imagePreviewMouseEnter');
-      Ember.Logger.log(value);
-
-      var model = this.get('model');
-      model.set('image', value);
+      this.set('model.image', value);
     },
     imagePreviewMouseLeave: function() {
-      Ember.Logger.log('imagePreviewMouseLeave');
-
-      var model = this.get('model');
-      model.set('image', model.get('primaryImage'));
+      this.set('model.image', this.get('model.primaryImage'));
     }
   },
 
@@ -153,6 +146,7 @@ export default Ember.Controller.extend({
     var self = this;
     var seller_price = 0;
     var discount_percentage = 0;
+
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
       self.set('categories', data);
     });

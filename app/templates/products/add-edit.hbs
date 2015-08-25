@@ -18,16 +18,16 @@
 
           <label for="form-title" class="text-title">Category</label>
           <div class="clearfix"></div>
-          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.parentcategory}}
+          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomoz" required="required" value=model.parentcategory}}
           <option value="" disabled="disabled" selected="selected">Select category</option>
             {{#if model.d_categories.[1] }}
-              {{#each cat in model.d_categories.[1] }}
+              {{#each model.d_categories.[1] as |cat| }}
                 {{#x-option value=cat.id}}
                   {{cat.name}}
                 {{/x-option}}
               {{/each}}
             {{ else }}
-              {{#each cat in categories }}
+              {{#each categories as |cat| }}
                 {{#x-option value=cat.id}}
                   {{cat.name}}
                 {{/x-option}}
@@ -39,13 +39,13 @@
             {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.subcategory}}
             <option value="" selected="selected">Select category</option>
               {{#if model.d_categories.[2] }}
-                {{#each cat in model.d_categories.[2] }}
+                {{#each model.d_categories.[2]  as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
                 {{/each}}
               {{else}}
-                {{#each cat in subcategories }}
+                {{#each subcategories as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
@@ -58,13 +58,13 @@
             {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.categories}}
             <option value="" selected="selected">Select category</option>
               {{#if model.d_categories.[3] }}
-                {{#each cat in model.d_categories.[3] }}
+                {{#each model.d_categories.[3] as |cat| }}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
                 {{/each}}
               {{else}}
-                {{#each cat in subsubcategories }}
+                {{#each subsubcategories as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
@@ -106,34 +106,32 @@
           {{textarea class="form-control maximum-width" rows="3" value=model.short_description required="required" }}
         </div>
         <div class="form-group">
-          <label for="weight" class="text-title">Weight </label>
-          {{ input type="number" class="form-control" id="weight" min="1" placeholder="Enter product weight" value=model.weight required="required" }}
-        </div>
-        <div class="form-group">
-          <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
-          <div class="col-lg-2 col-md-12 col-sm-12 nopadding right-spacer bottom-spacer">
-            {{ input type="number" class="form-control" min="0" value=model.qty }}
-          </div>
-        </div>
-
-        <div class="form-group">
           <label for="description" class="text-title">Description </label>
           {{textarea class="form-control maximum-width" rows="8" value=model.description required="required" }}
         </div>
 
+        <div class="form-group col-lg-5 nopadding">
+          <label for="weight" class="text-title">Weight </label>
+          {{ input type="number" class="form-control" id="weight" min="1" placeholder="Enter product weight" value=model.weight required="required" }}
+        </div>
+        <div class="form-group col-lg-6 pull-right nopadding">
+          <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
+          {{ input type="number" class="form-control" min="0" value=model.qty }}
+        </div>
+
         <div class="form-group">
-         <label for="price" class="text-title">Product Price </label>
+         <label for="price" class="text-title">Selling Price </label>
          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 nopadding bottom-spacer">
           <div class="col-lg-12 bottom-spacer-bigger"></div>
          <div class="input-group" style="float:left;">
           <div class="input-group-addon">Rp.</div>
-          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} {{bind-attr value=model.price}} />
+          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} value="{{model.price}}" />
         </div>
 </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left commission-cont" style="">
           <p>we take <span class="commission-percent" style="">{{discount_percentage}} %</span></p>
         <h4 class="commission-amount">Rp. {{ format-number seller_price}}</h4>
-        <p class="commission-exp"style="">will be transferred to your account</p>
+        <p class="commission-exp"style="">will be transferred for each quantity sold</p>
       </div>
       </div>
     </div>
@@ -247,7 +245,7 @@
         {{input type="date" class="text-center date-picking" value=model.special_to_date}}
       </div>
       <blockquote class="exp">
-        <footer><cite title="Source Title">This part is to determine if you want to sale some products with special price in a range of date.</cite></footer>
+        <footer><cite title="Source Title">Special price is useful when you want to set a discounted price for customers within a date range.</cite></footer>
       </blockquote>
     </div>
 
@@ -264,30 +262,27 @@
      </div>
   <div class="row col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  nopadding" style="">
     <div class="col-lg-4 col-md-4 nopadding">
-     <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding">
-       {{#if model.image}}
-		 {{# if model.image.file }}
-
-         <img src="{{model.image.file}}" width="100%">
-		 {{else}}
-		  <img src="{{model.image}}" width="100%">
-		  {{/if}}
+     <div class="col-lg-12 col-md-12 live-main-image bottom-spacer-container nopadding" style="height: 200px; max-height: 200px; overflow-y: hidden;">
+     {{#if model.image}}
+       {{#if model.image.file }}
+       <img src="{{model.image.file}}" width="100%">
        {{else}}
-         <img src="assets/img/default_product.png" width="100%">
+       <img src="{{model.image}}" width="100%">
        {{/if}}
+     {{else}}
+        <img src="assets/img/default_product.png" width="100%">
+     {{/if}}
     </div>
-    <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding">
+    <div class="col-lg-12 col-md-12 in-block bottom-spacer nopadding" {{ action "imagePreviewMouseLeave" on="mouseLeave" }}>
       {{#each model.images as |img|}}
-	    {{# if img.file }}
-        <img id="product-image" src="{{img.file}}" alt="your image" width="38" height="38" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }}/>
-		{{else}}
-		<img id="product-image" src="{{img}}" alt="your image" width="38" height="38" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }}/>
-		 {{/if}}
-      {{ else }}
-
-
+        {{#if img.file}}
+          <img id="product-image" src="{{img.file}}" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }} alt="your image" width="38" height="38" />
+        {{else}}
+          <img id="product-image" src="{{img}}" {{ action "imagePreviewMouseEnter" img on="mouseEnter" }} alt="your image" width="38" height="38" />
+        {{/if}}
+      {{else}}
         <img id="product-image" src="assets/img/default_product.png" alt="put your image" width="38" height="38" />
-        {{/each}}
+      {{/each}}
         <output id="product_images" />
       </div>
     </div>

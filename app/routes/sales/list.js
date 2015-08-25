@@ -1,12 +1,18 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
-import PageLoaderMixin from 'sellercenter/mixins/page-loader';
 import config from '../../config/environment';
 
-export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   chartOptions: {
-    bezierCurve: false
+    bezierCurve: false,
+    tooltipTitleFontSize: 44,
+    scaleLabel: function(label){
+      return  'Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    tooltipTemplate: function(label){
+      return  ' Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
   },
 
   page: 1,
@@ -51,6 +57,12 @@ export default Ember.Route.extend(PageLoaderMixin, AuthenticatedRouteMixin, {
     var hasNext = true;
     var previousPage = 0;
     var nextPage = 2;
+    
+    var formatted_date = model.chart.labels.map(function(label) {
+      return moment(label).format('ddd, D MMM YYYY');
+    });
+    console.log(formatted_date);
+    model.chart.labels = formatted_date;
 
     controller.set('model', model);
     controller.set('filteredData', allsales);

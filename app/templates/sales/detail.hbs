@@ -53,7 +53,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each item in model.items}}
+                  {{#each model.items as |item|}}
                   <tr>
                     <td>{{item.name}}</td>
                     <td>{{format-money item.price}}</td>

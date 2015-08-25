@@ -64,7 +64,7 @@
               <div class="col-sm-9">
                 {{#x-select action="chooseSellerType" id="seller-type-select" class="form-control" value=model.seller_type}}
                   <option disabled="disabled">Select seller type</option>
-                  {{#each type in model.seller_type_choices}}
+                  {{#each model.seller_type_choices as |type|}}
                     {{#x-option value=type.id}}
                       {{type.seller_type}}
                     {{/x-option}}
@@ -136,7 +136,7 @@
               <div class="col-sm-9">
                 {{#x-select action="choosePaymentType" id="inputtype" class="form-control" value=model.payment_method}}
                   <option disabled="disabled">Please select your payment method</option>
-                  {{#each type in model.payment_choices}}
+                  {{#each model.payment_choices as |type|}}
                     {{#x-option value=type.id}}
                       {{type.payment_choice}}
                     {{/x-option}}
