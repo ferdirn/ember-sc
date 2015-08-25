@@ -11,7 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       return  'Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     tooltipTemplate: function(label){
-      return  label.datasetLabel + ' : Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return  ' Rp ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   },
 
