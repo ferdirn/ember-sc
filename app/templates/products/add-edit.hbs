@@ -80,10 +80,19 @@
               <!-- <div id="div1" style="display:{{displayNameHelper}};">A reminder of how to use this field</div> -->
               {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" value=model.name required="required" }}
             </div>
-            {{!-- <div class="form-group">
-            <label for="sku" class="text-title">Product SKU </label>
-            {{ input type="text" class="form-control" id="sku" placeholder="Enter product SKU" value=model.product_sku}}
-          </div> --}}
+            <div class="form-group">
+            <label for="sku" class="text-title">Seller product product SKU </label>
+            {{ input type="text" class="form-control" id="sku" placeholder="Enter seller product SKU" value=model.upc_code}}
+          </div> 
+		  <div class="form-group">
+		  <label for="brand" class="text-title">Product Brand </label>
+            {{ input type="text" class="form-control" id="brand" placeholder="Enter product brand" value=model.brand}}
+          </div>
+
+		  <div class="form-group">
+		  <label for="delivery_time" class="text-title">Delivery Time </label>
+            {{ input type="text" class="form-control" id="delivery_time" placeholder="Enter product delivery time" value=model.delivery_time}}
+          </div>
 
           {{!-- <div class="form-group">
           <label for="description" class="text-title">Attribute Set </label>

@@ -3,6 +3,9 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   owner: DS.attr(),
   product_sku: DS.attr(),
+  upc_code: DS.attr(),
+  brand: DS.attr(),
+  delivery_time: DS.attr(),
   product_attribute_set: DS.attr(),
   name: DS.attr(),
   description: DS.attr(),

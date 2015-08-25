@@ -36,7 +36,7 @@
           <h4 id="profil-data">{{model.name}}</h4>
           <p class="left-spacer-container detail-order">{{model.short_description}}</p>
           <h6 id="profil-data"> <span class="in-block min-120">SKU</span>: &nbsp;<span class="detail-order pink-font"><strong>{{model.product_sku}} </strong></span></h6>
-          <h6 id="profil-data"> <span class="in-block min-120">Delivery Time</span>: &nbsp;<span class="detail-order pink-font"><strong> 1 - 3 working days </strong></span></h6>
+          <h6 id="profil-data"> <span class="in-block min-120">Delivery Time</span>: &nbsp;<span class="detail-order pink-font"><strong> {{model.delivery_time}} </strong></span></h6>
           <h6 id="profil-data"> <span class="in-block min-120">Price</span>: &nbsp;<span class="detail-order pink-font"><strong> RP {{ format-money model.price }} </strong></span></h6>
           <h6 id="profil-data"> <span class="in-block min-120">Stock</span>: &nbsp;<span class="detail-order pink-font"><strong> {{ format-number model.qty }} </strong></span></h6>
           <h6 id="profil-data"> <span class="in-block min-120">Description</span>:</h6>
