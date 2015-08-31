@@ -69,7 +69,14 @@
           <div class="col-md-3 col-lg-4 col-sm-12 col-xs-12 text-right pull-right date-picker">
             <label class="small">Status filter</label>
             <div class="clearfix"></div>
-            {{ view "select" class="form-control form-filter" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }}
+            {{!-- {{ view "select" class="form-control form-filter" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }} --}}
+            {{#x-select class="form-control form-filter" value=selectedStatus.statusValue}}
+                {{#each statusFilters as |status|}}
+                    {{#x-option value=status.statusValue}}
+                        {{ status.statusLabel }}
+                    {{/x-option}}
+                {{/each}}
+            {{/x-select}}
           </div>
         </div>
         <div class="panel-body ">
