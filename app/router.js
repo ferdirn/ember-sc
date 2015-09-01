@@ -40,6 +40,10 @@ Router.map(function() {
   this.route('category');
 
   this.route('not-found', {path: '/*path'});
+
+  this.route('message', function() {
+    this.route('list');
+  });
 });
 
 export default Router;
