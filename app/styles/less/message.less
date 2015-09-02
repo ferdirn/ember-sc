@@ -1,7 +1,9 @@
 .message-inbox{
 	ul{
 	list-style: none;
-	padding-left: 0px;
+    padding-left: 0px;
+    max-height: 320px;
+    overflow-y: scroll;
 		li{	
 		margin-bottom: 30px;
 		.head-top{
@@ -32,7 +34,7 @@
 	.message-action{
 		li{
 			margin-bottom: 20px;
-			padding: 20px 20px;
+			padding: 10px 10px;
 			.name{
 				margin-bottom: 10px;
 				font-weight: bold;
@@ -63,3 +65,35 @@ ul.message-list
     word-wrap: break-word;
     overflow: hidden;
 }
+.container-message
+{
+	padding: 15px;
+	border: 1px solid #ccc;
+	display: inline-block;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.empty-container
+{
+	padding: 15px;
+    border: 1px solid #ccc;
+    height: 363px;
+    display: table;
+}
+.empty-content
+{
+	display: table-cell;
+    vertical-align: middle;
+    float: none;
+}
+.scrollable-list
+{
+	max-height: 281px;
+    overflow: scroll;
+    padding: 0;
+}
+
+
+
+
+
