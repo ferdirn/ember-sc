@@ -1,16 +1,42 @@
  <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-large-offset-2 col-md-offset-2 text-center upload-container">
-            <div class="col-middler" style="width:340px;">
-                <span class="upload-title">Please upload your product file</span>
-                <div>&nbsp;</div>
-                <form {{ action "upload" on="submit" }}>
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-lg-6 in-block nopadding">
+      <div class="col-xs-12 nopadding bottom-spacer-container">
+        <div class="form-group">
+          <label for="InputEmail" class="upload-label full-width">Get to know how to upload</label>
+          <div class="col-xs-12 col-lg-4 col-md-6 col-sm-6 nopaddingleft">
+            <span class="btn btn-size-small btn-csv" style=""> 
+              <i class="fa fa-file-excel-o"></i>download csv</span>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-6 col-sm-6 nopaddingleft">
+              <span class="btn btn-size-small btn-csv">
+                <i class="fa fa-file-pdf-o"></i>download guide</span>
+              </div>
+              <a download="hello.txt" href="data:text/plain;charset=UTF-8,Hello%2C%20File!">
+  Download Greeting
+</a>
+ <a {{bind-attr href=item.link}}>{{item.color}}</a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
+            <div class="col-xs-12 nopadding">
+              <div class="form-group">
+                <label for="InputEmail"class="upload-label full-width">Please upload your product file</label>
+                <div class="col-xs-12 nopaddingleft">
+                 <form {{ action "upload" on="submit" }}>
                   <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
                   <input type="file" id="uploadedFile" class="custom-file-input" />
                   <br />
-                  <button type="submit" class="btn btn-primary btn-size-small">Upload</button>
+                  <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-2 col-lg-2">Upload</button>
                 </form>
+              </div>
             </div>
+          </div>
         </div>
+
+      </div>
+      <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 upload-container in-block">
     </div>
- </div>
+  </div>
+</div>
