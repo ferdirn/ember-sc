@@ -23,9 +23,12 @@
  										<button class="btn btn-primary btn-size-small btn-sell">Reply</button>
  									</div>
  								</div>	
- 								<div class="message-container">
+ 								<div class="message-container" style="max-width: 65%;
+    display: inline-block;">
  									{{message.body}}
  								</div>
+ 								<span class="badge badge-read pull-right">read</span>
+ 								<!-- change class to badge-unread if its unread -->
  							</li>
  							{{/each}}
  						</ul>
