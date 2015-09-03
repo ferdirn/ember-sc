@@ -7,8 +7,9 @@ export default Ember.Controller.extend({
   actions: {
     displayMessage: function(value) {
         var self = this;
-        
         this.set('currentMessage', this.store.find('message', value.get('id')));
+        Ember.$.getJSON(config.APP.API_HOST + '/api/message/read/' + value.get('id') + '/').then(function(data) {
+        });
     },
     sendMessage: function(value) {
       var self = this;
