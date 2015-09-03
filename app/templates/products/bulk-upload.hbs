@@ -1,16 +1,28 @@
  <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-large-offset-2 col-md-offset-2 text-center upload-container">
-            <div class="col-middler" style="width:340px;">
-                <span class="upload-title">Please upload your product file</span>
-                <div>&nbsp;</div>
-                <form {{ action "upload" on="submit" }}>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
-                  <input type="file" id="uploadedFile" class="custom-file-input" />
-                  <br />
-                  <button type="submit" class="btn btn-primary btn-size-small">Upload</button>
-                </form>
-            </div>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-large-offset-2 col-md-offset-2 text-center upload-container">
+      <div class="col-middler" style="width:340px;">
+        <span class="upload-title">Get to know how to upload</span>
+        <div class="col-xs-12 nopadding" style="
+        margin: 20px 0;
+        ">
+        <div class="col-xs-6">
+          <span class="btn btn-csv" style="
+          ">download csv</span>
         </div>
+        <div class="col-xs-6">
+          <span>download guide</span>
+        </div>
+      </div>
+      <span class="upload-title">Please upload your product file</span>
+      <div>&nbsp;</div>
+      <form {{ action "upload" on="submit" }}>
+        <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
+        <input type="file" id="uploadedFile" class="custom-file-input" />
+        <br />
+        <button type="submit" class="btn btn-primary btn-size-small">Upload</button>
+      </form>
     </div>
- </div>
+  </div>
+</div>
+</div>
