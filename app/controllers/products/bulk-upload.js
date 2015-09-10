@@ -9,11 +9,13 @@ export default Ember.Controller.extend({
         alert('File not found');
         return false;
       }
-      Ember.Logger.log(uploadedFile.type);
-      if (uploadedFile.type !== 'text/csv') {
-        alert('CSV file required');
-        return false;
-      }
+      var file_name = uploadedFile.name;
+      Ember.Logger.log('file_name : ' + uploadedFile.name);
+      Ember.Logger.log('file_type : ' + uploadedFile.type);
+      // if (uploadedFile.type !== 'text/csv') {
+      //   alert('CSV file required');
+      //   return false;
+      // }
 
       var reader = new FileReader();
       var self = this;
@@ -21,6 +23,7 @@ export default Ember.Controller.extend({
         var fileToUpload = reader.result;
         Ember.Logger.log(fileToUpload);
         var upload = self.store.createRecord('bulk-upload', {
+          file_name: file_name,
           file: fileToUpload
         });
         upload.save();
