@@ -6,32 +6,35 @@
         <div class="form-group">
           <label for="InputEmail" class="upload-label full-width">Get to know how to upload</label>
           <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 nopaddingleft">
-           <a href="http://www.pdf995.com/samples/pdf.pdf" download="test" target="_blank">
+           <a href="http://static.moxy.co.id/sellercenter/Marketplace_category_ids.pdf" download="category id" target="_blank">
             <span class="btn btn-size-small btn-csv" style=""> 
-              <i class="fa fa-file-excel-o"></i>download csv</span>
+              <i class="fa fa-file-excel-o"></i>download guide</span>
             </a>
             </div>
             <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 nopaddingleft">
-              <span class="btn btn-size-small btn-csv">
-                <i class="fa fa-file-pdf-o"></i>download guide</span>
-              </div>
+              <a href="http://static.moxy.co.id/sellercenter/Marketplace_Bulk_Upload_Example.xls" download="category id" target="_blank">
+                <span class="btn btn-size-small btn-csv">
+                  <i class="fa fa-file-pdf-o"></i>download xls</span>
+              </a>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
-            <div class="col-xs-12 nopadding">
-              <div class="form-group">
-                <label for="InputEmail"class="upload-label full-width">Please upload your product file</label>
-                <div class="col-xs-12 nopaddingleft">
-                 <form {{ action "upload" on="submit" }}>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
-                  <input type="file" id="uploadedFile" class="custom-file-input" />
-                  <br />
-                  <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-3 col-lg-3">Upload</button>
-                </form>
-              </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
+        <div class="col-xs-12 nopadding">
+          <div class="form-group">
+            <label for="InputEmail"class="upload-label full-width">Please upload your product file</label>
+            <div class="col-xs-12 nopaddingleft">
+              <form {{ action "upload" on="submit" }}>
+                <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
+                <input type="file" id="uploadedFile" class="custom-file-input" />
+                <br />
+                <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-3 col-lg-3">Upload</button>
+              </form>
             </div>
           </div>
         </div>
+      </div>
 
       </div>
       <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 in-block">
