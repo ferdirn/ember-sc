@@ -7,7 +7,7 @@
           <label for="InputEmail" class="upload-label full-width">Get to know how to upload</label>
           <div class="col-xs-12 col-lg-6 col-md-6 col-sm-6 nopaddingleft">
            <a href="http://static.moxy.co.id/sellercenter/Marketplace_category_ids.pdf" download="category id" target="_blank">
-            <span class="btn btn-size-small btn-csv" style=""> 
+            <span class="btn btn-size-small btn-csv" style="">
               <i class="fa fa-file-excel-o"></i>download guide</span>
             </a>
             </div>
@@ -29,12 +29,38 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
                 <input type="file" id="uploadedFile" class="custom-file-input" />
                 <br />
-                <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-3 col-lg-3">Upload</button>
+                <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-3 col-lg-3" disabled={{ isUploading }}>Upload</button>
               </form>
             </div>
           </div>
         </div>
       </div>
+
+      <div>&nbsp;</div>
+
+      {{#if uploadResults}}
+      <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
+        <div class="col-xs-12 nopadding">
+          <div class="form-group">
+            <label for="InputEmail"class="upload-label full-width">Upload file {{ file_name }} result</label>
+            <div class="col-xs-12 nopaddingleft">
+              <ul>
+              {{#each uploadResults as |uploadResult|}}
+                <li style="list-style: none;">{{{ uploadResult.status_msg }}}</li>
+                {{#each uploadResult.errors as |error|}}
+                <li style="list-style: none;">
+                  <ul>
+                    <li>{{ error }}</li>
+                  </ul>
+                </li>
+                {{/each}}
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
 
       </div>
       <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 in-block">
