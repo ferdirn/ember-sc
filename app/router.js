@@ -33,8 +33,11 @@ Router.map(function() {
   });
 
   this.route('auth', function() {
-      this.route('login');
-      this.route('register');
+    this.route('login');
+    this.route('register');
+    this.route('forgot-password');
+    this.route('new-password');
+    this.route('forgot-success');
   });
 
   this.route('category');
