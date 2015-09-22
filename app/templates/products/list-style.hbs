@@ -1,0 +1,98 @@
+      <div class="container-fluid content-page">
+
+      	<div class="row">
+      		<div class="result-table">
+      			<h3 class="text-center title">All Products</h3>
+
+      			<div class="panel panel-default noborder">
+            <!--
+              <div class="panel-heading">
+                <div class="col-md-8 date-picker text-left">
+                  <label class="small">Search by date</label>
+                  <div class="clearfix"></div>
+                  <input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy">
+                  <label>To</label>
+                  <input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy">
+                </div>
+                <div class="col-md-4 search">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                </div>
+              </div>
+          -->
+          <div class="panel-body list-products nopadding text-center">
+          	<div class="table-responsive list-style bordering">
+          		<table class="table nomargin">
+          			<thead style="background-color: #E7E7E7;border-bottom: none;">
+          				<tr>
+          					<th>No</th>
+          					<th>Image</th>
+          					<th>Name</th>
+          					<th>SKU</th>
+          					<th>Stock</th>
+          					<th>Price</th>
+          				</tr>
+          			</thead>
+          			<tbody>
+          				<tr>
+          					<th scope="row">1</th>
+          					<td><img src="assets/img/item-sample.jpg" alt="" width="40"></td>
+          					<td>Warm Heart Thermal Mug</td>
+          					<td>SKU005</td>
+          					<td>19</td>
+          					<td>RP 20.000 </td>
+          				</tr>
+          				<tr>
+          					<th scope="row">2</th>
+          					<td><img src="assets/img/item-sample.jpg" alt="" width="40"></td>
+          					<td>Warm Heart Thermal Mug</td>
+          					<td>SKU005</td>
+          					<td>19</td>
+          					<td>RP 20.000 </td>
+          				</tr>
+          				<tr>
+          					<th scope="row">3</th>
+          					<td><img src="assets/img/item-sample.jpg" alt="" width="40"></td>
+          					<td>Warm Heart Thermal Mug</td>
+          					<td>SKU005</td>
+          					<td>19</td>
+          					<td>RP 20.000 </td>
+          				</tr>
+          			</tbody>
+          		</table>
+          	</div>
+
+          	<div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">
+          	</div>
+
+          	{{#if hasPages }}
+          	<nav class="text-center center-block">
+          		<ul class="pagination">
+          			{{# if prevPage }}
+          			<li>
+          				<a {{action "selectPage" prevPage}} aria-label="Previous">
+          					<span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+          				</a>
+          			</li>
+
+          			{{/if}}
+          			{{#each pages as |page|}}
+          			<li {{bindAttr class="active disabled"}}><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
+          			{{/each}}
+          			{{#if nextPage}}
+          			<li>
+          				<a {{action "selectPage" nextPage}} aria-label="Next">
+          					<span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+          				</a>
+          			</li>
+
+          			{{/if}}
+          		</ul>
+          	</nav>
+          	{{/if}}
+
+          </div>
+      </div>
+
+  </div>
+</div>
+</div>

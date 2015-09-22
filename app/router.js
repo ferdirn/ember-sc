@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('detail', {path: '/:id'});
     this.route('edit', {path: '/edit/:id'});
     this.route('bulk-upload');
+    this.route('list-style');
   });
 
   this.route('sales', function() {
