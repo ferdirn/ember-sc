@@ -5,6 +5,14 @@ export default Ember.ArrayController.extend({
     selectPage: function(number) {
       this.set('page', number);
     },
+    isChoosingTile: false,
+
+    toList: function(){
+      this.set('isChoosingTile', true);
+    },
+    toTile: function(){
+      this.set('isChoosingTile', false);
+    },
   },
   sortProperties: ['id'],
   sortAscending: false,
