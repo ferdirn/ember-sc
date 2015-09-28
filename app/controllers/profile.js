@@ -33,6 +33,9 @@ export default Ember.Controller.extend({
         m.set('photo', file);
       }
 
+      m.set('seller_type', '2');
+      m.set('payment_method', '1');
+
       m.save().then(function() {
         controller.set('isSaved', true);
         // this.transitionTo('profile');
@@ -41,7 +44,7 @@ export default Ember.Controller.extend({
       });
 
     }
-  },  
+  },
   validations: {
     email: {
       presence: true,
