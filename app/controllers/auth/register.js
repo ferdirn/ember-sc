@@ -31,6 +31,9 @@ export default Ember.Controller.extend({
       var phone_number = this.get('phone_number');
       var first_name = this.get('first_name');
       var last_name = this.get('last_name');
+      var shop_name = this.get('shop_name');
+      var shop_address = this.get('shop_address');
+      var return_address = this.get('return_address');
 
       var registration = this.store.createRecord('registration', {
         email: email,
@@ -38,7 +41,10 @@ export default Ember.Controller.extend({
         username: username,
         phone_number: phone_number,
         first_name: first_name,
-        last_name: last_name
+        last_name: last_name,
+        shop_name: shop_name,
+        shop_address: shop_address,
+        return_address: return_address
       });
 
       var self = this;
