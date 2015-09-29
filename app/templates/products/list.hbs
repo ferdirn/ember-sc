@@ -119,6 +119,16 @@
                     <td>{{ format-number product.qty }}</td>
                     <td>{{format-money product.price}} </td>
                   </tr>
+                  {{else}}
+                  <div class="fonter" style="">
+                    <i class="fa fa-file fonter-file" style=""></i>
+                    <span class="fonter-cross" style="">x</span>
+                  </div>
+                  <span class="fonter-bot" style="">
+                    No data yet
+                    <br>
+                    Start selling on MOXY
+                  </span>
                   {{/each}}
 
                 </tbody>
@@ -158,5 +168,5 @@
         </div>
         {{/if}}
       </div>
-        </div>
-</div>
+    </div>
+  </div>
