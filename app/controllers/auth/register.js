@@ -4,6 +4,13 @@ export default Ember.Controller.extend({
 
   isPasswordNotMatch: false,
 
+  usernameChanged: function() {
+    var username = this.get('username');
+    username = username.replace(/[^\w\s\-\.]/gi, "");
+    username = username.replace(" ", "-");
+    this.set('username', username);
+  }.observes('username'),
+
   actions: {
     matchPassword: function() {
       var password = this.get('password');
