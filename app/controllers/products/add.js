@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   isEmptyParentCategory: false,
   isEmptySubCategory: false,
   isEmptyCategory: false,
+  isEmptyShopName: false,
   actions: {
     focus: function() {
       this.set('displayNameHelper', 'block');
@@ -41,7 +42,7 @@ export default Ember.Controller.extend({
         self.transitionToRoute('products.detail', data.id);
       });
     },
-    chooseCategory: function(value, component) {
+    chooseCategory: function(value) {
       var self = this;
 
       if (typeof value === 'undefined') {
@@ -144,6 +145,20 @@ export default Ember.Controller.extend({
 
   init: function() {
     var self = this;
+
+    // Check if shop_name has already filled in
+    this.store.find('profile').then(function(data) {
+      var profile_model = data.get('firstObject');
+      var shop_name = profile_model.get('shop_name');
+      if (shop_name === '') {
+        // self.transitionToRoute('profile');
+        self.set('isEmptyShopName', true);
+      } else {
+        // self.transitionToRoute('profile');
+        self.set('isEmptyShopName', false);
+      }
+    });
+
     var seller_price = 0;
     var discount_percentage = 0;
 
@@ -152,6 +167,6 @@ export default Ember.Controller.extend({
     });
     this.set('seller_price', seller_price);
     this.set('discount_percentage', discount_percentage);
-    
+
   }
 });
