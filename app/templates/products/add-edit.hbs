@@ -1,3 +1,9 @@
+{{#if isEmptyShopName}}
+<div class="alert alert-danger shop-name-error" role="alert">
+  Please fill the <b>Shop Name</b> first before uploading your product. Please visit this link <a href="/profile" class="alert-link">Profile</a> to fill your shop name
+</div>
+{{/if}}
+
 <form {{action "save" on="submit"}} enctype="multipart/form-data">
 
   <div class="container-fluid">
@@ -83,7 +89,7 @@
             <div class="form-group">
             <label for="sku" class="text-title">Product UPC Code </label>
             {{ input type="text" class="form-control" id="sku" placeholder="Enter seller product SKU" value=model.upc_code}}
-          </div> 
+          </div>
 		  <div class="form-group">
 		  <label for="brand" class="text-title">Product Brand </label>
             {{ input type="text" class="form-control" id="brand" placeholder="Enter product brand" value=model.brand}}
@@ -251,7 +257,7 @@
 
     <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
       <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
-      <button type="submit" class="btn btn-primary btn-size-small">Request approval</button>
+      <button type="submit" class="btn btn-primary btn-size-small" disabled={{ isEmptyShopName }}>Request approval</button>
     </div>
   </div>
   <div class="col-lg-4 col-md-4 hidden-sm hidden-xs live-container">

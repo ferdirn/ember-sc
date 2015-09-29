@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
   file_name: null,
   uploadResults: [],
   isUploading: false,
+  isEmptyShopName: false,
   actions: {
     upload: function() {
       this.set('isUploading', true);
@@ -41,5 +42,21 @@ export default Ember.Controller.extend({
       };
       reader.readAsDataURL(uploadedFile);
     }
+  },
+  init: function() {
+    var self = this;
+
+    // Check if shop_name has already filled in
+    this.store.find('profile').then(function(data) {
+      var profile_model = data.get('firstObject');
+      var shop_name = profile_model.get('shop_name');
+      if (shop_name === '') {
+        // self.transitionToRoute('profile');
+        self.set('isEmptyShopName', true);
+      } else {
+        // self.transitionToRoute('profile');
+        self.set('isEmptyShopName', false);
+      }
+    });
   }
 });
