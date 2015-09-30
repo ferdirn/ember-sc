@@ -9,6 +9,32 @@ export default Ember.Controller.extend({
     {statusLabel: "canceled", statusValue: "canceled"}
   ],
 
+  sortedProperties: {
+    created_at: true,
+    order_number: false,
+    name: false,
+    sku: false,
+    qty_ordered: false,
+    price: false,
+    revenue: false,
+    status: false
+  },
+
+  sortProperties: ['created_at:desc'],
+  sortAscending: false,
+  sortedPageContent: Ember.computed.sort('pageContent', 'sortProperties'),
+
+  clearSortedProperties: function() {
+    this.set('sortedProperties.created_at', false);
+    this.set('sortedProperties.order_number', false);
+    this.set('sortedProperties.name', false);
+    this.set('sortedProperties.sku', false);
+    this.set('sortedProperties.qty_ordered', false);
+    this.set('sortedProperties.price', false);
+    this.set('sortedProperties.revenue', false);
+    this.set('sortedProperties.status', false);
+  },
+
   addDays: function(theDate, days) {
     return new Date(theDate.getTime() + days*24*60*60*1000);
   },
@@ -200,6 +226,25 @@ export default Ember.Controller.extend({
       this.set('previousPage', previousPage);
       this.set('nextPage', nextPage);
       this.set('pageArray', pageArray);
+    },
+
+    sortBy: function(property) {
+      var currentSortProperties = this.get('sortProperties');
+      var newSortProperties = [property];
+      var descProperty = property + ':desc';
+      if (currentSortProperties[0] === property || currentSortProperties[0] === descProperty) {
+        this.toggleProperty('sortAscending');
+      } else {
+        this.clearSortedProperties();
+        this.set('sortedProperties.'+property, true);
+      }
+      var sortAscending = this.get('sortAscending');
+      if (sortAscending) {
+        newSortProperties = [property];
+      } else {
+        newSortProperties = [descProperty];
+      }
+      this.set('sortProperties', newSortProperties);
     }
   }
 });
