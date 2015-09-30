@@ -13,8 +13,13 @@ export default Ember.ArrayController.extend({
     toTile: function(){
       this.set('isChoosingTile', false);
     },
+    toggleOrder: function() {
+      // this.set('sortProperties', '[name]');
+    this.toggleProperty('sortAscending');
+    // this.set('sortAscending', true);
+      },
   },
-  sortProperties: ['id'],
+  sortProperties: ['name'],
   sortAscending: false,
   
   page: 1,
@@ -70,9 +75,5 @@ export default Ember.ArrayController.extend({
   }).property('page', 'totalPages', 'arrangedContent.[]'),
   
   
-  
-  toggleOrder: function() {
-    this.toggleProperty('sortAscending');
-  }
 
 });
