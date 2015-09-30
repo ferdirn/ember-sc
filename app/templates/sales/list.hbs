@@ -108,18 +108,18 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Order Number</th>
-                <th>Product</th>
-                <th>SKU</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Revenue</th>
-                <th>Status</th>
+                <th {{ action 'sortBy' 'created_at' }}>Date<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.created_at "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'order_number' }}>Order Number<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.order_number "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'name' }}>Product<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'sku' }}>SKU<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.sku "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'qty_ordered' }}>Qty<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.qty_ordered "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'price' }}>Price<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.price "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'revenue' }}>Revenue<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.revenue "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th {{ action 'sortBy' 'status' }}>Status<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.status "chevron-sorted" "chevron-unsorted"}}"></i></th>
               </tr>
             </thead>
             <tbody>
-              {{#each pageContent as |sales|}}
+              {{#each sortedPageContent as |sales|}}
               <tr>
                 {{!--
                 <th>
