@@ -6,5 +6,8 @@ export default DS.Model.extend({
   username: DS.attr(),
   phone_number: DS.attr(),
   first_name: DS.attr(),
-  last_name: DS.attr()
+  last_name: DS.attr(),
+  shop_name: DS.attr(),
+  shop_address: DS.attr(),
+  return_address: DS.attr()
 });
