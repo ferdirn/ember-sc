@@ -6,9 +6,19 @@
         <div class="row">
           <div class="result-table">
             <h3 class="text-center title">All Products</h3>
-             <a href="#" {{action "toggleOrder"}}> 
+             <a href="#" {{action 'toggleOrder' 'name'}}> 
               <div class="switcher">
-                <i class="fa fa-arrows-v"></i>
+                <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted"}}"></i>
+              </div>
+            </a>
+            <a href="#" {{action 'toggleOrder' 'qty'}}> 
+              <div class="switcher">
+                <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.qty "chevron-sorted" "chevron-unsorted"}}"></i>
+              </div>
+            </a>
+            <a href="#" {{action 'toggleOrder' 'price'}}> 
+              <div class="switcher">
+                <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.price "chevron-sorted" "chevron-unsorted"}}"></i>
               </div>
             </a>
             <a href="#" {{action "toList"}}> 
@@ -122,7 +132,7 @@
                     <td>{{#link-to "products.detail" product.id }}{{product.name}}{{/link-to}}</td>
                     <td>{{product.product_sku}}</td>
                     <td>{{ format-number product.qty }}</td>
-                    <td>{{format-money product.price}} </td>
+                    <td>Rp. {{format-money product.price}} </td>
                   </tr>
                   {{else}}
                   <tr>

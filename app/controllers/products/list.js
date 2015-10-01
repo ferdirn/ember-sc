@@ -13,14 +13,42 @@ export default Ember.ArrayController.extend({
     toTile: function(){
       this.set('isChoosingTile', false);
     },
-    toggleOrder: function() {
-      // this.set('sortProperties', '[name]');
-    this.toggleProperty('sortAscending');
-    // this.set('sortAscending', true);
-      },
+    toggleOrder: function(property) {
+      var currentSortProperties = this.get('sortProperties');
+      var newSortProperties = [property];
+      var descProperty = property + ':desc';
+      if (currentSortProperties[0] === property || currentSortProperties[0] === descProperty) {
+        this.toggleProperty('sortAscending');
+      } else {
+        this.clearSortedProperties();
+        this.set('sortedProperties.'+property, true);
+      }
+      var sortAscending = this.get('sortAscending');
+      if (sortAscending) {
+        newSortProperties = [property];
+      } else {
+        newSortProperties = [descProperty];
+      }
+      this.set('sortProperties', newSortProperties);
+      console.log(this.get('sortedProperties'));
+    }
   },
-  sortProperties: ['name'],
+  sortedProperties:{
+    id: true,
+    qty: false,
+    price: false,
+    name: false
+  },
+  sortProperties: ['id:desc'],
   sortAscending: false,
+  sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
+
+  clearSortedProperties: function() {
+    this.set('sortedProperties.id', false);
+    this.set('sortedProperties.name', false);
+    this.set('sortedProperties.qty', false);
+    this.set('sortedProperties.price', false);
+  },
   
   page: 1,
   perPage: 10,
