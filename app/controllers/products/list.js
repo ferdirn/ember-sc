@@ -1,6 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
+  sortedProperties:{
+    name: true,
+    qty: false,
+    price: false,
+    id: false
+  },
+  sortProperties: ['name:desc' , 'qty:desc' , 'price:desc'],
+  sortAscending: false,
+  sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
+
+  clearSortedProperties: function() {
+    this.set('sortedProperties.id', false);
+    this.set('sortedProperties.name', false);
+    this.set('sortedProperties.qty', false);
+    this.set('sortedProperties.price', false);
+  },
   actions: {
     selectPage: function(number) {
       this.set('page', number);
@@ -33,20 +49,7 @@ export default Ember.ArrayController.extend({
       console.log(this.get('sortedProperties'));
     }
   },
-  sortedProperties:{
-    name: true,
-    qty: false,
-    price: false
-  },
-  sortProperties: ['name:desc'],
-  sortAscending: false,
-  sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
-
-  clearSortedProperties: function() {
-    this.set('sortedProperties.name', false);
-    this.set('sortedProperties.qty', false);
-    this.set('sortedProperties.price', false);
-  },
+  
   
   page: 1,
   perPage: 10,
