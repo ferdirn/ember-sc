@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
         }
         function onFailed(data) {
             alert('Username not found');
+            this.set('isUsernameNotFound', false);
         }
         upload.save().then(onSuccess, onFailed);
     }

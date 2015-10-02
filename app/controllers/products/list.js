@@ -34,17 +34,15 @@ export default Ember.ArrayController.extend({
     }
   },
   sortedProperties:{
-    id: true,
+    name: true,
     qty: false,
-    price: false,
-    name: false
+    price: false
   },
-  sortProperties: ['id:desc'],
+  sortProperties: ['name:desc'],
   sortAscending: false,
   sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
 
   clearSortedProperties: function() {
-    this.set('sortedProperties.id', false);
     this.set('sortedProperties.name', false);
     this.set('sortedProperties.qty', false);
     this.set('sortedProperties.price', false);
