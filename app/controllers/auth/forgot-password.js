@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
         });
         function onSuccess(data) {
             var token = data.get('token');
-            alert(token);
+            alert('please check your email');
         }
         function onFailed(data) {
             alert('Username not found');
