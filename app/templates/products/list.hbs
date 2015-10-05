@@ -6,9 +6,9 @@
         <div class="row">
           <div class="result-table">
             <h3 class="text-center title">All Products</h3>
-              <div class="switcher" {{action 'toggleOrder' 'name'}}>
-                <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted"}}"></i>
-              </div>
+            <div class="switcher" {{action 'toggleOrder' 'name'}}>
+              <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted"}}"></i>
+            </div>
             <a href="#" {{action 'toggleOrder' 'qty'}}> 
               <div class="switcher">
                 <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.qty "chevron-sorted" "chevron-unsorted"}}"></i>
@@ -52,7 +52,11 @@
               {{#each paginatedContent as |product|}}
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 box">
                 {{#link-to "products.detail" product.id }}
+                {{#if product.image}}
                 <img src="{{product.image}}" alt="">
+                {{else}}
+                <img src="assets/img/small_image.jpg" alt="" width="40">
+                {{/if}}
                 {{/link-to}}
                 <div class="item-code ">SKU: {{product.product_sku}}</div>
                 <h4 class="title-page">
@@ -124,7 +128,11 @@
                     <td></td>
                     <td>
                       {{#link-to "products.detail" product.id }}
+                      {{#if product.image}}
                       <img src="{{product.image}}" alt="" width="40">
+                      {{else}}
+                      <img src="assets/img/small_image.jpg" alt="" width="40">
+                      {{/if}}
                       {{/link-to}}
                     </td>
                     <td>{{#link-to "products.detail" product.id }}{{product.name}}{{/link-to}}</td>
@@ -135,16 +143,16 @@
                   {{else}}
                   <tr>
                     <th colspan="6">
-                  <div class="fonter" style="">
-                    <i class="fa fa-file fonter-file" style=""></i>
-                    <span class="fonter-cross" style="">x</span>
-                  </div>
-                  <span class="fonter-bot" style="">
-                    No data yet
-                    <br>
-                    Start selling on MOXY
-                  </span>
-                  </th>
+                      <div class="fonter" style="">
+                        <i class="fa fa-file fonter-file" style=""></i>
+                        <span class="fonter-cross" style="">x</span>
+                      </div>
+                      <span class="fonter-bot" style="">
+                        No data yet
+                        <br>
+                        Start selling on MOXY
+                      </span>
+                    </th>
                   </tr>
                   {{/each}}
 
