@@ -1,14 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
-  sortedProperties:{
+  sortedProperties: {
     name: true,
     qty: false,
     price: false,
     id: false
   },
-  sortProperties: ['name:desc' , 'qty:desc' , 'price:desc'],
-  sortAscending: false,
+  availSorting: ['name', 'name:desc', 'qty', 'qty:desc', 'price', 'price:desc'],
+  sortProperties: ['name'],
+  sortAscending: true,
   sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
 
   clearSortedProperties: function() {
@@ -30,23 +31,28 @@ export default Ember.ArrayController.extend({
       this.set('isChoosingTile', false);
     },
     toggleOrder: function(property) {
-      var currentSortProperties = this.get('sortProperties');
-      var newSortProperties = [property];
+      var newSortProperties = Ember.A();
       var descProperty = property + ':desc';
-      if (currentSortProperties[0] === property || currentSortProperties[0] === descProperty) {
+      var currentProperty = this.get('sortProperties')[0].split(':'); 
+      
+      // only toggle if the same property is clicked again
+      if (property === currentProperty[0]) {
         this.toggleProperty('sortAscending');
       } else {
         this.clearSortedProperties();
         this.set('sortedProperties.'+property, true);
       }
-      var sortAscending = this.get('sortAscending');
-      if (sortAscending) {
-        newSortProperties = [property];
+
+      if (this.get('sortAscending')) {
+        newSortProperties.pushObject(property);
       } else {
-        newSortProperties = [descProperty];
+        newSortProperties.pushObject(descProperty);
       }
+
       this.set('sortProperties', newSortProperties);
-      console.log(this.get('sortedProperties'));
+      this.set('page', 1);
+      console.log(this.get('sortedPageContent'));
+      console.log(this.get('paginatedContent'));
     }
   },
   
@@ -99,7 +105,7 @@ export default Ember.ArrayController.extend({
   paginatedContent: (function() {
     var start = (this.get('page') - 1) * this.get('perPage');
     var end = start + this.get('perPage');
-    
+
     return this.get('arrangedContent').slice(start, end);
   }).property('page', 'totalPages', 'arrangedContent.[]'),
   
