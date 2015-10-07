@@ -22,7 +22,10 @@ export default Ember.Controller.extend({
 
   sortProperties: ['created_at:desc'],
   sortAscending: false,
-  sortedPageContent: Ember.computed.sort('pageContent', 'sortProperties'),
+  sortedFilteredData: Ember.computed.sort('filteredData', 'sortProperties'),
+  paginatedContent: Ember.computed('sortedFilteredData', 'startIndex', 'endIndex', function() {
+    return this.get('sortedFilteredData').slice(this.get('startIndex'), this.get('endIndex'));
+  }),
 
   clearSortedProperties: function() {
     this.set('sortedProperties.created_at', false);
@@ -48,7 +51,9 @@ export default Ember.Controller.extend({
     var filteredData = [];
 
     if (value === 'all') {
-      filteredData = allsales;
+      _.each(allsales, function(value) {
+        filteredData.pushObject(value);
+      });
     } else if (value === 'invoiced') {
       _.each(allsales, function(value) {
         if (value.status === 'invoiced') {
@@ -69,45 +74,11 @@ export default Ember.Controller.extend({
       });
     }
 
-    var filteredDataLength = filteredData.length;
-    if (filteredDataLength > this.pageSize) {
-      this.set('pageContent', filteredData.slice(0, this.pageSize));
-    } else {
-      this.set('pageContent', filteredData);
-    }
-    if (filteredDataLength > 0) {
-      this.pageCount = Math.ceil(filteredDataLength / this.pageSize);
-    } else {
-      this.pageCount = 1;
-    }
-    var hasPagination = (this.pageCount > 1);
-
-    var pageArray = [];
-    var p = 0;
-    while (p < this.pageCount) {
-      var pageObj = Ember.Object.create({
-        number: ++p,
-        active: (p === this.page)?'active':''
-      });
-      pageArray.pushObject(pageObj);
-    }
-
-    var hasPrevious = false;
-    var hasNext = true;
-    var previousPage = 0;
-    var nextPage = 2;
-
     this.set('filteredData', filteredData);
-    this.set('pageCount', this.pageCount);
-    this.set('pageArray', pageArray);
-    this.set('selectedStatus.statusValue', value);
-    this.set('hasPagination', hasPagination);
-    this.set('hasPrevious', hasPrevious);
-    this.set('hasNext', hasNext);
-    this.set('previousPage', previousPage);
-    this.set('nextPage', nextPage);
 
-  }.observes('selectedStatus.statusValue'),
+    this.send('paginate', 1);
+
+  }.observes('selectedStatus.statusValue', 'sortProperties'),
 
   actions: {
     filter: function() {
@@ -156,55 +127,29 @@ export default Ember.Controller.extend({
       }).then(function(data) {
         Ember.Logger.log('List filter promise done');
 
-        self.page = 1;
-        self.set('pageContent', data.allsales);
-        var pageContentLength = self.pageContent.length;
-        if (pageContentLength > self.pageSize) {
-          self.set('pageContent', self.pageContent.slice(0, self.pageSize));
-        }
-        if (pageContentLength > 0) {
-          self.pageCount = Math.ceil(pageContentLength / self.pageSize);
-        } else {
-          self.pageCount = 1;
-        }
-        var hasPagination = (self.pageCount > 1);
-
-        var pageArray = [];
-        var p = 0;
-        while (p < self.pageCount) {
-          var pageObj = Ember.Object.create({
-            number: ++p,
-            active: (p === this.page)?'active':''
-          });
-          pageArray.pushObject(pageObj);
-        }
-
-        var hasPrevious = false;
-        var hasNext = true;
-        var previousPage = 0;
-        var nextPage = 2;
-
         self.set('model', data);
         self.set('filteredData', data.allsales);
-        self.set('pageCount', self.pageCount);
-        self.set('pageArray', pageArray);
-        self.set('hasPagination', hasPagination);
-        self.set('hasPrevious', hasPrevious);
-        self.set('hasNext', hasNext);
-        self.set('previousPage', previousPage);
-        self.set('nextPage', nextPage);
         self.set('selectedStatus.statusValue', 'all');
+
+        self.send('paginate', 1);
       });
     },
 
     paginate: function(page) {
       Ember.Logger.log('Entering list paginate');
 
-      this.page = page;
-      var filteredData = this.filteredData;
-      var startContent = (page - 1) * this.pageSize;
-      var endContent = page * this.pageSize;
+      var filteredDataLength = this.get('filteredData').get('length');
       var pageCount = this.get('pageCount');
+      var pageSize = this.get('pageSize');
+      if (filteredDataLength > 0) {
+        pageCount = Math.ceil(filteredDataLength / pageSize);
+      } else {
+        pageCount = 1;
+      }
+      var hasPagination = (pageCount > 1);
+
+      var startIndex = (page - 1) * pageSize;
+      var endIndex = page * pageSize;
       var hasPrevious = (page > 1);
       var hasNext = (page < pageCount);
       var previousPage = page - 1;
@@ -215,22 +160,27 @@ export default Ember.Controller.extend({
       while (p < pageCount) {
         var pageObj = Ember.Object.create({
           number: ++p,
-          active: (p === this.page)?'active':''
+          active: (p === page)?'active':''
         });
         pageArray.pushObject(pageObj);
       }
 
-      this.set('pageContent', filteredData.slice(startContent, endContent));
+      this.set('startIndex', startIndex);
+      this.set('endIndex', endIndex);
+      this.set('hasPagination', hasPagination);
       this.set('hasPrevious', hasPrevious);
       this.set('hasNext', hasNext);
       this.set('previousPage', previousPage);
       this.set('nextPage', nextPage);
       this.set('pageArray', pageArray);
+      this.set('pageCount', pageCount);
+      this.set('page', page);
     },
 
     sortBy: function(property) {
+      Ember.Logger.log('Entering list sortBy');
+
       var currentSortProperties = this.get('sortProperties');
-      var newSortProperties = [property];
       var descProperty = property + ':desc';
       if (currentSortProperties[0] === property || currentSortProperties[0] === descProperty) {
         this.toggleProperty('sortAscending');
@@ -238,13 +188,11 @@ export default Ember.Controller.extend({
         this.clearSortedProperties();
         this.set('sortedProperties.'+property, true);
       }
-      var sortAscending = this.get('sortAscending');
-      if (sortAscending) {
-        newSortProperties = [property];
+      if (this.get('sortAscending')) {
+        this.set('sortProperties', [property]);
       } else {
-        newSortProperties = [descProperty];
+        this.set('sortProperties', [descProperty]);
       }
-      this.set('sortProperties', newSortProperties);
     }
   }
 });

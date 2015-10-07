@@ -16,7 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   page: 1,
-  pageSize: 20,
+  pageSize: 4,
   pageCount: 1,
   pageContent: null,
 
@@ -57,7 +57,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     var hasNext = true;
     var previousPage = 0;
     var nextPage = 2;
-    
+
     var formatted_date = model.chart.labels.map(function(label) {
       return moment(label).format('ddd, D MMM YYYY');
     });
