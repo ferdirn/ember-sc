@@ -93,7 +93,7 @@
 
                 {{/if}}
                 {{#each pages as |page|}}
-                <li class="{{page}}"><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
+                <li {{bindAttr class="active disabled"}}><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
                 {{/each}}
                 {{#if nextPage}}
                 <li>
@@ -116,7 +116,6 @@
               <table class="table nomargin tablenum">
                 <thead style="background-color: #E7E7E7;border-bottom: none;">
                   <tr>
-                    <th>No</th>
                     <th>Image</th>
                     <th {{action 'toggleOrder' 'name'}} >Name  <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted-pro"}}"></i></th>
                     <th>SKU</th>
@@ -127,7 +126,6 @@
                 <tbody>
                   {{#each sortedPageContent as |product|}}
                   <tr>
-                    <td></td>
                     <td>
                       {{#link-to "products.detail" product.id }}
                       {{#if product.image}}
@@ -177,7 +175,7 @@
 
                 {{/if}}
                 {{#each pages as |page|}}
-                <li class="{{page}}"><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
+                <li {{bindAttr class="active disabled"}}><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
                 {{/each}}
                 {{#if nextPage}}
                 <li>

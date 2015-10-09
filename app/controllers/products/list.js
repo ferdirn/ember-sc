@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
     price: false,
     id: false
   },
+  active: false,
 
   availSorting: ['name', 'name:desc', 'qty', 'qty:desc', 'price', 'price:desc'],
   sortProperties: ['name'],
@@ -28,6 +29,7 @@ export default Ember.Controller.extend({
   actions: {
     selectPage: function(number) {
       this.set('page', number);
+      this.toggleProperty('active',true);
     },
     isChoosingTile: false,
 

@@ -15,7 +15,11 @@
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 bordering spacer20 bottom-spacer-container">
         <div class="col-lg-6 nopadding text-center col-middler bottom-spacer-container">
+          {{#if model.image}}
           <img src="{{model.image}}" width="100%">
+          {{else}}
+          <img src="assets/img/small_image.jpg" alt="" width="40">
+          {{/if}}
         </div>
         <div class="col-lg-12 in-block">
           {{#each model.images as |img| }}
