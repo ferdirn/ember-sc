@@ -1,16 +1,22 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   sortedProperties: {
     name: true,
     qty: false,
     price: false,
     id: false
   },
+
   availSorting: ['name', 'name:desc', 'qty', 'qty:desc', 'price', 'price:desc'],
   sortProperties: ['name'],
   sortAscending: true,
-  sortedPageContent: Ember.computed.sort('paginatedContent', 'sortProperties'),
+  sortedData: Ember.computed.sort('model', 'sortProperties'),
+  sortedPageContent: Ember.computed('sortedData', 'page', 'perPage', 'sortProperties' ,function(){
+    var start = (this.get('page') - 1) * this.get('perPage');
+    var end = start + this.get('perPage');
+    return this.get('sortedData').slice(start,end);
+  }),
 
   clearSortedProperties: function() {
     this.set('sortedProperties.id', false);
@@ -18,6 +24,7 @@ export default Ember.ArrayController.extend({
     this.set('sortedProperties.qty', false);
     this.set('sortedProperties.price', false);
   },
+
   actions: {
     selectPage: function(number) {
       this.set('page', number);
@@ -50,9 +57,7 @@ export default Ember.ArrayController.extend({
       }
 
       this.set('sortProperties', newSortProperties);
-      this.set('page', 1);
-      console.log(this.get('sortedPageContent'));
-      console.log(this.get('paginatedContent'));
+      this.send('selectPage', 1);
     }
   },
   
@@ -60,7 +65,7 @@ export default Ember.ArrayController.extend({
   page: 1,
   perPage: 10,
   totalPages: (function() {
-    return Math.ceil(this.get('length') / this.get('perPage'));
+    return Math.ceil(this.get('model').get('length') / this.get('perPage'));
   }).property('length', 'perPage'),
   
   pages: (function() {
@@ -103,12 +108,7 @@ export default Ember.ArrayController.extend({
  
   
   paginatedContent: (function() {
-    var start = (this.get('page') - 1) * this.get('perPage');
-    var end = start + this.get('perPage');
-
-    return this.get('arrangedContent').slice(start, end);
-  }).property('page', 'totalPages', 'arrangedContent.[]'),
+    return this.get('model');
+  }),
   
-  
-
 });
