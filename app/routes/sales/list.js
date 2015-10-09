@@ -16,7 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   page: 1,
-  pageSize: 4,
+  pageSize: 20,
   pageCount: 1,
   pageContent: null,
 
