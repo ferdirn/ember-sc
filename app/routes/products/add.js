@@ -18,5 +18,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     // Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
     //   controller.set('productAttributes', data);
     // });
+  },
+
+  // Delete dummy record when navigating to a different page
+  deactivate: function() {
+    var model = this.modelFor('products.add');
+
+    if (model.get('id') === null) {
+      model.unloadRecord();
+    }
   }
 });
