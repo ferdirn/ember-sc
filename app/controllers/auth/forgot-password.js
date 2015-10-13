@@ -10,10 +10,9 @@ export default Ember.Controller.extend({
         });
         function onSuccess(data) {
             var token = data.get('token');
-            alert('please check your email');
+            this.set('isUsernameNotFound', true);
         }
         function onFailed(data) {
-            alert('Username not found');
             this.set('isUsernameNotFound', false);
         }
         upload.save().then(onSuccess, onFailed);

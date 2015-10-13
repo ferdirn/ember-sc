@@ -37,10 +37,10 @@ export default Ember.Controller.extend({
 			repassword: this.get('repassword')
 		});
 		function onSuccess(data) {
-            alert('you have successfully reset your password');
+            this.send('auth.login');
         }
         function onFailed(data) {
-            alert('this is wrong');
+            alert('reset password failed');
         }
 		upload.save().then(onSuccess, onFailed);
 	}
