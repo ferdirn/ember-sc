@@ -144,6 +144,7 @@ export default Ember.Controller.extend({
   },
 
   init: function() {
+
     var self = this;
 
     // Check if shop_name has already filled in
