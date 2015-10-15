@@ -29,9 +29,9 @@ export default Ember.Controller.extend({
   actions: {
     selectPage: function(number) {
       this.set('page', number);
-      if (this.get('page') == number){
-        this.set('page.active', true);
-      }
+      // if (this.get('page') == number){
+      //   this.set('active', true);
+      // }
     },
     isChoosingTile: false,
 

@@ -38,7 +38,8 @@ export default Ember.Controller.extend({
 			repassword: this.get('repassword')
 		});
 		function onSuccess(data) {
-            self.send('auth.login');
+            //self.send('auth.login');
+            self.transitionTo('auth.login');
         }
         function onFailed(data) {
             alert('reset password failed');

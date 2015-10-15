@@ -106,7 +106,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'local') {
-    var HOST = 'http://api.demo.moxy.co.id/';
+    var HOST = 'http://api.dev.moxy.co.id';
     ENV.APP.API_HOST = HOST;
     ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
     ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
