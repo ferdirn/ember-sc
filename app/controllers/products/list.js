@@ -7,8 +7,6 @@ export default Ember.Controller.extend({
     price: false,
     id: false
   },
-  active: false,
-
   availSorting: ['name', 'name:desc', 'qty', 'qty:desc', 'price', 'price:desc'],
   sortProperties: ['name'],
   sortAscending: true,
@@ -18,6 +16,12 @@ export default Ember.Controller.extend({
     var end = start + this.get('perPage');
     return this.get('sortedData').slice(start,end);
   }),
+
+ isActive: function(){
+  if ( this.get('page') === number ) return 'active';
+  else return '';
+}.property('page'),
+
 
   clearSortedProperties: function() {
     this.set('sortedProperties.id', false);
