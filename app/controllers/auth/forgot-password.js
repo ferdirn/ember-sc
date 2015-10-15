@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	fname: null,
 	isUsernameNotFound: true,
+
   save: function(){
     var self = this;
     var checker = document.getElementById('fname').value; 

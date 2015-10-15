@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
 		// var pathArray = window.location.pathname.split('/');
 		// var link = pathArray[1];
 		// alert(link);
+    var self = this;
 		function getUrlVars() {
 			var vars = {};
 			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -37,7 +38,8 @@ export default Ember.Controller.extend({
 			repassword: this.get('repassword')
 		});
 		function onSuccess(data) {
-            this.send('auth.login');
+            //self.send('auth.login');
+            self.transitionTo('auth.login');
         }
         function onFailed(data) {
             alert('reset password failed');
