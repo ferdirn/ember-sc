@@ -19,6 +19,7 @@ export default Ember.Controller.extend({
       alert('please check your email');
     }
     function onFailed(data) {
+      var self = this;
       alert('Username not found');
       this.set('isUsernameNotFound', false);
     }

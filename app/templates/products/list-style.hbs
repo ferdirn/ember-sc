@@ -76,7 +76,7 @@
 
           			{{/if}}
           			{{#each pages as |page|}}
-          			<li {{bindAttr class="active disabled"}}><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
+          			<li><a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
           			{{/each}}
           			{{#if nextPage}}
           			<li>
