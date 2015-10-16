@@ -9,5 +9,6 @@ export default Ember.Route.extend(RouteMixin, {
   },
   setupController: function(controller, model) {
     controller.set('model', model);
+    controller.set('number', 1);
   }
 });

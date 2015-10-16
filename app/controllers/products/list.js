@@ -17,10 +17,6 @@ export default Ember.Controller.extend({
     return this.get('sortedData').slice(start,end);
   }),
 
- isActive: function(){
-  if ( this.get('page') === number ) return 'active';
-  else return '';
-}.property('page'),
 
 
   clearSortedProperties: function() {
@@ -33,9 +29,12 @@ export default Ember.Controller.extend({
   actions: {
     selectPage: function(number) {
       this.set('page', number);
-      // if (this.get('page') == number){
-      //   this.set('active', true);
-      // }
+      this.set('number', number);
+    },
+    isActive: function(value){
+      var self = this;
+      console.log(value);
+      this.set('number', value);
     },
     isChoosingTile: false,
 
@@ -81,10 +80,10 @@ export default Ember.Controller.extend({
     
     for(var i = 0; i < this.get('totalPages'); i++) {
       collection.pushObject(Ember.Object.create({
-        number: i + 1
+        number: i + 1,
       }));
     }
-    
+
     return collection;      
   }).property('totalPages'),
   
@@ -113,7 +112,7 @@ export default Ember.Controller.extend({
       return null;
     }
   }).property('page', 'totalPages'),
- 
+
   
   paginatedContent: (function() {
     return this.get('model');

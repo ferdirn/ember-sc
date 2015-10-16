@@ -15,9 +15,6 @@ export default Ember.Controller.extend({
 	},
 	save: function()
 	{
-		// var pathArray = window.location.pathname.split('/');
-		// var link = pathArray[1];
-		// alert(link);
     var self = this;
 		function getUrlVars() {
 			var vars = {};
@@ -29,8 +26,6 @@ export default Ember.Controller.extend({
 		var token = getUrlVars()["token"];
 		var email = getUrlVars()["email"];
 
-		// alert(first);
-		// alert(second);
 		var upload = this.store.createRecord('reset-password', {
 			token: token,
 			email: email,
@@ -38,7 +33,6 @@ export default Ember.Controller.extend({
 			repassword: this.get('repassword')
 		});
 		function onSuccess(data) {
-            //self.send('auth.login');
             self.transitionTo('auth.login');
         }
         function onFailed(data) {
