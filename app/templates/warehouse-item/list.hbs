@@ -1,0 +1,88 @@
+      <div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">
+      </div>
+
+      <div class="container-fluid content-page">
+
+        <div class="row">
+          <div class="result-table">
+            <h3 class="text-center title">All Warehouse Shipment Receipt</h3>
+			
+    <div class="panel panel-default noborder noshadow">
+      <div class="panel-body list-products nopadding text-center">
+        <div class="table-responsive list-style bordering">
+          <table class="table nomargin tablenum">
+            <thead style="background-color: #E7E7E7;border-bottom: none;">
+              <tr>
+                <th>Image</th>
+                <th >Order Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model as |product|}}
+              <tr>
+                <td>
+                  {{#if product.photo}}
+                  <img src="{{product.photo}}" alt="" width="100">
+                  {{else}}
+                  <img src="assets/img/small_image.jpg" alt="" width="50%">
+                  {{/if}}
+                </td>
+                <td>{{product.order_number}}</td>
+              </tr>
+              {{else}}
+              <tr>
+                <th colspan="6">
+                  <div class="fonter" style="">
+                    <i class="fa fa-file fonter-file" style=""></i>
+                    <span class="fonter-cross" style="">x</span>
+                  </div>
+                  <span class="fonter-bot" style="">
+                    No data yet
+                  </span>
+                </th>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="hidden-md hidden-lg col-xs-12" id="hidden-spacer">
+        </div>
+
+        {{#if hasPages }}
+        <nav class="text-center center-block">
+          <ul class="pagination">
+            {{# if prevPage }}
+            <li>
+              <a {{action "selectPage" prevPage}} aria-label="Previous">
+                <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+              </a>
+            </li>
+            {{/if}}
+
+            {{#each pages as |page|}}
+              {{# if (eq page.number number) }}
+                <li {{action "isActive" page.number}} class="active"> <a href="#" {{action "selectPage" page.number}}>{{page.number}}</a></li>
+              {{/if}}
+              {{# if (not-eq page.number number)}}
+                <li {{action "isActive" page.number}} class="" > <a href="#" {{action "selectPage" page.number}} id="counter">{{page.number}}</a></li>
+              {{/if}}
+            {{/each}}
+
+            {{#if nextPage}}
+            <li>
+              <a {{action "selectPage" nextPage}} aria-label="Next">
+                <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+              </a>
+            </li>
+            {{/if}}
+          </ul>
+        </nav>
+        {{/if}}
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

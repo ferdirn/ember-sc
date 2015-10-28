@@ -11,7 +11,11 @@ Router.map(function() {
   });
 
   this.route('profile');
-  this.route('warehouse-item-shipment');
+
+  this.route('warehouse-item', function() {
+    this.route('list');
+
+  });
 
   this.route('products', function() {
     // /products/ ?
@@ -49,8 +53,11 @@ Router.map(function() {
   this.route('message', function() {
     this.route('list');
   });
-  this.route('warehouse-shipment');
-  this.route('warehouse-item-shipment');
+  this.route('warehouseitemshipment', {path: '/warehouse-item/add'});
+
+  this.route('warehouse-item', function() {
+    this.route('list');
+  });
 });
 
 export default Router;
