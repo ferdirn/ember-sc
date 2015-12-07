@@ -39,6 +39,18 @@ export default Ember.Controller.extend({
         data.set('categories', 0);
       }
 
+      if (data.get('special_price') === '') {
+        data.set('special_price', 0);
+      }
+
+      if (data.get('special_from_date') === '') {
+        data.set('special_from_date', null);
+      }
+
+      if (data.get('special_to_date') === '') {
+        data.set('special_to_date', null);
+      }
+
       var self = this;
       data.save().then(function(data) {
         self.transitionToRoute('products.detail', data.id);
