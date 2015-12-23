@@ -250,8 +250,8 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-12 nopadding bottom-spacer">
-        {{input type="date" class="text-center date-picking" value=model.special_from_date}} to
-        {{input type="date" class="text-center date-picking" value=model.special_to_date}}
+        {{date-picker class="text-center date-picking" valueFormat="YYYY-MM-DD" date=model.special_from_date}} to
+        {{date-picker class="text-center date-picking" valueFormat="YYYY-MM-DD" date=model.special_to_date}}
       </div>
       <blockquote class="exp">
         <footer><cite title="Source Title">Special price is useful when you want to set a discounted price for customers within a date range.</cite></footer>

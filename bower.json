@@ -17,6 +17,7 @@
     "lodash": "~3.10.0",
     "Sortable": "~1.2.1",
     "moment": "~2.10.6",
-    "pace": "vectart/pace#master"
+    "pace": "vectart/pace#master",
+    "pikaday": "~1.4.0"
   }
 }
