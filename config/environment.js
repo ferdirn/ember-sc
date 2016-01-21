@@ -60,14 +60,14 @@ module.exports = function(environment) {
   };
 
   ENV['simple-auth-token'] = {
-    serverTokenEndpoint: 'http://localhost:8000/api/auth/',
+    serverTokenEndpoint: 'http://api.moxy.local/api/auth/',
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'token',
     authorizationPrefix: 'MOXY ',
     authorizationHeaderName: 'Authorization',
     refreshAccessTokens: false,
-    serverTokenRefreshEndpoint: 'http://localhost:8000/api/token-refresh/',
+    serverTokenRefreshEndpoint: 'http://api.moxy.local/api/token-refresh/',
     refreshLeeway: 300, // refresh token for 5 minutes. need to develop expiry
     timeFactor: 1000,
     headers: {}
@@ -77,8 +77,8 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",
     'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': "'self' http://localhost:8000",
-    'img-src': "'self' http://localhost:8000 data:",
+    'connect-src': "'self' http://api.moxy.local",
+    'img-src': "'self' http://api.moxy.local data:",
     'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
     'media-src': "'self'"
   };
@@ -89,9 +89,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_HOST = 'http://api.moxy.local';
   }
-
 
   if (environment === 'test') {
     // Testem prefers this...
