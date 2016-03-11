@@ -1,6 +1,8 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+  var API_HOST = 'http://api.bilna.local';
+
   var ENV = {
     modulePrefix: 'sellercenter',
     environment: environment,
@@ -60,14 +62,14 @@ module.exports = function(environment) {
   };
 
   ENV['simple-auth-token'] = {
-    serverTokenEndpoint: 'http://api.moxy.local/api/auth/',
+    serverTokenEndpoint: API_HOST + '/api/auth/',
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'token',
     authorizationPrefix: 'MOXY ',
     authorizationHeaderName: 'Authorization',
     refreshAccessTokens: false,
-    serverTokenRefreshEndpoint: 'http://api.moxy.local/api/token-refresh/',
+    serverTokenRefreshEndpoint: API_HOST + '/api/token-refresh/',
     refreshLeeway: 300, // refresh token for 5 minutes. need to develop expiry
     timeFactor: 1000,
     headers: {}
@@ -77,8 +79,8 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",
     'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': "'self' http://api.moxy.local",
-    'img-src': "'self' http://api.moxy.local data:",
+    'connect-src': "'self' " + API_HOST,
+    'img-src': "'self' data: " + API_HOST,
     'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
     'media-src': "'self'"
   };
@@ -89,7 +91,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.API_HOST = 'http://api.moxy.local';
+    ENV.APP.API_HOST = API_HOST;
   }
 
   if (environment === 'test') {
@@ -102,14 +104,6 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-  }
-
-  if (environment === 'local') {
-    var HOST = 'http://api.dev.moxy.co.id';
-    ENV.APP.API_HOST = HOST;
-    ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
-    ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
-    ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
   }
 
   if (environment === 'production') {
