@@ -13,6 +13,7 @@ export default DS.Model.extend({
   qty: DS.attr(),
   weight: DS.attr(),
   status: DS.attr(),
+  approved: DS.attr(),
   categories: DS.attr(),
   websites: DS.attr(),
   tax_class: DS.attr(),

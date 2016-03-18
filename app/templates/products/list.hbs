@@ -124,6 +124,7 @@
                 <th>Image</th>
                 <th {{action 'toggleOrder' 'name'}} >Name  <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.name "chevron-sorted" "chevron-unsorted-pro"}}"></i></th>
                 <th>SKU</th>
+                <th>Status</th>
                 <th {{action 'toggleOrder' 'qty'}} >Stock <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.qty "chevron-sorted" "chevron-unsorted-pro"}}"></i></th>
                 <th {{action 'toggleOrder' 'price'}}>Price <i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.price "chevron-sorted" "chevron-unsorted-pro"}}"></i></th>
               </tr>
@@ -142,6 +143,8 @@
                 </td>
                 <td>{{#link-to "products.detail" product.id }}{{product.name}}{{/link-to}}</td>
                 <td>{{product.product_sku}}</td>
+
+                <td>{{#if product.approved}}Approved{{else}}Waiting for Approval{{/if}}</td>
                 <td>{{ format-number product.qty }}</td>
                 <td>Rp. {{format-money product.price}} </td>
               </tr>
