@@ -120,12 +120,12 @@
         </div>
 
         <div class="form-group col-lg-5 nopadding">
-          <label for="weight" class="text-title">Weight </label>
+          <label for="weight" class="text-title">Weight (kg) </label>
           {{ input type="number" class="form-control" id="weight" min="1" placeholder="Enter product weight" value=model.weight required="required" }}
         </div>
         <div class="form-group col-lg-6 pull-right nopadding">
-          <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Total Stock</label>
-          {{ input type="number" class="form-control" min="0" value=model.qty }}
+          <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Available Stock</label>
+          {{ input type="number" class="form-control" min="0" value=model.qty required="required" }}
         </div>
 
         <div class="form-group">
@@ -134,12 +134,12 @@
           <div class="col-lg-12 bottom-spacer-bigger"></div>
          <div class="input-group" style="float:left;">
           <div class="input-group-addon">Rp.</div>
-          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="0" {{action "priceCommission" on="keyUp" allowedKeys="any" }} value="{{model.price}}" />
+          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="1000" {{action "priceCommission" on="keyUp" allowedKeys="any" }} value="{{model.price}}" />
         </div>
 </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left commission-cont" style="">
-          <p>we take <span class="commission-percent" style="">{{discount_percentage}} %</span></p>
-        <h4 class="commission-amount">Rp. {{ format-number seller_price}}</h4>
+          <p>We take <span class="commission-percent" style="">{{discount_percentage}}%</span>, so</p>
+        <h4 class="commission-amount">Rp. {{format-number seller_price}}</h4>
         <p class="commission-exp"style="">will be transferred for each quantity sold</p>
       </div>
       </div>
@@ -168,6 +168,13 @@
 
         </div>
       </div>
+
+      {{#if isEmptyImage}}
+      <div class="alert alert-danger shop-name-error" role="alert">
+        Please upload at least 1 image of the product
+      </div>
+      {{/if}}
+
     </div>
     <div class="form-group bottom-spacer in-block full-width" style="display: none;">
       <div class="col-lg-9 nopadding">
@@ -240,9 +247,10 @@
     </div>
 
     <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contentwhole">
-
       <div class="clearfix"></div>
     </div>
+
+    {{!--
     <div class="form-group bottom-spacer in-block full-width bottom-bordering bottom-bordering" id="contenttimed">
       <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title ">Special Price</label>
       <div class="col-lg-8 col-sm-10 col-xs-10 col-md-10 nopadding right-spacer bottom-spacer">
@@ -257,6 +265,7 @@
         <footer><cite title="Source Title">Special price is useful when you want to set a discounted price for customers within a date range.</cite></footer>
       </blockquote>
     </div>
+    --}}
 
     <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
       <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>

@@ -13,6 +13,10 @@ export default Ember.Controller.extend({
       var data = this.get('model');
       delete data.d_categories;
 
+      if (data.get('product_sku') === null) {
+        data.set('product_sku', '');
+      }
+
       var parentCategory = data.get('parentcategory');
       var subCategory = data.get('subcategory');
       var category = data.get('categories');
@@ -39,24 +43,24 @@ export default Ember.Controller.extend({
         data.set('categories', 0);
       }
 
-      if (data.get('special_price') === '') {
-        data.set('special_price', 0);
-      }
+      // if (data.get('special_price') === '') {
+      //   data.set('special_price', 0);
+      // }
 
-      if (data.get('special_from_date') === '') {
-        data.set('special_from_date', null);
-      }
+      // if (data.get('special_from_date') === '') {
+      //   data.set('special_from_date', null);
+      // }
 
-      if (data.get('special_to_date') === '') {
-        data.set('special_to_date', null);
-      }
+      // if (data.get('special_to_date') === '') {
+      //   data.set('special_to_date', null);
+      // }
 
       var self = this;
       data.save().then(function(data) {
         self.transitionToRoute('products.detail', data.id);
       });
     },
-    chooseCategory: function(value, component) {
+    chooseCategory: function(value) {
       if (typeof value === 'undefined') {
         this.set('hasLevel2Category', false);
         this.set('hasLevel3Category', false);
@@ -82,7 +86,7 @@ export default Ember.Controller.extend({
         }
       });
     },
-    chooseSubCategory: function(value, component) {
+    chooseSubCategory: function(value) {
       if (typeof value === 'undefined') {
         this.set('hasLevel3Category', false);
         return false;
@@ -104,7 +108,7 @@ export default Ember.Controller.extend({
         }
       });
     },
-    chooseSubSubCategory: function(value, component) {
+    chooseSubSubCategory: function(value) {
       var self = this;
       this.set('model.categories', value);
       var seller_price = this.get('seller_price');
@@ -115,7 +119,7 @@ export default Ember.Controller.extend({
       });
       this.set('isEmptyCategory', false);
     },
-    priceCommission: function(value, component) {
+    priceCommission: function() {
       var discount_percentage = this.get('discount_percentage');
       var seller_price = this.get('seller_price');
 
@@ -124,9 +128,9 @@ export default Ember.Controller.extend({
       this.set('seller_price', seller_price);
 
     },
-    deleteImage: function(value, component) {
+    deleteImage: function() {
     },
-    selectPicture: function(value, component) {
+    selectPicture: function() {
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
       var picReader = new FileReader();

@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  discount_percentage: 0,
+  seller_price: 0,
   displayNameHelper: 'none',
   hasLevel2Category: false,
   hasLevel3Category: false,
@@ -9,6 +11,7 @@ export default Ember.Controller.extend({
   isEmptySubCategory: false,
   isEmptyCategory: false,
   isEmptyShopName: false,
+  isEmptyImage: false,
   actions: {
     focus: function() {
       this.set('displayNameHelper', 'block');
@@ -16,6 +19,7 @@ export default Ember.Controller.extend({
     save: function() {
       var self = this;
       var data = this.get('model');
+      var images = data.get('images');
 
       data.set('product_attribute_set', '4');
 
@@ -26,16 +30,29 @@ export default Ember.Controller.extend({
       if (typeof parentCategory === 'undefined') {
         this.set('isEmptyParentCategory', true);
         return false;
+      } else {
+        this.set('isEmptyParentCategory', false);
       }
 
       if (this.get('hasLevel2Category') && typeof subCategory === 'undefined') {
         this.set('isEmptySubCategory', true);
         return false;
+      } else {
+        this.set('isEmptySubCategory', false);
       }
 
       if (this.get('hasLevel3Category') && typeof category === 'undefined') {
         this.set('isEmptyCategory', true);
         return false;
+      } else {
+        this.set('isEmptyCategory', false);
+      }
+
+      if (images.length < 1) {
+        this.set('isEmptyImage', true);
+        return false;
+      } else {
+        this.set('isEmptyImage', false);
       }
 
       data.save().then(function(data) {
@@ -68,7 +85,7 @@ export default Ember.Controller.extend({
         }
       });
     },
-    chooseSubCategory: function(value, component) {
+    chooseSubCategory: function(value) {
       if (typeof value === 'undefined') {
         this.set('hasLevel3Category', false);
         return false;
@@ -89,7 +106,7 @@ export default Ember.Controller.extend({
         }
       });
     },
-    chooseSubSubCategory: function(value, component) {
+    chooseSubSubCategory: function(value) {
       var self = this;
       this.set('model.categories', value);
       this.set('isEmptyCategory', false);
@@ -100,7 +117,7 @@ export default Ember.Controller.extend({
         self.set('seller_price', seller_price);
       });
     },
-    priceCommission: function(value, component) {
+    priceCommission: function() {
       var discount_percentage = this.get('discount_percentage');
       var seller_price = this.get('seller_price');
 
@@ -108,7 +125,7 @@ export default Ember.Controller.extend({
       this.set('model.price', Ember.$('#price').val());
       this.set('seller_price', seller_price);
     },
-    selectPicture: function(value, component) {
+    selectPicture: function() {
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
       var picReader = new FileReader();
