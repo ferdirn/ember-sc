@@ -3,6 +3,19 @@
 module.exports = function(environment) {
   var API_HOST = 'http://api.bilna.local';
 
+  switch(environment) {
+    case 'production':
+      API_HOST = 'http://api.bilna.local';
+      break;
+
+    case 'staging':
+      API_HOST = 'http://stage.api.bilna.com';
+      break;
+
+    default:
+      break;
+  }
+
   var ENV = {
     modulePrefix: 'sellercenter',
     environment: environment,
@@ -107,11 +120,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    var HOST = 'http://api.moxy.co.id';
-    ENV.APP.API_HOST = HOST;
-    ENV['simple-auth-token']['serverTokenEndpoint'] = HOST + '/api/auth/';
-    ENV['contentSecurityPolicy']['connect-src'] = "'self' " + HOST;
-    ENV['contentSecurityPolicy']['img-src'] = "'self' " + HOST;
 
   }
 
