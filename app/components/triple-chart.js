@@ -42,7 +42,7 @@ export default Ember.Component.extend({
           strokeColor : "rgba(236,60,122,0.8)",
           highlightFill: "rgba(236,60,122,0)",
           highlightStroke: "rgba(236,60,122,1)",
-          pointHighlightFill: "#ee5191",
+          pointHighlightFill: "#ff6c6c",
           data: total_order_data
         }
         ]

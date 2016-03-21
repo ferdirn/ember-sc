@@ -1,11 +1,11 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var API_HOST = 'http://api.bilna.local';
+  var API_HOST = 'http://stage.api.bilna.com';
 
   switch(environment) {
     case 'production':
-      API_HOST = 'http://api.bilna.local';
+      API_HOST = 'http://api.bilna.com';
       break;
 
     case 'staging':
@@ -34,7 +34,7 @@ module.exports = function(environment) {
     },
     pace: {
       theme: 'minimal',
-      color: 'pink',
+      color: 'orange',
 
       // pace specific options. Copied from https://github.com/vectart/ember-cli-pace
       catchupTime: 50,

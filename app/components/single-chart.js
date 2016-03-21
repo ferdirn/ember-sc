@@ -17,7 +17,7 @@ export default Ember.Component.extend({
         labels: labels,
         datasets: [
         {
-          fillColor : "rgba(236,60,122,0.5)",
+          fillColor : "#ff6c6c",
           strokeColor : "rgba(236,60,122,0.8)",
           highlightFill: "rgba(236,60,122,0)",
           highlightStroke: "rgba(236,60,122,1)",
