@@ -41,6 +41,7 @@ export default Ember.Controller.extend({
       var shop_name = this.get('shop_name');
       var shop_address = this.get('shop_address');
       var return_address = this.get('return_address');
+      var partnership_type = this.get('partnership_type');
 
       var registration = this.store.createRecord('registration', {
         email: email,
@@ -51,7 +52,8 @@ export default Ember.Controller.extend({
         last_name: last_name,
         shop_name: shop_name,
         shop_address: shop_address,
-        return_address: return_address
+        return_address: return_address,
+        partnership_type: partnership_type
       });
 
       var self = this;

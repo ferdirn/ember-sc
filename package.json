@@ -47,6 +47,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-django-adapter": "0.5.6",
     "ember-export-application-global": "^1.0.4",
+    "ember-radio-button": "1.0.7",
     "ember-truth-helpers": "1.0.0",
     "ember-validations": "~ 2.0.0-alpha.3",
     "emberx-select": "1.1.4"
