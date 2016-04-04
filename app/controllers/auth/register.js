@@ -31,6 +31,7 @@ export default Ember.Controller.extend({
       for (var index = 0; index < countries.length; index++) {
         if (countries[index].code === country_code) {
           this.set('phone_code', countries[index].phone_code);
+          break;
         }
       }
     },
