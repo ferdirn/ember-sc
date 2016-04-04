@@ -9,6 +9,7 @@ export default DS.Model.extend({
   last_name: DS.attr(),
   shop_name: DS.attr(),
   shop_address: DS.attr(),
+  country: DS.attr(),
   return_address: DS.attr(),
   partnership_type: DS.attr()
 });

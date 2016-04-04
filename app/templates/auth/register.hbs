@@ -60,19 +60,29 @@
           {{input type="text" class="form-control" id="InputReturnAddress" placeholder="Return Address" value=return_address required="required"}}
         </div>
         <div class="form-group">
+          <label for="InputReturnAddress">Country</label>
+          {{#x-select id="country" required="required" value=country action="changeCountry"}}
+            {{#each countries as |ctry|}}
+              {{#x-option value=ctry.code}}
+                {{ctry.name}}
+              {{/x-option}}
+            {{/each}}
+          {{/x-select}}
+        </div>
+        <div class="form-group">
           <div class="form-inline muth-phone">
             <div class="form-group col-lg-6 nopadding bottom-spacer">
               <label for="InputPhone" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">Phone</label>
               <div class="input-group firstname bottom-spacer">
-                <div class="input-group-addon">+62</div>
+                <div class="input-group-addon">{{phone_code}}</div>
                 {{input type="text" class="form-control border-rad-4" id="InputPhone" placeholder="Phone" value=phone_number required="required"}}
               </div>
             </div>
           </div>
           <div class="checkbox col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
             <label class="terms-register">
-              {{radio-button value="Special Order" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product to the warehouse <br>
-              {{radio-button value="Dropship" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product directly to the customer
+              {{radio-button value="1" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product to the warehouse <br>
+              {{radio-button value="2" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product directly to the customer
             </label>
           </div>
           <div class="checkbox col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">

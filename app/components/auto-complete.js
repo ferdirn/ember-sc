@@ -1,6 +1,6 @@
-import Ember from 'ember';
+// import Ember from 'ember';
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
-import config from '../config/environment';
+// import config from '../config/environment';
 
 export default AutoComplete.extend({
   valueProperty: "order_number",
@@ -19,10 +19,10 @@ export default AutoComplete.extend({
       caseInsensitiveOptions.push(value.toLowerCase());
       /*
       Ember.$.getJSON(config.APP.API_HOST + '/api/warehous-item-shipment/').then(function(data) {
-        console.log(data.get('order_ids')); 
+        console.log(data.get('order_ids'));
       });
       */
       return caseInsensitiveOptions;
-    }).property("options.@each")
+    }).property("options.@each");
   }
 });

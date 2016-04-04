@@ -3,6 +3,19 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   isPasswordNotMatch: false,
+  countries: [
+    {
+      'code': 'ID',
+      'name': 'Indonesia',
+      'phone_code': '+62'
+    },
+    {
+      'code': 'TH',
+      'name': 'Thailand',
+      'phone_code': '+66'
+    }
+  ],
+  phone_code: '+62',
 
   usernameChanged: function() {
     var username = this.get('username');
@@ -12,6 +25,16 @@ export default Ember.Controller.extend({
   }.observes('username'),
 
   actions: {
+    changeCountry: function() {
+      var country_code = this.get('country');
+      var countries = this.get('countries');
+      for (var index = 0; index < countries.length; index++) {
+        if (countries[index].code === country_code) {
+          this.set('phone_code', countries[index].phone_code);
+        }
+      }
+    },
+
     matchPassword: function() {
       var password = this.get('password');
       var repassword = this.get('repassword');
@@ -35,11 +58,12 @@ export default Ember.Controller.extend({
       var email = this.get('email');
       var password = this.get('password');
       var username = this.get('username');
-      var phone_number = this.get('phone_number');
+      var phone_number = this.get('phone_code') + this.get('phone_number');
       var first_name = this.get('first_name');
       var last_name = this.get('last_name');
       var shop_name = this.get('shop_name');
       var shop_address = this.get('shop_address');
+      var country = this.get('country');
       var return_address = this.get('return_address');
       var partnership_type = this.get('partnership_type');
 
@@ -52,6 +76,7 @@ export default Ember.Controller.extend({
         last_name: last_name,
         shop_name: shop_name,
         shop_address: shop_address,
+        country: country,
         return_address: return_address,
         partnership_type: partnership_type
       });
