@@ -60,8 +60,8 @@
           {{input type="text" class="form-control" id="InputReturnAddress" placeholder="Return Address" value=return_address required="required"}}
         </div>
         <div class="form-group">
-          <label for="InputReturnAddress">Country</label>
-          {{#x-select id="country" required="required" value=country action="changeCountry"}}
+          <label for="InputReturnAddress">Country</label> <br>
+          {{#x-select id="country" required="required" value=country action="changeCountry" class="country-drop"}}
             {{#each countries as |ctry|}}
               {{#x-option value=ctry.code}}
                 {{ctry.name}}
@@ -80,8 +80,11 @@
             </div>
           </div>
           <div class="checkbox col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
-            <label class="terms-register">
+          <label for="InputPhone" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding"><strong>Which shipping method you prefer?</strong></label>
+            <label class="terms-register" style="margin-top: 10px !important;">
               {{radio-button value="1" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product to the warehouse <br>
+            </label>
+            <label class="terms-register" style="margin-top: 10px !important;">
               {{radio-button value="2" groupValue=partnership_type name="partnership_type" required=true style="position: relative;display: inline-block;margin-left: 0;"}} I want to send product directly to the customer
             </label>
           </div>
