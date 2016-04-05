@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   model: function() {
     this.store.createModel('profile');
   },
+  displaySaveSuccess: false,
   actions: {
     setProfilePicture: function() {
       var file = document.getElementById('photo-file').files[0];
@@ -38,6 +39,7 @@ export default Ember.Controller.extend({
 
       m.save().then(function() {
         controller.set('isSaved', true);
+        controller.set('displaySaveSuccess', true);
         // this.transitionTo('profile');
       }, function(response) {
         console.log(response);
