@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isSaved: false,
   model: function() {
     this.store.createModel('profile');
   },
@@ -29,17 +28,17 @@ export default Ember.Controller.extend({
       var controller = this;
       var file = document.getElementById('photo-file').files[0];
 
-
       if (file) {
         m.set('photo', file);
       }
 
       m.set('seller_type', '2');
       m.set('payment_method', '1');
-
+      controller.set('displaySaveSuccess', false);
+        
       m.save().then(function() {
-        controller.set('isSaved', true);
         controller.set('displaySaveSuccess', true);
+        controller.model.reload();
         // this.transitionTo('profile');
       }, function(response) {
         console.log(response);
