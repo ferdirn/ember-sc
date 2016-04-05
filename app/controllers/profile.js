@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isSaved: false,
   model: function() {
     this.store.createModel('profile');
   },
@@ -38,7 +37,6 @@ export default Ember.Controller.extend({
       controller.set('displaySaveSuccess', false);
         
       m.save().then(function() {
-        controller.set('isSaved', true);
         controller.set('displaySaveSuccess', true);
         controller.model.reload();
         // this.transitionTo('profile');
