@@ -38,6 +38,7 @@ export default Ember.Controller.extend({
 
       m.save().then(function() {
         controller.set('isSaved', true);
+        controller.model.reload();
         // this.transitionTo('profile');
       }, function(response) {
         console.log(response);
