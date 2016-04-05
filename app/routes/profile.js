@@ -10,7 +10,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   setupController: function(controller, model) {
       controller.set('model', model);
+      controller.set('displaySaveSuccess', false);
   }
-  
-  
 });

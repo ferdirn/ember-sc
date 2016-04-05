@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   model: function() {
     this.store.createModel('profile');
   },
+  displaySaveSuccess: false,
   actions: {
     setProfilePicture: function() {
       var file = document.getElementById('photo-file').files[0];
@@ -28,16 +29,17 @@ export default Ember.Controller.extend({
       var controller = this;
       var file = document.getElementById('photo-file').files[0];
 
-
       if (file) {
         m.set('photo', file);
       }
 
       m.set('seller_type', '2');
       m.set('payment_method', '1');
-
+      controller.set('displaySaveSuccess', false);
+        
       m.save().then(function() {
         controller.set('isSaved', true);
+        controller.set('displaySaveSuccess', true);
         controller.model.reload();
         // this.transitionTo('profile');
       }, function(response) {
