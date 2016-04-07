@@ -17,10 +17,10 @@ export default Ember.Controller.extend({
       };
       reader.readAsDataURL(file);
     },
-    chooseSellerType: function(value, component) {
+    chooseSellerType: function(value) {
       this.set('model.seller_type', value);
     },
-    choosePaymentType: function(value, component) {
+    choosePaymentType: function(value) {
       this.set('model.payment_method', value);
     },
     save: function() {
@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
       m.set('seller_type', '2');
       m.set('payment_method', '1');
       controller.set('displaySaveSuccess', false);
-        
+
       m.save().then(function() {
         controller.set('displaySaveSuccess', true);
         controller.model.reload();
