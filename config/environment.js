@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var API_HOST = 'http://api.bilna.local';
+  var API_HOST = 'http://api.bilna.com';
 
   switch(environment) {
     case 'production':
@@ -31,6 +31,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_HOST: API_HOST
     },
     pace: {
       theme: 'minimal',
