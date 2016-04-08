@@ -87,7 +87,7 @@ export default Ember.Controller.extend({
       registration.save().then(function(result) {
         Ember.Logger.log(result);
         self.transitionToRoute('auth.login').then(function(newRoute) {
-          newRoute.controller.set('message', 'Congratulations! You have successfully registered with Moxy Seller Center<br>');
+          newRoute.controller.set('message', 'Congratulations! You have successfully registered with Bilna Seller Center<br>');
         });
       }).catch(function(reason) {
         if (reason.message !== undefined) {
