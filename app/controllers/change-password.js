@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
 
 			function onSuccess() {
 				self.set('displayPassChanged', true);
-				Ember.$('#changePasswordForm').reset();
+				Ember.$('#changePasswordForm').trigger('reset');
 			}
 
 			function onFailed() {
