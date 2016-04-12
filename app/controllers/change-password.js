@@ -34,7 +34,8 @@ export default Ember.Controller.extend({
 
 			var changePassword = this.store.createRecord('change-password', {
 				old_password: oldPassword,
-				new_password: newPassword
+				new_password: newPassword,
+				retype_new_password: newRepassword
 			});
 
 			function onSuccess() {
