@@ -3,6 +3,69 @@
   Please fill the <b>Shop Name</b> first before uploading your product. Please visit this link <a href="/profile" class="alert-link">Profile</a> to fill your shop name
 </div>
 {{/if}}
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Special Price Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive"> 
+            <table class="table">
+            <thead>
+            <tr>
+            <th>Special Price</th>
+            <th>Cost Price </th>
+            <th>Start Date </th>
+            <th>End Date</th>
+          </tr>
+          </thead>
+            <tbody>
+              <tr>
+            <td>{{#if model.special_price}}
+                    Rp. {{model.special_price}}
+                  {{else}}
+                    <span style="color:red;">The price is still empty</span>
+                {{/if}}
+            </td>
+            <td>{{#if model.special_cost}}
+                    Rp. {{model.special_cost}}
+                  {{else}}
+                    <span style="color:red;">The cost is still empty</span>
+                {{/if}}
+            </td>
+            <td>{{#if model.special_from_date}}
+                    {{model.special_from_date}}
+                  {{else}}
+                    <span style="color:red;">The start date is still empty</span>
+                {{/if}}
+            </td>
+            <td>{{#if model.special_to_date}}
+                    {{model.special_to_date}}
+                  {{else}}
+                    <span style="color:red;">The end date is still empty</span>
+                {{/if}}
+            </td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+            <p>
+              are you sure to use the data for special price?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-hollow btn-size-small" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-size-small btn-primary nomargin" {{action 'processSpecialPrice'}}>Request Approval</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
 
 <form {{action "save" on="submit"}} enctype="multipart/form-data">
 
@@ -369,29 +432,46 @@
           </p>
         </div>
       </div>
-      <form {{action "save" on="submit"}} enctype="multipart/form-data">
-        <div class="form-group bottom-spacer in-block full-width special-price-space" id="contenttimed">
+        {{#if canEditSpecialPrice}}
+        <form {{!-- {{action "saveSpecials" on="submit"}}  --}}enctype="multipart/form-data">
+          <div class="form-group bottom-spacer in-block full-width special-price-space" id="contenttimed">
+            {{#if isSpecialEmptyMessage}}
+          <div class="col-lg-12 nopadding">
+            <div class="alert alert-danger alert-dismissible noradius" role="alert">
+              {{errorMessageSpecial}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+          </div>
+        {{/if}}
           <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">Special Price</label>
           <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12  nopaddingleft bottom-spacer">
-            {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" value=model.special_price}}
+            {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" required="required" value=model.special_price}}
           </div>
           <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
-            {{input type="number" placeholder="cost in rupiah" min="1" name="name" value="" class="form-control" value=model.special_cost}}
+            {{input type="number" placeholder="cost in rupiah" min="1" name="name" value="" class="form-control " value=model.special_cost required="required"}}
           </div>
           <div class="clearfix"></div>
-          <div class="col-sm-12 nopadding bottom-spacer">
-            {{date-picker class="text-center date-picking" valueFormat="YYYY-MM-DD" date=model.special_from_date}} to
-            {{date-picker class="text-center date-picking" valueFormat="YYYY-MM-DD" date=model.special_to_date}}
+          <div class="col-sm-12 nopadding botom-spacer">
+            <div class="col-lg-5 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
+              {{date-picker class="text-center date-picking full-width" valueFormat="YYYY-MM-DD" date=model.special_from_date required="required"}}
+            </div>
+            <div class="col-lg-2 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer text-center">
+             to
+           </div>
+             <div class="col-lg-5 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
+               {{date-picker class="text-center date-picking full-width" valueFormat="YYYY-MM-DD" date=model.special_to_date required="required"}}
+             </div>
           </div>
           <blockquote class="exp">
             <footer><cite title="Source Title">Special price is useful when you want to set a discounted price for customers within a date range.</cite></footer>
           </blockquote>
           <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12 nopadding in-block full-width">
-      <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
-      <button type="submit" class="btn btn-blue btn-size-small" disabled={{ isEmptyShopName }}>Request approval</button>
-    </div>
+            <button type="reset" class="btn btn-hollow btn-size-small">Reset</button>
+            <button type="submit" class="btn btn-blue btn-size-small" {{action 'confirmSpecial'}} disabled={{ isEmptyShopName }}>Confirm</button>
+          </div>
         </div>
       </form>
+      {{/if}}
     </div>
   </div>
 
