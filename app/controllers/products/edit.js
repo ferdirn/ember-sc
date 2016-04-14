@@ -219,10 +219,10 @@ export default Ember.Controller.extend({
 
 
       var saveSpeciaPrice =  this.store.createRecord('special-price', {
-        specialPrice: specialPrice,
-        specialCost: specialCost,
-        specialFromDate: specialFromDate,
-        specialToDate: specialToDate
+        special_price: specialPrice,
+        special_cost: specialCost,
+        special_from_date: specialFromDate,
+        special_to_date: specialToDate
       });
 
       function onSuccess(){
