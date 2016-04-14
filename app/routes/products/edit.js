@@ -12,6 +12,7 @@ export default Ember.Route.extend({
     model.set('primaryImage', model.get('image'));
     controller.set('model', model);
     controller.set('edit', true);
+    controller.set('canEditSpecialPrice', true);
 
     if (model.get('subcategory') !== 0) {
       controller.set('hasLevel2Category', true);
