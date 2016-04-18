@@ -201,13 +201,7 @@ export default Ember.Controller.extend({
 
         this.set('isSpecialEmptyMessage', false);
       }
-
-      console.log(productId);
-      console.log(specialPrice);
-      console.log(specialFromDate);
-      console.log(specialToDate);
-      console.log(specialCost);
-
+      
       Ember.$('.bs-example-modal-lg').modal('toggle');
 
     },
