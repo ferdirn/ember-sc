@@ -142,29 +142,14 @@ export default Ember.Controller.extend({
       var specialCost = this.get('model.special_cost');
       var specialFromDate = this.get('model.special_from_date');
       var specialToDate = this.get('model.special_to_date');
-
-      console.log(specialPrice);
-      console.log(specialFromDate);
-      console.log(specialToDate);
-      console.log(specialCost);
-
-      Ember.$('.bs-example-modal-lg').modal('toggle');
-
-    },
-    processSpecialPrice: function(){
-
-
-      var specialPrice = this.get('model.special_price');
-      var specialCost = this.get('model.special_cost');
-      var specialFromDate = this.get('model.special_from_date');
-      var specialToDate = this.get('model.special_to_date');
-      var self = this;
+      var productId = this.get('model.id');
+      
 
       var d1 = Date.parse(specialFromDate);
       var d2 = Date.parse(specialToDate);
       if (d1 > d2) {
           Ember.$('.bs-example-modal-lg').modal('hide');
-          this.set('errorMessageSpecial', 'You cannot choose previous date as end date');
+          this.set('errorMessageSpecial', 'You cannot choose previous date as end date.');
           this.set('isSpecialEmptyMessage', true);
           return false;
       }
@@ -172,7 +157,7 @@ export default Ember.Controller.extend({
       if (specialPrice === undefined || specialPrice === '') {
 
         Ember.$('.bs-example-modal-lg').modal('hide');
-        this.set('errorMessageSpecial', 'Special Price empty');
+        this.set('errorMessageSpecial', 'Special Price cannot be empty.');
         this.set('isSpecialEmptyMessage', true);
         return false;
 
@@ -184,7 +169,7 @@ export default Ember.Controller.extend({
       if (specialCost === undefined || specialCost === '') {
 
         Ember.$('.bs-example-modal-lg').modal('hide');
-        this.set('errorMessageSpecial', 'Special Cost empty');
+        this.set('errorMessageSpecial', 'Special Cost cannot be empty.');
         this.set('isSpecialEmptyMessage', true);
         return false;
 
@@ -196,7 +181,7 @@ export default Ember.Controller.extend({
       if (specialFromDate === undefined || specialFromDate === '') {
 
         Ember.$('.bs-example-modal-lg').modal('hide');
-        this.set('errorMessageSpecial', 'Date Start is empty');
+        this.set('errorMessageSpecial', 'Date Start cannot be empty.');
         this.set('isSpecialEmptyMessage', true);
         return false;
 
@@ -208,7 +193,7 @@ export default Ember.Controller.extend({
       if (specialToDate === undefined || specialToDate === '') {
 
         Ember.$('.bs-example-modal-lg').modal('hide');
-        this.set('errorMessageSpecial', 'Date End empty');
+        this.set('errorMessageSpecial', 'Date End cannot be empty.');
         this.set('isSpecialEmptyMessage', true);
         return false;
 
@@ -217,8 +202,26 @@ export default Ember.Controller.extend({
         this.set('isSpecialEmptyMessage', false);
       }
 
+      console.log(productId);
+      console.log(specialPrice);
+      console.log(specialFromDate);
+      console.log(specialToDate);
+      console.log(specialCost);
+
+      Ember.$('.bs-example-modal-lg').modal('toggle');
+
+    },
+    processSpecialPrice: function(){
+
+      var productId = this.get('model.id');
+      var specialPrice = this.get('model.special_price');
+      var specialCost = this.get('model.special_cost');
+      var specialFromDate = this.get('model.special_from_date');
+      var specialToDate = this.get('model.special_to_date');
+      var self = this;
 
       var saveSpeciaPrice =  this.store.createRecord('special-price', {
+        product_id: productId,
         special_price: specialPrice,
         special_cost: specialCost,
         special_from_date: specialFromDate,
@@ -229,7 +232,7 @@ export default Ember.Controller.extend({
         self.transitionToRoute('products.detail', saveSpeciaPrice.id);
       }
       function onFailed(){
-        self.set('errorMessageSpecial', 'Server is busy, please try again.');
+        self.set('errorMessageSpecial', 'Server is busy, please try again in few minutes.');
         self.set('isSpecialEmptyMessage', true);
       }
       saveSpeciaPrice.save().then(onSuccess, onFailed);
