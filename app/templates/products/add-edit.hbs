@@ -239,6 +239,14 @@
       {{/if}}
 
     </div>
+
+    <div class="form-group">
+      <label for="price" class="text-title">Product Status </label>
+      <select onchange={{action "checkStatus" value="target.value"}} name="" id="" class="country-drop" required="required">
+        <option value="1">Publish product</option>
+        <option value="2">Make product as draft</option>
+      </select>
+    </div>
     <div class="form-group bottom-spacer in-block full-width" style="display: none;">
       <div class="col-lg-9 nopadding">
         <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">

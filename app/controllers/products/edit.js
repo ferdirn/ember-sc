@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
   isSpecialCostEmpty:false,
   errorMessageSpecial: null,
 
+
   actions: {
     save: function() {
       var data = this.get('model');
@@ -142,11 +143,9 @@ export default Ember.Controller.extend({
       var specialCost = this.get('model.special_cost');
       var specialFromDate = this.get('model.special_from_date');
       var specialToDate = this.get('model.special_to_date');
-      var productId = this.get('model.id');
-      
-
       var d1 = Date.parse(specialFromDate);
       var d2 = Date.parse(specialToDate);
+
       if (d1 > d2) {
           Ember.$('.bs-example-modal-lg').modal('hide');
           this.set('errorMessageSpecial', 'You cannot choose previous date as end date.');
@@ -201,9 +200,12 @@ export default Ember.Controller.extend({
 
         this.set('isSpecialEmptyMessage', false);
       }
-      
+
       Ember.$('.bs-example-modal-lg').modal('toggle');
 
+    },
+    checkStatus: function(value){
+      this.set('model.status', value);
     },
     processSpecialPrice: function(){
 
