@@ -7,6 +7,10 @@ export default Ember.Controller.extend({
   isEmptyParentCategory: false,
   isEmptySubCategory: false,
   isEmptyCategory: false,
+  isSpecialEmptyMessage:false,
+  isSpecialPriceEmpty:false,
+  isSpecialCostEmpty:false,
+  errorMessageSpecial: null,
 
   actions: {
     save: function() {
@@ -129,6 +133,106 @@ export default Ember.Controller.extend({
 
     },
     deleteImage: function() {
+    },
+    confirmSpecial: function(){
+
+      this.set('isSpecialEmptyMessage', false);
+
+      var specialPrice = this.get('model.special_price');
+      var specialCost = this.get('model.special_cost');
+      var specialFromDate = this.get('model.special_from_date');
+      var specialToDate = this.get('model.special_to_date');
+      var d1 = Date.parse(specialFromDate);
+      var d2 = Date.parse(specialToDate);
+
+      if (d1 > d2) {
+          Ember.$('.bs-example-modal-lg').modal('hide');
+          this.set('errorMessageSpecial', 'You cannot choose previous date as end date.');
+          this.set('isSpecialEmptyMessage', true);
+          return false;
+      }
+
+      if (specialPrice === undefined || specialPrice === '') {
+
+        Ember.$('.bs-example-modal-lg').modal('hide');
+        this.set('errorMessageSpecial', 'Special Price cannot be empty.');
+        this.set('isSpecialEmptyMessage', true);
+        return false;
+
+      } else {
+
+        this.set('isSpecialEmptyMessage', false);
+      }
+
+      if (specialCost === undefined || specialCost === '') {
+
+        Ember.$('.bs-example-modal-lg').modal('hide');
+        this.set('errorMessageSpecial', 'Special Cost cannot be empty.');
+        this.set('isSpecialEmptyMessage', true);
+        return false;
+
+      } else {
+
+        this.set('isSpecialEmptyMessage', false);
+      }
+
+      if (specialFromDate === undefined || specialFromDate === '') {
+
+        Ember.$('.bs-example-modal-lg').modal('hide');
+        this.set('errorMessageSpecial', 'Date Start cannot be empty.');
+        this.set('isSpecialEmptyMessage', true);
+        return false;
+
+      } else {
+
+        this.set('isSpecialEmptyMessage', false);
+      }
+
+      if (specialToDate === undefined || specialToDate === '') {
+
+        Ember.$('.bs-example-modal-lg').modal('hide');
+        this.set('errorMessageSpecial', 'Date End cannot be empty.');
+        this.set('isSpecialEmptyMessage', true);
+        return false;
+
+      } else {
+
+        this.set('isSpecialEmptyMessage', false);
+      }
+
+      Ember.$('.bs-example-modal-lg').modal('toggle');
+
+    },
+    checkStatus: function(value){
+      this.set('model.status', value);
+    },
+    processSpecialPrice: function(){
+      var productId = this.get('model.id');
+      var specialPrice = this.get('model.special_price');
+      var specialCost = this.get('model.special_cost');
+      var specialFromDate = this.get('model.special_from_date');
+      var specialToDate = this.get('model.special_to_date');
+      var self = this;
+
+      var saveSpeciaPrice =  this.store.createRecord('special-price', {
+        product_id: productId,
+        special_price: specialPrice,
+        special_cost: specialCost,
+        special_from_date: specialFromDate,
+        special_to_date: specialToDate
+      });
+
+      function onSuccess(){
+        Ember.$('.modal-backdrop').hide('fast');
+        self.transitionToRoute('products.detail', productId);
+      }
+
+      function onFailed(){
+        self.set('errorMessageSpecial', 'Server is busy, please try again in few minutes.');
+        self.set('isSpecialEmptyMessage', true);
+      }
+
+      saveSpeciaPrice.save().then(onSuccess, onFailed);
     },
     selectPicture: function() {
       var model = this.get('model');
