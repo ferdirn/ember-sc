@@ -13,7 +13,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <div class="table-responsive"> 
+            <div class="table-responsive">
             <table class="table">
             <thead>
             <tr>
@@ -55,6 +55,9 @@
           </div>
             <p>
               are you sure to use the data for special price?
+            </p>
+            <p>
+              * will be activated after marketplace admin approve it
             </p>
           </div>
         </div>
@@ -450,7 +453,14 @@
             </div>
           </div>
         {{/if}}
-          <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">Special Price</label>
+          <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+            Special Price &nbsp;
+            {{#if model.is_special_price_approved}}
+              (Approved)
+            {{else}}
+              (Not approved yet)
+            {{/if}}
+          </label>
           <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12  nopaddingleft bottom-spacer">
             {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" required="required" value=model.special_price}}
           </div>
