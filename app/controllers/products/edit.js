@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
   isSpecialCostEmpty:false,
   errorMessageSpecial: null,
 
-
   actions: {
     save: function() {
       var data = this.get('model');
@@ -208,7 +207,6 @@ export default Ember.Controller.extend({
       this.set('model.status', value);
     },
     processSpecialPrice: function(){
-
       var productId = this.get('model.id');
       var specialPrice = this.get('model.special_price');
       var specialCost = this.get('model.special_cost');
@@ -225,12 +223,15 @@ export default Ember.Controller.extend({
       });
 
       function onSuccess(){
-        self.transitionToRoute('products.detail', saveSpeciaPrice.id);
+        Ember.$('.modal-backdrop').hide('fast');
+        self.transitionToRoute('products.detail', productId);
       }
+
       function onFailed(){
         self.set('errorMessageSpecial', 'Server is busy, please try again in few minutes.');
         self.set('isSpecialEmptyMessage', true);
       }
+
       saveSpeciaPrice.save().then(onSuccess, onFailed);
     },
     selectPicture: function() {

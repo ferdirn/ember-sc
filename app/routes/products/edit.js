@@ -5,10 +5,11 @@ export default Ember.Route.extend({
   renderTemplate: function() {
     this.render('products.add-edit');
   },
-  model: function(params, transition) {
+  model: function(params) {
     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
+    model.reload();
     model.set('primaryImage', model.get('image'));
     controller.set('model', model);
     controller.set('edit', true);
