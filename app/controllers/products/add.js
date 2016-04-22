@@ -125,6 +125,9 @@ export default Ember.Controller.extend({
       this.set('model.price', Ember.$('#price').val());
       this.set('seller_price', seller_price);
     },
+    checkStatus: function(value){
+      this.set('model.status', value);
+    },
     selectPicture: function() {
       var model = this.get('model');
       var file = document.getElementById('files').files[0];
