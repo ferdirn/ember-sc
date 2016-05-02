@@ -185,13 +185,29 @@
           {{textarea class="form-control maximum-width" rows="8" value=model.description required="required" }}
         </div>
 
-        <div class="form-group col-lg-5 nopadding">
-          <label for="weight" class="text-title">Weight (kg) </label>
-          {{ input type="number" class="form-control" id="weight" min="0.001" step="0.001" placeholder="Enter product weight" value=model.weight required="required" }}
+        <div class="form-group col-lg-3 col-xs-3 nopadding">
+          <label for="weight" class="text-title same-height">Weight (kg) </label>
+          {{ input type="number" class="form-control" id="weight" min="0.001" step="0.001" placeholder="1.520" value=model.weight required="required" }}
         </div>
-        <div class="form-group col-lg-6 pull-right nopadding">
-          <label class="text-title" for="exampleInputFile" class="col-lg-12 text-title">Available Stock</label>
-          {{ input type="number" class="form-control" min="0" value=model.qty required="required" }}
+
+        <div class="form-group col-lg-2 col-xs-2">
+          <label for="width" class="text-title same-height">Width (cm) </label>
+          {{ input type="number" class="form-control" id="width" min="0.10" step="0.01" placeholder="1.70" value=model.width required="required" }}
+        </div>
+
+        <div class="form-group col-lg-2 col-xs-2">
+          <label for="length" class="text-title same-height">Length (cm) </label>
+          {{ input type="number" class="form-control" id="length" min="0.10" step="0.01" placeholder="2.00" value=model.length required="required" }}
+        </div>
+
+        <div class="form-group col-lg-2 col-xs-2">
+          <label for="height" class="text-title same-height">Height (cm) </label>
+          {{ input type="number" class="form-control" id="height" min="0.10" step="0.01" placeholder="4.85" value=model.height required="required" }}
+        </div>
+
+        <div class="form-group col-lg-3 col-xs-3 pull-right nopadding">
+          <label class="text-title same-height" for="stock" class="col-lg-12 text-title">Stock</label>
+          {{ input type="number" class="form-control" id="stock" min="1" value=model.qty required="required" placeholder="5" }}
         </div>
 
         <div class="form-group">
