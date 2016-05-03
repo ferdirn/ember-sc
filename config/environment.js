@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var API_HOST = 'http://api.bilna.com';
+  var API_HOST = 'http://api.bilna.local';
 
   switch(environment) {
     case 'production':

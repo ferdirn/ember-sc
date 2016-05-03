@@ -2,6 +2,8 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  categoryLevels: 10,
+
   renderTemplate: function() {
     this.render('products.add-edit');
   },
@@ -12,9 +14,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     Ember.Logger.log('Entering products.add route.setupController');
 
     controller.set('model', model);
-    controller.set('hasLevel2Category', false);
-    controller.set('hasLevel3Category', false);
     controller.set('canEditSpecialPrice', false);
+    controller.set('categoryLevels', this.get('categoryLevels'));
+
+    for (var i = 1; i < this.get('categoryLevels'); i++) {
+      var j = i + 1;
+      controller.set('hasLevel' + j + 'Category', false);
+    }
 
     // Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
     //   controller.set('productAttributes', data);

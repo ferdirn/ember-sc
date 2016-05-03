@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     },
     save: function(){
       var self = this;
-      var checker = document.getElementById('fname').value; 
+      var checker = document.getElementById('fname').value;
       var upload = self.store.createRecord('reset-password',{
         email: this.get('fname')
       });
@@ -21,12 +21,12 @@ export default Ember.Controller.extend({
         return false;
       }
       function onSuccess(data) {
-        var token = data.get('token');
+        // var token = data.get('token');
         self.set('displayMessage', true);
         self.set('isUsernameNotFound', true);
       }
-      function onFailed(data) {
-        self.set('displayMessage', true);      
+      function onFailed() {
+        self.set('displayMessage', true);
         self.set('isUsernameNotFound', false);
       }
       upload.save().then(onSuccess, onFailed);

@@ -17,7 +17,6 @@ export default DS.Model.extend({
   height: DS.attr(),
   status: DS.attr(),
   approved: DS.attr(),
-  categories: DS.attr(),
   websites: DS.attr(),
   tax_class: DS.attr(),
   url_key: DS.attr(),
@@ -32,7 +31,7 @@ export default DS.Model.extend({
   image: DS.attr('file'),
   primaryImage: DS.attr('file'),
   images: DS.attr(),
-  d_categories: DS.attr(),
-  parentcategory: DS.attr(),
-  subcategory: DS.attr()
+  categories: DS.attr(),
+  category: DS.attr(),
+  d_categories: DS.attr()
 });
