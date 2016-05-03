@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  
+
   actions: {
     setPicture: function() {
       var file = document.getElementById('photo-file').files[0];
@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
       var m = this.get('model');
       var controller = this;
       var file = document.getElementById('photo-file').files[0];
-      
+
 
       if (file) {
         m.set('photo', file);
@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
 
       m.save().then(function() {
          controller.transitionTo('warehouse-item.list');
-      }, function(response) {
+      }, function() {
         //console.log(response);
       });
 
