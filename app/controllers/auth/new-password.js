@@ -15,10 +15,10 @@ export default Ember.Controller.extend({
 	},
 	save: function()
 	{
-    var self = this;
+    	var self = this;
 		function getUrlVars() {
 			var vars = {};
-			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 				vars[key] = value;
 			});
 			return vars;
@@ -32,12 +32,12 @@ export default Ember.Controller.extend({
 			password: this.get('password'),
 			repassword: this.get('repassword')
 		});
-		function onSuccess(data) {
+		function onSuccess() {
             self.transitionTo('auth.login');
         }
-        function onFailed(data) {
+        function onFailed() {
             alert('reset password failed');
         }
 		upload.save().then(onSuccess, onFailed);
 	}
-	});
+});
