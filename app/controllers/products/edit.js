@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  discount_percentage: 0,
+  seller_price: 0,
   hasLevel2Category: false,
   hasLevel3Category: false,
   isEmptyParentCategory: false,
@@ -14,37 +16,20 @@ export default Ember.Controller.extend({
 
   actions: {
     save: function() {
+      Ember.Logger.log('Entering product edit save');
+
       var data = this.get('model');
       delete data.d_categories;
 
-      if (data.get('product_sku') === null) {
-        data.set('product_sku', '');
-      }
-
-      var parentCategory = data.get('parentcategory');
-      var subCategory = data.get('subcategory');
-      var category = data.get('categories');
-
-      var hasLevel2Category = this.get('hasLevel2Category');
-      var hasLevel3Category = this.get('hasLevel3Category');
-
-      if (typeof parentCategory === 'undefined') {
-        this.set('isEmptyParentCategory', true);
-        return false;
-      }
-
-      if (hasLevel2Category && typeof subCategory === 'undefined') {
-        this.set('isEmptySubCategory', true);
-        return false;
-      }
-
-      if (hasLevel3Category && typeof category === 'undefined') {
+      if (data.get('category') === undefined) {
         this.set('isEmptyCategory', true);
         return false;
+      } else {
+        this.set('isEmptyCategory', false);
       }
 
-      if (!hasLevel3Category) {
-        data.set('categories', 0);
+      if (data.get('product_sku') === null) {
+        data.set('product_sku', '');
       }
 
       // if (data.get('special_price') === '') {
@@ -64,63 +49,47 @@ export default Ember.Controller.extend({
         self.transitionToRoute('products.detail', data.id);
       });
     },
-    chooseCategory: function(value) {
-      if (typeof value === 'undefined') {
-        this.set('hasLevel2Category', false);
-        this.set('hasLevel3Category', false);
-        return false;
+    hideCategories: function(value) {
+      for (var i=value; i < this.get('categoryLevels'); i++) {
+        var j = i + 1;
+        this.set('hasLevel' + j + 'Category', false);
       }
-      this.set('parent_category', value);
-      this.set('isEmptyParentCategory', false);
-
-      var model = this.get('model');
-      model.set('subcategory', undefined);
-      model.set('categories', undefined);
-
-      var self = this;
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
-        if (data.length > 0) {
-          self.set('hasLevel2Category', true);
-          self.set('hasLevel3Category', false);
-          self.set('model.d_categories.2', data);
-          self.set('subcategories', data);
-        } else {
-          self.set('hasLevel2Category', false);
-          self.set('hasLevel3Category', false);
-        }
-      });
     },
-    chooseSubCategory: function(value) {
-      if (typeof value === 'undefined') {
-        this.set('hasLevel3Category', false);
-        return false;
+    chooseLevelCategory: function(value, component) {
+      // Ember.Logger.log(value );
+      // Ember.Logger.log(component.attrs.id);
+      var id = component.attrs.id;
+      var number = parseInt(id.substring(8));
+      // Ember.Logger.log(number);
+      var self = this;
+      var next_number = number + 1;
+      this.send('hideCategories', number);
+      var model = self.get('model');
+      if (value === 0 || value === undefined) {
+        model.set('category', undefined);
+      } else {
+        Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
+          if (data.length > 0) {
+            self.set('level' + next_number + 'Categories', data);
+            self.set('category' + next_number, 0);
+            self.set('hasLevel' + next_number + 'Category', true);
+            model.set('category', undefined);
+          } else {
+            model.set('category', value);
+            Ember.$.getJSON(
+              config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
+            ).then(function(data) {
+              self.set('discount_percentage', data.commission_percentage);
+              if (model.get('price') === undefined) {
+                self.set('seller_price', 0);
+              } else {
+                var seller_price = model.get('price') - (model.get('price') * (data.commission_percentage/100));
+                self.set('seller_price', seller_price);
+              }
+            });
+          }
+        });
       }
-      this.set('sub_category', value);
-      this.set('isEmptySubCategory', false);
-
-      var model = this.get('model');
-      model.set('categories', undefined);
-
-      var self = this;
-      Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
-        if (data.length > 0) {
-          self.set('hasLevel3Category', true);
-          self.set('subsubcategories', data);
-          self.set('model.d_categories.3', data);
-        } else {
-          self.set('hasLevel3Category', false);
-        }
-      });
-    },
-    chooseSubSubCategory: function(value) {
-      var self = this;
-      this.set('model.categories', value);
-      var seller_price = this.get('seller_price');
-      Ember.$.getJSON(config.APP.API_HOST + '/api/product/price-commission/', {'category': value}).then(function(data) {
-        self.set('discount_percentage', data.commission_percentage);
-        seller_price = Ember.$('#price').val() - (Ember.$('#price').val() * (data.commission_percentage/100));
-        self.set('seller_price', seller_price);
-      });
       this.set('isEmptyCategory', false);
     },
     priceCommission: function() {
@@ -267,6 +236,9 @@ export default Ember.Controller.extend({
     }
   },
   init: function() {
-
+    var self = this;
+    Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
+      self.set('level1Categories', data);
+    });
   }
 });

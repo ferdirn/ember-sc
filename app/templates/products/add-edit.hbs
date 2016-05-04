@@ -90,8 +90,8 @@
 
           <label for="form-title" class="text-title">Category</label>
           <div class="clearfix"></div>
-          {{#x-select action="chooseCategory" id="category" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomoz" required="required" value=model.parentcategory}}
-          <option value="" disabled="disabled" selected="selected">Select category</option>
+          {{#x-select action="chooseLevelCategory" id="category1" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomoz" required="required" value=category1}}
+          <option value="0" disabled="disabled" selected="selected">Select category</option>
             {{#if model.d_categories.[1] }}
               {{#each model.d_categories.[1] as |cat| }}
                 {{#x-option value=cat.id}}
@@ -99,7 +99,7 @@
                 {{/x-option}}
               {{/each}}
             {{ else }}
-              {{#each categories as |cat| }}
+              {{#each level1Categories as |cat| }}
                 {{#x-option value=cat.id}}
                   {{cat.name}}
                 {{/x-option}}
@@ -108,16 +108,16 @@
           {{/x-select}}
 
           {{#if hasLevel2Category}}
-            {{#x-select action="chooseSubCategory" id="subcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.subcategory}}
-            <option value="" selected="selected">Select category</option>
-              {{#if model.d_categories.[2] }}
-                {{#each model.d_categories.[2]  as |cat|}}
+            {{#x-select action="chooseLevelCategory" id="category2" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category2}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level2Categories }}
+                {{#each level2Categories as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
                 {{/each}}
               {{else}}
-                {{#each subcategories as |cat|}}
+                {{#each model.d_categories.[2] as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
@@ -127,16 +127,16 @@
           {{/if}}
 
           {{#if hasLevel3Category}}
-            {{#x-select action="chooseSubSubCategory" id="subsubcategory" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=model.categories}}
-            <option value="" selected="selected">Select category</option>
-              {{#if model.d_categories.[3] }}
-                {{#each model.d_categories.[3] as |cat| }}
+            {{#x-select action="chooseLevelCategory" id="category3" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category3}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level3Categories }}
+                {{#each level3Categories as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
                 {{/each}}
               {{else}}
-                {{#each subsubcategories as |cat|}}
+                {{#each model.d_categories.[3] as |cat|}}
                   {{#x-option value=cat.id}}
                     {{cat.name}}
                   {{/x-option}}
@@ -144,6 +144,140 @@
               {{/if}}
             {{/x-select}}
           {{/if}}
+
+          {{#if hasLevel4Category}}
+            {{#x-select action="chooseLevelCategory" id="category4" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category4}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level4Categories }}
+                {{#each level4Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[4] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel5Category}}
+            {{#x-select action="chooseLevelCategory" id="category5" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category5}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level5Categories }}
+                {{#each level5Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[5] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel6Category}}
+            {{#x-select action="chooseLevelCategory" id="category6" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category6}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level6Categories }}
+                {{#each level6Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[6] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel7Category}}
+            {{#x-select action="chooseLevelCategory" id="category7" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category7}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level7Categories }}
+                {{#each level7Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[7] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel8Category}}
+            {{#x-select action="chooseLevelCategory" id="category8" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category8}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level8Categories }}
+                {{#each level8Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[8] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel9Category}}
+            {{#x-select action="chooseLevelCategory" id="category9" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category9}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level9Categories }}
+                {{#each level9Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[9] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
+          {{#if hasLevel10Category}}
+            {{#x-select action="chooseLevelCategory" id="category10" class="btn btn-hollow btn-size-small dropdown-toggle drop-custom" required="required" value=category10}}
+            <option value="0" selected="selected">Select category</option>
+              {{#if level10Categories }}
+                {{#each level10Categories as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{else}}
+                {{#each model.d_categories.[10] as |cat|}}
+                  {{#x-option value=cat.id}}
+                    {{cat.name}}
+                  {{/x-option}}
+                {{/each}}
+              {{/if}}
+            {{/x-select}}
+          {{/if}}
+
           <!-- end of mobile display -->
 
         <div class="col-lg-12 nopadding">
@@ -161,7 +295,7 @@
           </div>
           <div class="form-group">
           <label for="brand" class="text-title">Product Brand </label>
-                {{ input type="text" class="form-control" id="brand" placeholder="Enter product brand" value=model.brand}}
+                {{ input type="text" class="form-control" id="brand" placeholder="Enter product brand" value=model.brand required="required"}}
           </div>
 
           <div class="form-group">
@@ -216,7 +350,7 @@
           <div class="col-lg-12 bottom-spacer-bigger"></div>
          <div class="input-group" style="float:left;">
           <div class="input-group-addon">Rp.</div>
-          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="1000" {{action "priceCommission" on="keyUp" allowedKeys="any" }} value="{{model.price}}" />
+          <input type="number" class="form-control" id="price" placeholder="Enter product price"  min="1000" {{action "priceCommission" on="keyUp" allowedKeys="any" }} value="{{model.price}}" required="required" />
         </div>
 </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left commission-cont" style="">
@@ -261,11 +395,18 @@
 
     <div class="form-group">
       <label for="price" class="text-title">Product Status </label>
-      <select onchange={{action "checkStatus" value="target.value"}} name="" id="" class="country-drop" required="required">
+      <select onchange={{action "checkStatus" value="target.value"}} name="" id="" class="country-drop" required="required" value="{{model.status}}">
         <option value="1">Publish product</option>
         <option value="2">Make product as draft</option>
       </select>
     </div>
+
+    {{#if isEmptyCategory}}
+    <div class="alert alert-danger shop-name-error" role="alert">
+      Please select all categories!
+    </div>
+    {{/if}}
+
     <div class="form-group bottom-spacer in-block full-width" style="display: none;">
       <div class="col-lg-9 nopadding">
         <input type="button" class="btn btn-hollow btn-size-regular nomargin" data-toggle="modal" data-target="#myModal" value="add more option">
