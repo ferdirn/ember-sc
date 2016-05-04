@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
         return false;
       }
       function onSuccess(data) {
+        Ember.Logger.log(data);
         // var token = data.get('token');
         self.set('displayMessage', true);
         self.set('isUsernameNotFound', true);

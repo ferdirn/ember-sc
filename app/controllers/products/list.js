@@ -32,7 +32,6 @@ export default Ember.Controller.extend({
       this.set('number', number);
     },
     isActive: function(value){
-      var self = this;
       console.log(value);
       this.set('number', value);
     },
@@ -47,8 +46,8 @@ export default Ember.Controller.extend({
     toggleOrder: function(property) {
       var newSortProperties = Ember.A();
       var descProperty = property + ':desc';
-      var currentProperty = this.get('sortProperties')[0].split(':'); 
-      
+      var currentProperty = this.get('sortProperties')[0].split(':');
+
       // only toggle if the same property is clicked again
       if (property === currentProperty[0]) {
         this.toggleProperty('sortAscending');
@@ -67,45 +66,45 @@ export default Ember.Controller.extend({
       this.send('selectPage', 1);
     }
   },
-  
-  
+
+
   page: 1,
   perPage: 10,
   totalPages: (function() {
     return Math.ceil(this.get('model').get('length') / this.get('perPage'));
   }).property('length', 'perPage'),
-  
+
   pages: (function() {
     var collection = Ember.A();
-    
+
     for(var i = 0; i < this.get('totalPages'); i++) {
       collection.pushObject(Ember.Object.create({
         number: i + 1,
       }));
     }
 
-    return collection;      
+    return collection;
   }).property('totalPages'),
-  
+
   hasPages: (function() {
     return this.get('totalPages') > 1;
   }).property('totalPages'),
-  
+
   prevPage: (function() {
     var page = this.get('page');
     var totalPages = this.get('totalPages');
-    
+
     if(page > 1 && totalPages > 1) {
       return page - 1;
     } else {
       return null;
     }
   }).property('page', 'totalPages'),
-  
+
   nextPage: (function() {
     var page = this.get('page');
     var totalPages = this.get('totalPages');
-    
+
     if(page < totalPages && totalPages > 1) {
       return page + 1;
     } else {
@@ -113,9 +112,9 @@ export default Ember.Controller.extend({
     }
   }).property('page', 'totalPages'),
 
-  
+
   paginatedContent: (function() {
     return this.get('model');
   }),
-  
+
 });

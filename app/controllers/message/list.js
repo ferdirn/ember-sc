@@ -6,9 +6,9 @@ export default Ember.Controller.extend({
   },
   actions: {
     displayMessage: function(value) {
-        var self = this;
         this.set('currentMessage', this.store.find('message', value.get('id')));
         Ember.$.getJSON(config.APP.API_HOST + '/api/message/read/' + value.get('id') + '/').then(function(data) {
+          Ember.Logger.log(data);
         });
     },
     sendMessage: function(value) {
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
         subject: 'Re: ' + value.get('subject'),
         message_id: value.get('id')
       });
-      compose.save().then(function(result) {
+      compose.save().then(function() {
         self.set('model', self.store.findAll('message'));
         self.set('currentMessage', self.store.find('message', value.get('id')));
         self.set('body', '');

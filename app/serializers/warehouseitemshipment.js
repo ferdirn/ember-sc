@@ -20,5 +20,5 @@ export default DRFSerializer.extend({
     serializer.serializeIntoHash(data, type, snapshot, { includeId: true });
         console.log(data);
       return this.ajax(url, "POST", { data: data });
-                                                                }
+  }
 });
