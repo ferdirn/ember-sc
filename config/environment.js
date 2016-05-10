@@ -5,11 +5,11 @@ module.exports = function(environment) {
 
   switch(environment) {
     case 'production':
-      API_HOST = 'http://api.bilna.com';
+      API_HOST = 'http://api.orami.co.id';
       break;
 
     case 'staging':
-      API_HOST = 'http://stage.api.bilna.com';
+      API_HOST = 'http://stage.api.orami.co.id';
       break;
 
     default:
