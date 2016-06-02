@@ -13,6 +13,9 @@ export default Ember.Controller.extend({
   isSpecialPriceEmpty:false,
   isSpecialCostEmpty:false,
   errorMessageSpecial: null,
+  errorMsg: '',
+  isErrorName: false,
+  isErrorUpcCode: false,
 
   actions: {
     save: function() {
@@ -47,6 +50,19 @@ export default Ember.Controller.extend({
       var self = this;
       data.save().then(function(data) {
         self.transitionToRoute('products.detail', data.id);
+      }).catch(function(reason) {
+        var detail = reason.errors[0].detail;
+        self.set('errorMsg', detail.msg);
+        if (detail.type === 'name') {
+          self.set('isErrorName', true);
+          self.set('isErrorUpcCode', false);
+          Ember.$('#name').focus();
+        }
+        if (detail.type === 'upc_code') {
+          self.set('isErrorUpcCode', true);
+          self.set('isErrorName', false);
+          Ember.$('#upc_code').focus();
+        }
       });
     },
     hideCategories: function(value) {
