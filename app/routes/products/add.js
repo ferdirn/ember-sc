@@ -22,6 +22,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       controller.set('hasLevel' + j + 'Category', false);
     }
 
+    controller.set('category1', 0);
+
     // Ember.$.getJSON(config.APP.API_HOST + '/api/product-attributes/').then(function(data) {
     //   controller.set('productAttributes', data);
     // });
