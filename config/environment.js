@@ -72,6 +72,7 @@ module.exports = function(environment) {
     authenticationRoute: 'auth.login',
     authorizer: 'simple-auth-authorizer:token',
     routeAfterAuthentication: 'dashboard',
+    routeIfAlreadyAuthenticated: 'dashboard',
     crossOriginWhitelist: ['*']
   };
 
