@@ -11,9 +11,10 @@ export default Ember.Route.extend({
         self.transitionTo('/not-found');
       });
       */
-     return this.get('store').find('product', params.id); 
+     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
-      controller.set('model', model);
+    model.reload();
+    controller.set('model', model);
   }
 });
