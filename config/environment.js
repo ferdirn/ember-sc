@@ -12,6 +12,10 @@ module.exports = function(environment) {
       API_HOST = 'http://stage.api.orami.co.id';
       break;
 
+    case 'stagez':
+      API_HOST = 'http://stagez.api.orami.co.id';
+      break;
+
     default:
       break;
   }
