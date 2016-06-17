@@ -13,7 +13,7 @@ module.exports = function(environment) {
       break;
 
     case 'stagez':
-      API_HOST = 'http://stagez.api.orami.co.id';
+      API_HOST = 'http://stagez.api.bilna.com';
       break;
 
     default:
