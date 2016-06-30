@@ -17,8 +17,6 @@ export default Ember.Controller.extend({
     return this.get('sortedData').slice(start,end);
   }),
 
-
-
   clearSortedProperties: function() {
     this.set('sortedProperties.id', false);
     this.set('sortedProperties.name', false);
@@ -27,6 +25,18 @@ export default Ember.Controller.extend({
   },
 
   actions: {
+    search: function() {
+      var modelFilter = this.get('modelAll');
+      var filter = this.get('filter_data').toLowerCase();
+
+      var result =  modelFilter.filter(function(item) {
+        return (item.get('name').toLowerCase().indexOf(filter) !== -1 || item.get('product_sku').toLowerCase().indexOf(filter) !== -1);
+      });
+      this.set('model', result);
+      this.set('length', this.get('model').get('length'));
+      this.set('page', 1);
+      this.set('number', 1);
+    },
     selectPage: function(number) {
       this.set('page', number);
       this.set('number', number);
@@ -70,48 +80,48 @@ export default Ember.Controller.extend({
 
   page: 1,
   perPage: 10,
-  totalPages: (function() {
-    return Math.ceil(this.get('model').get('length') / this.get('perPage'));
-  }).property('length', 'perPage'),
+  totalPages: Ember.computed('length', 'perPage', function() {
+    var length = this.get('model').get('length');
+    return Math.ceil(length / this.get('perPage'));
+  }),
 
-  pages: (function() {
+  pages: Ember.computed('totalPages', function() {
     var collection = Ember.A();
 
-    for(var i = 0; i < this.get('totalPages'); i++) {
+    for (var i = 0; i < this.get('totalPages'); i++) {
       collection.pushObject(Ember.Object.create({
         number: i + 1,
       }));
     }
 
     return collection;
-  }).property('totalPages'),
+  }),
 
-  hasPages: (function() {
+  hasPages: Ember.computed('totalPages', function() {
     return this.get('totalPages') > 1;
-  }).property('totalPages'),
+  }),
 
-  prevPage: (function() {
+  prevPage: Ember.computed('page', 'totalPages', function() {
     var page = this.get('page');
     var totalPages = this.get('totalPages');
 
-    if(page > 1 && totalPages > 1) {
+    if (page > 1 && totalPages > 1) {
       return page - 1;
     } else {
       return null;
     }
-  }).property('page', 'totalPages'),
+  }),
 
-  nextPage: (function() {
+  nextPage: Ember.computed('page', 'totalPages', function() {
     var page = this.get('page');
     var totalPages = this.get('totalPages');
 
-    if(page < totalPages && totalPages > 1) {
+    if (page < totalPages && totalPages > 1) {
       return page + 1;
     } else {
       return null;
     }
-  }).property('page', 'totalPages'),
-
+  }),
 
   paginatedContent: (function() {
     return this.get('model');
