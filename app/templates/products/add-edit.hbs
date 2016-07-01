@@ -616,7 +616,7 @@
             </div>
           </div>
         {{/if}}
-          <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+          <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding" style="font-size: 16px;">
             Special Price &nbsp;
             {{#if model.is_special_price_approved}}
               (Approved)
@@ -625,20 +625,32 @@
             {{/if}}
           </label>
           <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12  nopaddingleft bottom-spacer">
+            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+              Special Price
+            </label>
             {{input type="number" placeholder="price in rupiah" min="1" name="name" value="" class="form-control" required="required" value=model.special_price}}
           </div>
           <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
+            <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+              Special Cost
+            </label>
             {{input type="number" placeholder="cost in rupiah" min="1" name="name" value="" class="form-control " value=model.special_cost required="required"}}
           </div>
           <div class="clearfix"></div>
           <div class="col-sm-12 nopadding botom-spacer">
             <div class="col-lg-5 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
+              <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+                Start Date
+              </label>
               {{date-picker class="text-center date-picking full-width" valueFormat="YYYY-MM-DD" date=model.special_from_date required="required"}}
             </div>
             <div class="col-lg-2 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer text-center">
              to
            </div>
              <div class="col-lg-5 col-sm-12 col-xs-12 col-md-12 nopaddingleft bottom-spacer">
+              <label for="exampleInputFile" class="col-lg-10 col-xs-12 col-sm-12 col-md-12 text-title noborder nopadding">
+                End Date
+              </label>
                {{date-picker class="text-center date-picking full-width" valueFormat="YYYY-MM-DD" date=model.special_to_date required="required"}}
              </div>
           </div>
