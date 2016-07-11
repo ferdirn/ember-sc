@@ -58,7 +58,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="col-md-8 col-sm-9 col-lg-8 date-picker text-left">
+          <div class="col-md-7 col-sm-9 col-lg-6 date-picker text-left">
             <label class="small" >Filter by date</label>
             <div class="clearfix"></div>
               {{input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy" value=startDate}}
@@ -66,7 +66,13 @@
               {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=endDate}}
             <button {{ action 'filter' }} class="form-control btn btn-primary btn-size-regular">Filter</button>
           </div>
-          <div class="col-md-3 col-lg-4 col-sm-12 col-xs-12 text-right pull-right date-picker">
+          <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-left">
+              <label class="small" >Search</label>
+              <form {{action "search" on="submit"}}>
+                {{ input type="text" class="form-control" value=filter_data placeholder="Search for..." }}
+              </form>
+          </div>
+          <div class="col-md-3 col-lg-2 col-sm-12 col-xs-12 text-right pull-right date-picker">
             <label class="small">Status filter</label>
             <div class="clearfix"></div>
             {{!-- {{ view "select" class="form-control form-filter" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }} --}}

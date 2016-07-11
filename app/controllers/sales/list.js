@@ -27,6 +27,16 @@ export default Ember.Controller.extend({
     return this.get('sortedFilteredData').slice(this.get('startIndex'), this.get('endIndex'));
   }),
 
+  /*filteredModel: function() {
+    var modelFilter = this.model.allsales;
+    var filter = this.get('filter_data').toLowerCase();
+
+    var result =  modelFilter.filter(function(item) {
+      return (item.name.toLowerCase().indexOf(filter) !== -1 || item.sku.toLowerCase().indexOf(filter) !== -1);
+    });
+    this.set('filteredData', result);
+  }.observes('filter_data'),*/
+
   clearSortedProperties: function() {
     this.set('sortedProperties.created_at', false);
     this.set('sortedProperties.order_number', false);
@@ -175,6 +185,17 @@ export default Ember.Controller.extend({
       this.set('pageArray', pageArray);
       this.set('pageCount', pageCount);
       this.set('page', page);
+    },
+
+    search: function() {
+      var modelFilter = this.model.allsales;
+      var filter = this.get('filter_data').toLowerCase();
+
+      var result =  modelFilter.filter(function(item) {
+        return (item.name.toLowerCase().indexOf(filter) !== -1 || item.sku.toLowerCase().indexOf(filter) !== -1);
+      });
+      this.set('filteredData', result);
+      this.send('paginate', 1);
     },
 
     sortBy: function(property) {
