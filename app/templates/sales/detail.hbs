@@ -70,13 +70,16 @@
       <!-- <button class="btn btn-primary btn-size-small btn-hollow pull-right"> <i class="fa fa-exclamation-triangle"></i> Cancel Order</button> -->
     </div>
   </div>
+  {{#unless isEdit}}
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 side-padder">
       <div class="table-responsive bottom-spacer">
-        <div class="btn btn-primary btn-size-small pull-right nomargin" {{ action 'addAwb'}}>Insert AWB</div>
+        <div class="btn btn-primary btn-size-small pull-right nomargin" {{ action 'addAwb' }}>Insert AWB</div>
       </div>
     </div>
   </div>
+  {{/unless}}
+  {{#if isEdit}}
   <!--  third row-->
   <div class="row">
     <div class="col-lg-12 col-sm-12 col-md-12 side-padder">
@@ -94,26 +97,30 @@
                     <th>Courier</th>
                     <th>Manifested</th>
                     <th>ETA</th>
+                    <th>&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each awb_model as |awb|}}
                   <tr>
-                    <td>{{awb.awb}}</td>
-                    <td>{{awb.courier}}</td>
-                    <td>{{awb.manifested}}</td>
-                    <td>{{awb.eta_day}}</td>
+                    <td>{{awb_model.awb}}</td>
+                    <td>{{awb_model.courier}}</td>
+                    <td>{{awb_model.manifested}}</td>
+                    <td>{{awb_model.eta_day}}</td>
+                    {{#if isEdit}}
+                    <td><div class="btn btn-primary btn-size-small pull-right nomargin" {{ action 'addAwb' }}>Edit AWB</div></td>
+                    {{ else }}
+                    <td>&nbsp;</td>
+                    {{/if}}
                   </tr>
-                  {{/each}}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-      <!-- <button class="btn btn-primary btn-size-small btn-hollow pull-right"> <i class="fa fa-exclamation-triangle"></i> Cancel Order</button> -->
     </div>
   </div>
+  {{/if}}
 </div>
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -129,25 +136,29 @@
             <div class="col-lg-5">
               <div class="form-group">
                 <label for="courier" class="text-title">Courier </label>
-                {{ input type="text" class="form-control" id="courier" placeholder="Enter courier company name" required="required" value=courier }}
+                {{ input type="text" class="form-control" id="courier" placeholder="Enter courier company name" required="required" value=awb_model.courier size="200" }}
               </div>
               <div class="form-group">
                 <label for="eta_day" class="text-title">ETA Arrival </label>
-                {{ input type="text" class="form-control" id="eta_day" placeholder="Enter ETA delivery time" required="required" value=eta_day }}
-              </div>
-              <div class="form-group">
-                <label for="note" class="text-title">Note </label>
-                {{ textarea class="form-control maximum-width" rows="3" value=note }}
+                {{ input type="text" class="form-control" id="eta_day" placeholder="Enter ETA delivery time" required="required" value=awb_model.eta_day }}
               </div>
             </div>
             <div class="col-lg-5">
               <div class="form-group">
                 <label for="awb" class="text-title">Airway Bill </label>
-                {{ input type="text" class="form-control" id="awb" placeholder="Enter AWB number" required="required" value=awb }}
+                {{ input type="text" class="form-control" id="awb" placeholder="Enter AWB number" required="required" value=awb_model.awb }}
               </div>
               <div class="form-group">
                 <label for="manifested" class="text-title">Manifested on </label>
-                {{ bs-datetimepicker class="text-center full-width" id="manifested" format="YYYY-MM-DDTHH:mm" date="myDate" noIcon=true updateDate=(action (mut manifested)) required="required" }}
+                {{ bs-datetimepicker class="text-center full-width" id="manifested" format="YYYY-MM-DDTHH:mm" date="myDate" noIcon=true updateDate=(action (mut awb_model.manifested)) required="required" date=awb_model.manifested width="300" }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="note" class="text-title">Note </label>
+                {{ textarea class="form-control maximum-width" rows="3" cols="50" value=awb_model.note }}
               </div>
             </div>
           </div>

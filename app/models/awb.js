@@ -7,6 +7,5 @@ export default DS.Model.extend({
   awb: DS.attr(),
   eta_day: DS.attr(),
   manifested: DS.attr(),
-  mage_product_ids: DS.attr(),
   note: DS.attr()
 });

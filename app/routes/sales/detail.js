@@ -4,11 +4,20 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 import config from '../../config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
- 	model: function(params) {
+	isEdit: false,
+	model: function(params) {
 		return Ember.$.getJSON(config.APP.API_HOST + '/api/salesdetail/' + params.order_number + '/');
 	},
 	setupController: function(controller, model) {
+		var awb_model = this.store.find('awb', model.order_number);
 		controller.set('model', model); 
-		controller.set('awb_model', this.store.find('awb', { order_number: model.order_number }));
+		
+		awb_model.then(function() {
+			controller.set('isEdit', true);
+		}).catch(function() {
+			controller.set('isEdit', false);
+		});
+
+		controller.set('awb_model', awb_model);
 	}
 });
