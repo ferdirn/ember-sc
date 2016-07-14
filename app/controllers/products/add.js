@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service(),
   discount_percentage: 0,
   seller_price: 0,
   displayNameHelper: 'none',
@@ -76,7 +77,8 @@ export default Ember.Controller.extend({
       if (value === 0 || value === undefined) {
         model.set('category', undefined);
       } else {
-        Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
+        self.store.findAll('category', value).then(function(data) {
+        // Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
           if (data.length > 0) {
             self.set('level' + next_number + 'Categories', data);
             self.set('category' + next_number, 0);
@@ -84,9 +86,10 @@ export default Ember.Controller.extend({
             model.set('category', undefined);
           } else {
             // Check for commission percentage
-            Ember.$.getJSON(
-              config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
-            ).then(function(data) {
+            self.store.find('product/price-commission', {category: value}).then(function(data) {
+            // Ember.$.getJSON(
+            //   config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
+            // ).then(function(data) {
               if (data.commission_percentage === null || data.commission_percentage === 0) {
                 self.set('category' + number, 0);
                 model.set('category', undefined);
@@ -232,9 +235,12 @@ export default Ember.Controller.extend({
     var seller_price = 0;
     var discount_percentage = 0;
 
-    Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
+    this.store.findAll('category').then(function(data) {
       self.set('level1Categories', data);
     });
+    // Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
+    //   self.set('level1Categories', data);
+    // });
     this.set('seller_price', seller_price);
     this.set('discount_percentage', discount_percentage);
 

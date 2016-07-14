@@ -3,6 +3,7 @@ import EmberUploader from 'ember-uploader';
 import config from '../config/environment';
 
 export default EmberUploader.FileField.extend({
+  session: Ember.inject.service(),
   url: config.APP.API_HOST+"/api/bulk-upload/",
   onError: 'onError',
 

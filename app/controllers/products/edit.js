@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service(),
   discount_percentage: 0,
   seller_price: 0,
   hasLevel2Category: false,

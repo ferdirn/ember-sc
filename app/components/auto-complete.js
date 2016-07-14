@@ -1,8 +1,9 @@
-// import Ember from 'ember';
+import Ember from 'ember';
 import AutoComplete from "ember-cli-auto-complete/components/auto-complete";
 // import config from '../config/environment';
 
 export default AutoComplete.extend({
+  session: Ember.inject.service(),
   valueProperty: "order_number",
   suggestions: function() {
     var inputVal = this.get("inputVal") || "";

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
+  session: Ember.inject.service(),
   actions: {
     setPicture: function() {
       var file = document.getElementById('photo-file').files[0];

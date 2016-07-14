@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.PromiseProxyMixin, {
+  session: Ember.inject.service('session'),
   init: function() {
     this._super();
     var self = this;
