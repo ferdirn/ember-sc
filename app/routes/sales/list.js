@@ -25,6 +25,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   model: function() {
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
     return Ember.$.getJSON(config.APP.API_HOST + '/api/salesreport/');
   },
 

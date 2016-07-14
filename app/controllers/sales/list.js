@@ -122,6 +122,12 @@ export default Ember.Controller.extend({
 
       endDate = d.toISOString().slice(0,10);
       Ember.Logger.log('Filter sales from ' + startDate + ' to ' + endDate);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       Ember.$.getJSON(config.APP.API_HOST + '/api/salesreport/', {
         start_date: startDate,
         end_date: endDate

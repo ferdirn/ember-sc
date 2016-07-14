@@ -13,6 +13,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').find('product', params.id);
   },
   setupController: function(controller, model) {
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
+
     model.reload();
     model.set('primaryImage', model.get('image'));
     controller.set('model', model);

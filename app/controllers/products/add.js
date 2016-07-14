@@ -67,6 +67,12 @@ export default Ember.Controller.extend({
     chooseLevelCategory: function(value, component) {
       // Ember.Logger.log(value );
       // Ember.Logger.log(component.attrs.id);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var id = component.attrs.id;
       var number = parseInt(id.substring(8));
       // Ember.Logger.log(number);
@@ -77,8 +83,7 @@ export default Ember.Controller.extend({
       if (value === 0 || value === undefined) {
         model.set('category', undefined);
       } else {
-        self.store.findAll('category', value).then(function(data) {
-        // Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
+        Ember.$.getJSON(config.APP.API_HOST + '/api/categories/' + value + '/').then(function(data) {
           if (data.length > 0) {
             self.set('level' + next_number + 'Categories', data);
             self.set('category' + next_number, 0);
@@ -86,10 +91,9 @@ export default Ember.Controller.extend({
             model.set('category', undefined);
           } else {
             // Check for commission percentage
-            self.store.find('product/price-commission', {category: value}).then(function(data) {
-            // Ember.$.getJSON(
-            //   config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
-            // ).then(function(data) {
+            Ember.$.getJSON(
+              config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
+            ).then(function(data) {
               if (data.commission_percentage === null || data.commission_percentage === 0) {
                 self.set('category' + number, 0);
                 model.set('category', undefined);
@@ -113,6 +117,12 @@ export default Ember.Controller.extend({
     },
     chooseCategory: function(value) {
       var self = this;
+
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
 
       if (typeof value === 'undefined') {
         this.set('hasLevel2Category', false);
@@ -138,6 +148,12 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubCategory: function(value) {
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       if (typeof value === 'undefined') {
         this.set('hasLevel3Category', false);
         return false;
@@ -159,6 +175,12 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubSubCategory: function(value) {
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var self = this;
       this.set('model.categories', value);
       this.set('isEmptyCategory', false);

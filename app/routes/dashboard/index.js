@@ -12,12 +12,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   setupController: function(controller, model) {
     Ember.Logger.log('Entering dashboard route.setupController');
 
-    this.store.findAll('product/active').then(function(data) {
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
+    Ember.$.getJSON(config.APP.API_HOST + '/api/product/active/').then( function(data) {
         controller.set('activeProduct', data.total);
     });
-    // Ember.$.getJSON(config.APP.API_HOST + '/api/product/active/').then( function(data) {
-    //     controller.set('activeProduct', data.total);
-    // });
     Ember.$.getJSON(config.APP.API_HOST + '/api/product/inactive/').then( function(data) {
         controller.set('inactiveProduct', data.total);
     });

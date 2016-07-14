@@ -75,6 +75,12 @@ export default Ember.Controller.extend({
     chooseLevelCategory: function(value, component) {
       // Ember.Logger.log(value );
       // Ember.Logger.log(component.attrs.id);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var id = component.attrs.id;
       var number = parseInt(id.substring(8));
       // Ember.Logger.log(number);
@@ -262,6 +268,12 @@ export default Ember.Controller.extend({
   },
   init: function() {
     var self = this;
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
+
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
       self.set('level1Categories', data);
     });
