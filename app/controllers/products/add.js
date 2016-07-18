@@ -242,7 +242,7 @@ export default Ember.Controller.extend({
     var self = this;
 
     // Check if shop_name has already filled in
-    this.store.find('profile').then(function(data) {
+    this.store.findAll('profile').then(function(data) {
       var profile_model = data.get('firstObject');
       var shop_name = profile_model.get('shop_name');
       if (shop_name === '') {

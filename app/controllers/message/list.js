@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
         Ember.$.ajaxSetup({headers});
       });
 
-      this.set('currentMessage', this.store.find('message', value.get('id')));
+      this.set('currentMessage', this.store.findAll('message', value.get('id')));
       Ember.$.getJSON(config.APP.API_HOST + '/api/message/read/' + value.get('id') + '/').then(function(data) {
         Ember.Logger.log(data);
       });
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
       });
       compose.save().then(function() {
         self.set('model', self.store.findAll('message'));
-        self.set('currentMessage', self.store.find('message', value.get('id')));
+        self.set('currentMessage', self.store.findAll('message', value.get('id')));
         self.set('body', '');
       });
       return false;

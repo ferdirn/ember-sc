@@ -5,7 +5,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service(),
   model: function() {
-    return this.store.find('profile').then(function(result) {
+    return this.store.findAll('profile').then(function(result) {
       return result.get('firstObject');
     });
   },
