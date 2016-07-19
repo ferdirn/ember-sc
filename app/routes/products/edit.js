@@ -19,7 +19,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       Ember.$.ajaxSetup({headers});
     });
 
-    model.reload();
     model.set('primaryImage', model.get('image'));
     controller.set('model', model);
     controller.set('edit', true);

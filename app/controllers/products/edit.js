@@ -2,7 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
-  session: Ember.inject.service(),
+  session: Ember.inject.service('session'),
   discount_percentage: 0,
   seller_price: 0,
   hasLevel2Category: false,
@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
       // Ember.Logger.log(value );
       // Ember.Logger.log(component.attrs.id);
       this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
-        headers = {};
+        var headers = {};
         headers[headerName] = headerValue;
         Ember.$.ajaxSetup({headers});
       });
@@ -269,7 +269,7 @@ export default Ember.Controller.extend({
   init: function() {
     var self = this;
     this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
-      headers = {};
+      var headers = {};
       headers[headerName] = headerValue;
       Ember.$.ajaxSetup({headers});
     });

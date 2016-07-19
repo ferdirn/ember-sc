@@ -48,8 +48,7 @@ export default Ember.Controller.extend({
         self.set('errorMessage', 'Your old password did not match to our data.');
         self.set('displayPassError', true);
       }
-
-      changePassword.save().then(onSuccess, onFailed);
+      changePassword.save().then(onSuccess).catch(onFailed);
     }
   }
 });
