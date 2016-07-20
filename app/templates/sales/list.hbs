@@ -26,16 +26,6 @@
       </div></div>
 
       <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
-        <h4 class="number">{{ format-number model.statistic.total_invoiced }}</h4>
-        <p class="text">Total Paid Qty</p>
-      </div></div>
-
-      <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
-          <h4 class="number">{{ format-number model.statistic.total_pending }}</h4>
-          <p class="text">Total Pending Qty</p>
-      </div></div>
-
-      <div class="col-xs-12 col-sm-6 col-lg-6"><div class="col-box">
           <h4 class="number">{{ format-number model.statistic.total_canceled }}</h4>
           <p class="text">Total Canceled Qty</p>
       </div></div>
@@ -58,25 +48,13 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="col-md-8 col-sm-9 col-lg-8 date-picker text-left">
+          <div class="col-md-11 col-sm-9 col-lg-12 date-picker text-left">
             <label class="small" >Filter by date</label>
             <div class="clearfix"></div>
               {{input type="date" class="form-control" id="DateInputFrom" placeholder="dd/mm/yyyy" value=startDate}}
             <label >To</label>
               {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=endDate}}
             <button {{ action 'filter' }} class="form-control btn btn-primary btn-size-regular">Filter</button>
-          </div>
-          <div class="col-md-3 col-lg-4 col-sm-12 col-xs-12 text-right pull-right date-picker">
-            <label class="small">Status filter</label>
-            <div class="clearfix"></div>
-            {{!-- {{ view "select" class="form-control form-filter" content=statusFilters optionValuePath="content.statusValue" optionLabelPath="content.statusLabel" value=selectedStatus.statusValue }} --}}
-            {{#x-select class="form-control form-filter" value=selectedStatus.statusValue}}
-                {{#each statusFilters as |status|}}
-                    {{#x-option value=status.statusValue}}
-                        {{ status.statusLabel }}
-                    {{/x-option}}
-                {{/each}}
-            {{/x-select}}
           </div>
         </div>
         <div class="panel-body ">
@@ -115,7 +93,7 @@
                 <th {{ action 'sortBy' 'qty_ordered' }}>Qty<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.qty_ordered "chevron-sorted" "chevron-unsorted"}}"></i></th>
                 <th {{ action 'sortBy' 'price' }}>Price<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.price "chevron-sorted" "chevron-unsorted"}}"></i></th>
                 <th {{ action 'sortBy' 'revenue' }}>Revenue<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.revenue "chevron-sorted" "chevron-unsorted"}}"></i></th>
-                <th {{ action 'sortBy' 'status' }}>Status<i class="fa {{if sortAscending "fa-chevron-up" "fa-chevron-down"}} {{if sortedProperties.status "chevron-sorted" "chevron-unsorted"}}"></i></th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
