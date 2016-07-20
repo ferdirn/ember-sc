@@ -8,6 +8,7 @@
   <div class="row">
 
     <div class="col-xs-12 col-sm-12 col-lg-4 col-md-4 in-block nopadding">
+      {{!--
       <div class="col-xs-12 nopadding bottom-spacer-container">
         <div class="form-group">
           <label for="InputEmail" class="upload-label full-width">Get to know how to upload</label>
@@ -25,18 +26,14 @@
             </div>
         </div>
       </div>
+      --}}
 
       <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
         <div class="col-xs-12 nopadding">
           <div class="form-group">
             <label for="InputEmail"class="upload-label full-width">Please upload your product file</label>
             <div class="col-xs-12 nopaddingleft">
-              <form {{ action "upload" on="submit" }}>
-                <input type="hidden" name="MAX_FILE_SIZE" value="1000" />
-                <input type="file" id="uploadedFile" class="custom-file-input" />
-                <br />
-                <button type="submit" class="btn btn-primary btn-size-small paddtb10 col-xs-12 col-sm-12 col-md-3 col-lg-3" disabled={{ or isUploading isEmptyShopName }}>Upload</button>
-              </form>
+              {{bulk-upload-product id="uploadedFile" class="custom-file-input" onError="uploadError" onSuccess="uploadSuccess"}}
             </div>
           </div>
         </div>
@@ -44,24 +41,36 @@
 
       <div>&nbsp;</div>
 
+      {{#if errors.length}}
+      <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
+        <div class="col-xs-12 nopadding">
+          <div class="form-group">
+            <label class="upload-label full-width">Errors:</label>
+            <div class="col-xs-12 nopaddingleft">
+                <p>None of your products were uploaded because:</p>
+              <ul>
+                {{#each errors as |error|}}
+                  <li>{{error.field}} - {{error.reasons}}</li>
+                {{/each}}
+              </ul>
+              <p>Please fix the errors and try uploading again</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
       {{#if uploadResults}}
       <div class="col-xs-12 col-sm-12 col-lg-12 in-block nopadding">
         <div class="col-xs-12 nopadding">
           <div class="form-group">
-            <label for="InputEmail"class="upload-label full-width">Upload file {{ file_name }} result</label>
+            <label for="InputEmail"class="upload-label full-width">These products were successfully created:</label>
             <div class="col-xs-12 nopaddingleft">
-              <ul>
-              {{#each uploadResults as |uploadResult|}}
-                <li style="list-style: none;">{{{ uploadResult.status_msg }}}</li>
-                {{#each uploadResult.errors as |error|}}
-                <li style="list-style: none;">
-                  <ul>
-                    <li>{{ error }}</li>
-                  </ul>
-                </li>
-                {{/each}}
+              <ol>
+              {{#each uploadResults as |product|}}
+                <li>{{{product.name}}}</li>
               {{/each}}
-              </ul>
+              </ol>
             </div>
           </div>
         </div>
@@ -70,9 +79,23 @@
 
       </div>
       <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 in-block">
-        <a target="_blank"  href="http://localhost:4200/assets/img/marketplace-guide.jpg">
-        <img src="assets/img/marketplace-guide.jpg" width="100%;">
-      </a>
+        <label for="InputEmail"class="upload-label full-width">List of Categories</label>
+        <div class="category-list">
+          <table>
+            <thead>
+              <td>Category ID</td>
+              <td>Category Structure</td>
+            </thead>
+            <tbody>
+              {{#each model as |m|}}
+              <tr>
+                <td><strong>{{m.id}}</strong></td>
+                <td>{{m.name}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
