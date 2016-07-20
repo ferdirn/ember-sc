@@ -65,6 +65,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model.chart.labels = formatted_date;
 
     controller.set('model', model);
+    controller.set('modelAll', model);
     controller.set('filteredData', allsales);
     controller.set('pageContent', this.pageContent);
     controller.set('page', this.page);
