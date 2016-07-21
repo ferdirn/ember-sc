@@ -10,11 +10,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this.render('products.add-edit');
   },
   model: function(params) {
-    return this.get('store').find('product', params.id);
+    // if ember already has a record, we don't need to load it
+    // from API again
+    var m;
+    var self = this;
+    var stored = this.store.recordIsLoaded('product', params.id);
+
+    var notFound = function() {
+      self.transitionTo('/not-found');
+    };
+
+    if (stored) {
+      m = this.store.peekRecord('product', params.id);
+    } else {
+      m = this.get('store').findRecord('product', params.id).catch(notFound);
+    }
+    return m;
   },
   setupController: function(controller, model) {
     this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
-      headers = {};
+      var headers = {};
       headers[headerName] = headerValue;
       Ember.$.ajaxSetup({headers});
     });
