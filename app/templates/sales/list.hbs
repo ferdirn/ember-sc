@@ -56,6 +56,12 @@
               {{input type="date" class="form-control" id="DateInputTo" placeholder="dd/mm/yyyy" value=endDate}}
             <button {{ action 'filter' }} class="form-control btn btn-primary btn-size-regular">Filter</button>
           </div>
+          <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-left">
+              <label class="small" >Search</label>
+              <form {{action "search" on="submit"}}>
+                {{ input type="text" class="form-control" value=filter_data placeholder="Search for..." }}
+              </form>
+          </div>
         </div>
         <div class="panel-body ">
 

@@ -130,6 +130,17 @@ export default Ember.Controller.extend({
       this.set('page', page);
     },
 
+    search: function() {
+      var modelFilter = this.model.allsales;
+      var filter = this.get('filter_data').toLowerCase();
+
+      var result =  modelFilter.filter(function(item) {
+        return (item.name.toLowerCase().indexOf(filter) !== -1 || item.sku.toLowerCase().indexOf(filter) !== -1);
+      });
+      this.set('filteredData', result);
+      this.send('paginate', 1);
+    },
+
     sortBy: function(property) {
       Ember.Logger.log('Entering list sortBy');
 
