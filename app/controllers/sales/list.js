@@ -17,8 +17,7 @@ export default Ember.Controller.extend({
     sku: false,
     qty_ordered: false,
     price: false,
-    revenue: false,
-    status: false
+    revenue: false
   },
 
   sortProperties: ['created_at:desc'],
@@ -36,50 +35,11 @@ export default Ember.Controller.extend({
     this.set('sortedProperties.qty_ordered', false);
     this.set('sortedProperties.price', false);
     this.set('sortedProperties.revenue', false);
-    this.set('sortedProperties.status', false);
   },
 
   addDays: function(theDate, days) {
     return new Date(theDate.getTime() + days*24*60*60*1000);
   },
-
-  onStatusFilterChange: function() {
-    Ember.Logger.log('Entering list onStatusFilterChange');
-
-    this.page = 1;
-    var value = this.selectedStatus.statusValue;
-    var allsales = this.model.allsales;
-    var filteredData = [];
-
-    if (value === 'all') {
-      _.each(allsales, function(value) {
-        filteredData.pushObject(value);
-      });
-    } else if (value === 'invoiced') {
-      _.each(allsales, function(value) {
-        if (value.status === 'invoiced') {
-          filteredData.pushObject(value);
-        }
-      });
-    } else if (value === 'pending') {
-      _.each(allsales, function(value) {
-        if (value.status === 'pending') {
-          filteredData.pushObject(value);
-        }
-      });
-    } else if (value === 'canceled') {
-      _.each(allsales, function(value) {
-        if (value.status === 'canceled') {
-          filteredData.pushObject(value);
-        }
-      });
-    }
-
-    this.set('filteredData', filteredData);
-
-    this.send('paginate', 1);
-
-  }.observes('selectedStatus.statusValue', 'sortProperties'),
 
   actions: {
     filter: function() {
@@ -182,6 +142,17 @@ export default Ember.Controller.extend({
       this.set('pageArray', pageArray);
       this.set('pageCount', pageCount);
       this.set('page', page);
+    },
+
+    search: function() {
+      var modelFilter = this.model.allsales;
+      var filter = this.get('filter_data').toLowerCase();
+
+      var result =  modelFilter.filter(function(item) {
+        return (item.name.toLowerCase().indexOf(filter) !== -1 || item.sku.toLowerCase().indexOf(filter) !== -1);
+      });
+      this.set('filteredData', result);
+      this.send('paginate', 1);
     },
 
     sortBy: function(property) {
