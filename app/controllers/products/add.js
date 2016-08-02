@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service(),
   discount_percentage: 0,
   seller_price: 0,
   displayNameHelper: 'none',
@@ -66,6 +67,12 @@ export default Ember.Controller.extend({
     chooseLevelCategory: function(value, component) {
       // Ember.Logger.log(value );
       // Ember.Logger.log(component.attrs.id);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var id = component.attrs.id;
       var number = parseInt(id.substring(8));
       // Ember.Logger.log(number);
@@ -111,6 +118,12 @@ export default Ember.Controller.extend({
     chooseCategory: function(value) {
       var self = this;
 
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       if (typeof value === 'undefined') {
         this.set('hasLevel2Category', false);
         this.set('hasLevel3Category', false);
@@ -135,6 +148,12 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubCategory: function(value) {
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       if (typeof value === 'undefined') {
         this.set('hasLevel3Category', false);
         return false;
@@ -156,6 +175,12 @@ export default Ember.Controller.extend({
       });
     },
     chooseSubSubCategory: function(value) {
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var self = this;
       this.set('model.categories', value);
       this.set('isEmptyCategory', false);
@@ -217,7 +242,7 @@ export default Ember.Controller.extend({
     var self = this;
 
     // Check if shop_name has already filled in
-    this.store.find('profile').then(function(data) {
+    this.store.findAll('profile').then(function(data) {
       var profile_model = data.get('firstObject');
       var shop_name = profile_model.get('shop_name');
       if (shop_name === '') {
@@ -232,9 +257,12 @@ export default Ember.Controller.extend({
     var seller_price = 0;
     var discount_percentage = 0;
 
-    Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
+    this.store.findAll('category').then(function(data) {
       self.set('level1Categories', data);
     });
+    // Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
+    //   self.set('level1Categories', data);
+    // });
     this.set('seller_price', seller_price);
     this.set('discount_percentage', discount_percentage);
 

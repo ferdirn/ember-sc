@@ -1,0 +1,10 @@
+{{#each category_tree as |level index|}}
+  {{#x-select class="btn btn-hollow btn-size-small dropdown-toggle drop-custom nomoz" required="required" action="updateChildren" data-level=index}}
+    <option value="0" disabled="disabled" selected="selected">Select category</option>
+    {{#each level as |cat|}}
+      {{#if (eq cat.level index)}}
+        {{#x-option value=cat.id}}{{cat.name}}{{/x-option}}
+      {{/if}}
+    {{/each}}
+  {{/x-select}}
+{{/each}}

@@ -2,6 +2,14 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service(),
+  statusFilters: [
+    {statusLabel: "all", statusValue: "all"},
+    {statusLabel: "invoiced", statusValue: "invoiced"},
+    {statusLabel: "pending", statusValue: "pending"},
+    {statusLabel: "canceled", statusValue: "canceled"}
+  ],
+
   sortedProperties: {
     created_at: true,
     order_number: false,
@@ -74,6 +82,12 @@ export default Ember.Controller.extend({
 
       endDate = d.toISOString().slice(0,10);
       Ember.Logger.log('Filter sales from ' + startDate + ' to ' + endDate);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       Ember.$.getJSON(config.APP.API_HOST + '/api/salesreport/', {
         start_date: startDate,
         end_date: endDate

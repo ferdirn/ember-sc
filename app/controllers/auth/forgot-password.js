@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	fname: null,
-	isUsernameNotFound: true,
+  session: Ember.inject.service(),
+  fname: null,
+  isUsernameNotFound: true,
   displayMessage: false,
 
   actions: {
