@@ -17,8 +17,8 @@ export default Ember.Controller.extend({
 
       if (oldPassword === undefined || oldPassword === '') {
         this.set('errorMessage', 'Old password can not be empty.');
-	this.set('displayPassError', true);
-	return false;
+        this.set('displayPassError', true);
+        return false;
       }
 
       if (newPassword === undefined || newPassword === '') {
