@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service('session'),
   discount_percentage: 0,
   seller_price: 0,
   hasLevel2Category: false,
@@ -74,6 +75,12 @@ export default Ember.Controller.extend({
     chooseLevelCategory: function(value, component) {
       // Ember.Logger.log(value );
       // Ember.Logger.log(component.attrs.id);
+      this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+        var headers = {};
+        headers[headerName] = headerValue;
+        Ember.$.ajaxSetup({headers});
+      });
+
       var id = component.attrs.id;
       var number = parseInt(id.substring(8));
       // Ember.Logger.log(number);
@@ -91,10 +98,16 @@ export default Ember.Controller.extend({
             self.set('hasLevel' + next_number + 'Category', true);
             model.set('category', undefined);
           } else {
-            model.set('category', value);
+            // Check for commission percentage
             Ember.$.getJSON(
               config.APP.API_HOST + '/api/product/price-commission/', {'category': value}
             ).then(function(data) {
+              if (data.commission_percentage === null || data.commission_percentage === 0) {
+                self.set('category' + number, 0);
+                model.set('category', undefined);
+                alert('This category can not be used because commission percentage is empty. Please contact seller center admin.');
+                return false;
+              }
               self.set('discount_percentage', data.commission_percentage);
               if (model.get('price') === undefined) {
                 self.set('seller_price', 0);
@@ -102,6 +115,8 @@ export default Ember.Controller.extend({
                 var seller_price = model.get('price') - (model.get('price') * (data.commission_percentage/100));
                 self.set('seller_price', seller_price);
               }
+              // Set the category
+              model.set('category', value);
             });
           }
         });
@@ -253,6 +268,12 @@ export default Ember.Controller.extend({
   },
   init: function() {
     var self = this;
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      var headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
+
     Ember.$.getJSON(config.APP.API_HOST + '/api/categories/').then(function(data) {
       self.set('level1Categories', data);
     });

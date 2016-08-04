@@ -17,6 +17,10 @@
                 <i class="fa fa-th-list"></i>
               </div>
             </a>
+
+            <form {{action "search" on="submit"}} class="search-product">
+              {{ input type="text" class="form-control search-product" value=filter_data placeholder="Search for..." }}
+            </form>
             {{#if isChoosingTile}}
             <div class="panel panel-default">
             <!--

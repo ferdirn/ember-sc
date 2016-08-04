@@ -12,7 +12,7 @@ module.exports = function(defaults) {
   });
 
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
-  app.import('bower_components/lodash/lodash.min.js');
+  app.import('bower_components/lodash/dist/lodash.min.js');
   app.import('bower_components/Sortable/Sortable.min.js');
   app.import('bower_components/moment/min/moment.min.js');
   //app.import('bower_components/ember/ember-template-compiler.js');

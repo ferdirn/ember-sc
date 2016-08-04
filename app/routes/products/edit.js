@@ -1,18 +1,39 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import config from '../../config/environment';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  session: Ember.inject.service('session'),
   categoryLevels: 10,
 
   renderTemplate: function() {
     this.render('products.add-edit');
   },
   model: function(params) {
-    return this.get('store').find('product', params.id);
+    // if ember already has a record, we don't need to load it
+    // from API again
+    var m;
+    var self = this;
+    var stored = this.store.recordIsLoaded('product', params.id);
+
+    var notFound = function() {
+      self.transitionTo('/not-found');
+    };
+
+    if (stored) {
+      m = this.store.peekRecord('product', params.id);
+    } else {
+      m = this.get('store').findRecord('product', params.id).catch(notFound);
+    }
+    return m;
   },
   setupController: function(controller, model) {
-    model.reload();
+    this.get('session').authorize('authorizer:application', function(headerName, headerValue) {
+      var headers = {};
+      headers[headerName] = headerValue;
+      Ember.$.ajaxSetup({headers});
+    });
+
     model.set('primaryImage', model.get('image'));
     controller.set('model', model);
     controller.set('edit', true);

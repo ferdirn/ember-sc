@@ -12,6 +12,10 @@ module.exports = function(environment) {
       API_HOST = 'http://stage.api.orami.co.id';
       break;
 
+    case 'stagez':
+      API_HOST = 'http://stagez.api.bilna.com';
+      break;
+
     default:
       break;
   }
@@ -67,16 +71,16 @@ module.exports = function(environment) {
 
   };
 
-  ENV['simple-auth'] = {
-    store: 'simple-auth-session-store:local-storage',
+  ENV['ember-simple-auth'] = {
+    store: 'ember-simple-auth-session-store:local-storage',
     authenticationRoute: 'auth.login',
-    authorizer: 'simple-auth-authorizer:token',
+    authorizer: 'authorizer:token',
     routeAfterAuthentication: 'dashboard',
     routeIfAlreadyAuthenticated: 'dashboard',
     crossOriginWhitelist: ['*']
   };
 
-  ENV['simple-auth-token'] = {
+  ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: API_HOST + '/api/auth/',
     identificationField: 'username',
     passwordField: 'password',
