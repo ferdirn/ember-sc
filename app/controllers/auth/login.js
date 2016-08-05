@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  session: Ember.inject.service(),
   errors: {},
   isUsernameError: false,
   isPasswordError: false,
@@ -11,7 +12,7 @@ export default Ember.Controller.extend({
       this.set('isUsernameError', false);
       this.set('isPasswordError', false);
       var credentials = this.getProperties('identification', 'password'),
-        authenticator = 'simple-auth-authenticator:jwt';
+        authenticator = 'authenticator:jwt';
 
       this.get('session').authenticate(authenticator, credentials);
     }
