@@ -55,6 +55,8 @@
     "ember-welcome-page": "^1.0.1",
     "emberx-select": "2.2.0",
     "loader.js": "^4.0.1",
-    "lodash": "4.13.1"
+    "lodash": "4.13.1",
+    "eonasdan-bootstrap-datetimepicker": "4.15.35",
+    "ember-bootstrap-datetimepicker": "1.0.4"
   }
 }
