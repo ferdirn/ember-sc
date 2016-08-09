@@ -12,7 +12,8 @@ export default Ember.Controller.extend({
           eta_day: this.get('awb_model.eta_day'),
           manifested: this.get('awb_model.manifested'),
           note: this.get('awb_model.note'),
-          order_number: this.get('model.order_number')
+          order_number: this.get('model.order_number'),
+          products: this.get('model.items')
         });
 
         awb_model.save().then(function() {
