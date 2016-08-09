@@ -146,7 +146,7 @@ export default Ember.Controller.extend({
 
     search: function() {
       var modelFilter = this.model.allsales;
-      var filter = this.get('filter_data').toLowerCase().trim().escape();
+      var filter = this.get('filter_data').toLowerCase().trim();
 
       var result =  modelFilter.filter(function(item) {
         return (item.name.toLowerCase().indexOf(filter) !== -1 || item.sku.toLowerCase().indexOf(filter) !== -1);
