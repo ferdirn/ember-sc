@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
         });
 
         awb_model.save().then(function() {
-          location.reload();
+          location.reload(true);
         });
       } else {
         awb_model = this.get('awb_model');
@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
         this.set('awb_model', this.store.createRecord('awb'));
       }
 
-      $('.form-control').css('max-width', '480px');
+      Ember.$('.form-control').css('max-width', '480px');
 
       Ember.$('.bs-example-modal-lg').modal('toggle');
     }
