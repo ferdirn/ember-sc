@@ -162,7 +162,7 @@
             <div class="col-lg-5">
               <div class="form-group">
                 <label for="awb" class="text-title">Airway Bill </label>
-                {{ input type="text" class="form-control" id="awb" placeholder="Enter AWB number" required="required" value=awb_model.awb }}
+                {{ input type="text" class="form-control" id="awb" placeholder="Enter AWB number" required="required" value=awb_model.awb keyPress=(action 'sanitize') }}
               </div>
               <div class="form-group">
                 <label for="manifested" class="text-title">Manifested on </label>
