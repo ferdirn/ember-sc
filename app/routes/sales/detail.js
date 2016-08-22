@@ -19,9 +19,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('model', model);
 
     awb_model.then(function() {
-            controller.set('isEdit', true);
+      controller.set('isEdit', true);
     }).catch(function() {
-            controller.set('isEdit', false);
+      controller.set('isEdit', false);
     });
 
     controller.set('awb_model', awb_model);

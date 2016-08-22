@@ -7,5 +7,6 @@ export default DS.Model.extend({
   eta_day: DS.attr(),
   manifested: DS.attr(),
   note: DS.attr(),
-  products: DS.attr()
+  products: DS.attr(),
+  ns_fulfillment_id: DS.attr()
 });
