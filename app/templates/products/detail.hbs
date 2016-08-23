@@ -44,7 +44,7 @@
           <h6 id="profil-data"> <span class="in-block min-120">Price</span>: &nbsp;<span class="detail-order pink-font"><strong> RP {{ format-money model.price }} </strong></span></h6>
           <h6 id="profil-data"> <span class="in-block min-120">Stock</span>: &nbsp;<span class="detail-order pink-font"><strong> {{ format-number model.qty }} </strong></span></h6>
           <h6 id="profil-data"> <span class="in-block min-120">Description</span>:</h6>
-          <p class="left-spacer-container">{{model.description}}</p>
+          <p class="left-spacer-container">{{nl2br model.description}}</p>
         </div>
       </div>
       {{# link-to "products.edit" model.id }}<div class="btn btn-primary btn-size-small pull-right nomargin">Edit</div>{{/link-to}}
