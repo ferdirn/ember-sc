@@ -10,6 +10,30 @@ export default Ember.Controller.extend({
     {statusLabel: "canceled", statusValue: "canceled"}
   ],
 
+  refreshChart: Ember.observer('model.allsales', function() {
+    var chartLabel = [];
+    var chartValue = [];
+    var totalOrderedQty = 0;
+    var totalSales = 0;
+    var allsales = this.get('model.allsales');
+    for (var i = 0; i < allsales.length; i++) {
+      totalOrderedQty += allsales[i].qty_ordered;
+      totalSales += (allsales[i].price * allsales[i].qty_ordered);
+      if (chartLabel.indexOf(allsales[i].created_date) === -1) {
+        chartLabel.push(allsales[i].created_date);
+        chartValue.push(allsales[i].price * allsales[i].qty_ordered);
+      } else {
+        chartValue[chartLabel.indexOf(allsales[i].created_date)] += allsales[i].price * allsales[i].qty_ordered;
+      }
+    }
+
+    this.set('model.statistic.total_ordered', totalOrderedQty);
+    this.set('model.statistic.total_revenue', totalSales);
+    this.set('model.statistic.average_sales', (totalSales/totalOrderedQty));
+    this.set('model.chart.labels', chartLabel.reverse());
+    this.set('model.chart.value', chartValue.reverse());
+  }),
+
   sortedProperties: {
     created_at: true,
     order_number: false,
