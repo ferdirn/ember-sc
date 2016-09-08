@@ -284,12 +284,12 @@
           <div class="form-group {{if isErrorName 'has-error'}}">
             <label for="name" class="text-title">Name </label>
             <!-- <div id="div1" style="display:{{displayNameHelper}};">A reminder of how to use this field</div> -->
-            {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" maxlength="45" value=model.name required="required" }}
+            {{ input type="text" class="form-control" id="name" placeholder="Enter name of the product" maxlength="60" value=model.name required="required" }}
             {{#if isErrorName}}
               <p class="error" style="color: red;">{{errorMsg}}</p>
             {{/if}}
             <blockquote class="exp">
-              <footer><cite title="Source Title">Max 45 characters.</cite></footer>
+              <footer><cite title="Source Title">Max 60 characters.</cite></footer>
             </blockquote>
           </div>
           <div class="form-group {{if isErrorUpcCode 'has-error'}}">
