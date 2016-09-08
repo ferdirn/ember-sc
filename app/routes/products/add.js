@@ -12,7 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.store.createRecord('product');
   },
   setupController: function(controller, model) {
-    Ember.Logger.log('Entering products.add route.setupController');
+    Ember.Logger.log('Entering routes/products/add setupController');
 
     controller.set('model', model);
     controller.set('canEditSpecialPrice', false);
